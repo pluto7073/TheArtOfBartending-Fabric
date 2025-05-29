@@ -12,7 +12,7 @@ import net.minecraft.world.item.Items;
 public class MixedDrinkItem extends AbstractCustomizableDrinkItem {
 
     public MixedDrinkItem(Properties settings) {
-        super(BartendingItems.COCKTAIL_GLASS, Temperature.NORMAL, settings);
+        super(BartendingItems.COCKTAIL_GLASS, 0, settings);
     }
 
     @Override

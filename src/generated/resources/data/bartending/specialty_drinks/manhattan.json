@@ -11,5 +11,6 @@
   "chemicals": {},
   "color": 12871734,
   "name": "",
-  "onDrinkActions": []
+  "onDrinkActions": [],
+  "volume": 0.0
 }

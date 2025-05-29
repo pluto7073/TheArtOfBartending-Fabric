@@ -26,46 +26,21 @@ public class AlcoholicDrinkItem extends AbstractCustomizableDrinkItem {
     public final int alcohol;
     public final AlcoholicDrink source;
     public final Item bottle;
-    public final int sipAmount;
 
     public AlcoholicDrinkItem(AlcoholicDrink source, Item bottle, Properties settings) {
-        super(bottle, Temperature.NORMAL, settings);
+        super(bottle, source.standardOunces(), settings);
         this.source = source;
         this.bottle = bottle;
         alcohol = BrewingUtil.getStandardAlcohol(source);
-        sipAmount = source.standardOunces() >= 10 ? 2 : 1;
     }
 
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
-        Player player = user instanceof Player ? (Player) user : null;
-        if (player == null) return stack;
-
-        //stack.hurtAndBreak(sipAmount, player, p -> {});
-        player.awardStat(BartendingStats.CONSUME_ALCOHOL.get(),
-                (int) Math.ceil(getChemicalContent(AlcoholHandler.INSTANCE.getId(), stack)));
-
-
-        //if (!stack.isEmpty()) return stack;
-
-        if (player instanceof ServerPlayer) {
-            CriteriaTriggers.CONSUME_ITEM.trigger((ServerPlayer) player, stack);
+        if (user instanceof Player player) {
+            player.awardStat(BartendingStats.CONSUME_ALCOHOL.get(),
+                    (int) Math.ceil(getConsumedChemicalContent(AlcoholHandler.INSTANCE.getId(), stack)));
         }
-
-        if (!world.isClientSide) {
-            DrinkAddition[] additions = DrinkUtil.getAdditionsFromStack(stack);
-            for (DrinkAddition addition : additions) {
-                addition.onDrink(stack, world, user);
-            }
-        }
-
-        player.awardStat(Stats.ITEM_USED.get(this));
-        user.gameEvent(GameEvent.DRINK);
-
-        if (!player.getAbilities().instabuild) {
-            return new ItemStack(baseItem);
-        }
-        return stack;
+        return super.finishUsingItem(stack, world, user);
     }
 
     @Override

@@ -33,13 +33,13 @@ public class BartendingAdditionProvider extends DrinkAdditionProvider {
             .chemical(PDAPI.asId("caffeine"), 5)
             .addAction(new RestoreHungerAction(1, 0));
     private static final Builder LIME = builder()
-            .changesColor(true).color(14149836)
+            .changesColor(true).color(14149836).volume(0.5)
             .addAction(new RestoreHungerAction(3, 2));
     private static final Builder SWEET_BERRIES = builder()
-            .changesColor(true).color(0x93203b)
+            .changesColor(true).color(0x93203b).volume(0.25)
             .addAction(new RestoreHungerAction(1, 1));
     private static final Builder ORANGE = builder()
-            .changesColor(true).color(0xe8b025)
+            .changesColor(true).color(0xe8b025).volume(3)
             .addAction(new RestoreHungerAction(3, 1));
 
     public BartendingAdditionProvider(FabricDataOutput out) {
@@ -54,6 +54,7 @@ public class BartendingAdditionProvider extends DrinkAdditionProvider {
             builder().changesColor(alc.color() != 0xFFFFFF)
                     .color(alc.color())
                     .chemical(asId("alcohol"), amount)
+                    .volume(1.5)
                     .save(BuiltInRegistries.ITEM.getKey(shot), consumer);
         });
         APPLE.save(asId("apple"), consumer);

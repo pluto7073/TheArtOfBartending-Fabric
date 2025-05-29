@@ -1,4 +1,19 @@
 
+## Changes
+- Updated to PDAPI 0.3.12
+- Sipping is back via pdapi
+- Base Drink Volumes:
+  - Mixed Drink: 0oz
+  - Wine, Mead, Vermouth, & Absinthe - 5oz
+  - Beer - 12oz
+- Drink Addition Volumes: 
+  - All Shots - 1.5oz
+  - Orange - 3oz
+  - Lime - 0.5oz
+  - Sweet Berries - 0.25oz
+
+---
+
 ## Additions
 - Two new glasses, the Tall and Short glass
   - The tall glass is the same that beer appeared to have been in

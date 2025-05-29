@@ -108,7 +108,7 @@ dependencies {
 
 	modCompileOnly "maven.modrinth:plutos-coffee-mod:$minecraft_version+$plutoscoffee_version"
 
-	modCompileOnly "ml.pluto7073:teatime:$minecraft_version+$teatime_version"
+	modCompileOnly "maven.modrinth:teatime:$minecraft_version+$teatime_version"
 
 	// Optional Integration Testing Toggles (these can be safely commented out... except when stated)
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
@@ -129,7 +129,7 @@ dependencies {
 
 	modRuntimeOnly "maven.modrinth:plutos-coffee-mod:$minecraft_version+$plutoscoffee_version" // Datagen
 
-	modRuntimeOnly "ml.pluto7073:teatime:$minecraft_version+$teatime_version" // Datagen
+	modRuntimeOnly "maven.modrinth:teatime:$minecraft_version+$teatime_version" // Datagen
 
 }
 
