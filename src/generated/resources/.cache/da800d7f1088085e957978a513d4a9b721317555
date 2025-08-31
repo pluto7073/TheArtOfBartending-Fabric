@@ -1,6 +1,6 @@
-// 1.20.1	2025-05-29T14:54:28.3685577	The Art of Bartending/Block Loot Tables
-dcf71f6a0a6c6cf1780ee210cf792d44678f1103 data\bartending\loot_tables\blocks\acacia_fermenting_barrel.json
+// 1.20.1	2025-08-30T18:46:39.8920197	The Art of Bartending/Block Loot Tables
 88f3c35ec8a3b1b4891931d1be05518d73f62460 data\bartending\loot_tables\blocks\oak_fermenting_barrel.json
+dcf71f6a0a6c6cf1780ee210cf792d44678f1103 data\bartending\loot_tables\blocks\acacia_fermenting_barrel.json
 7ca8056cf8deb44ed64bdf9fda10aec909e06d55 data\bartending\loot_tables\blocks\distillery.json
 d964fbb5244454f009d452d479a3d9fbe3a9b9cb data\bartending\loot_tables\blocks\warped_fermenting_barrel.json
 223677b5462035d764815e9eda222357dd04af51 data\bartending\loot_tables\blocks\bottler.json

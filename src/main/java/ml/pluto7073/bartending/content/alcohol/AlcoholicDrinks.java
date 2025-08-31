@@ -152,6 +152,12 @@ public final class AlcoholicDrinks {
                     .setTicks(3600).setLeeway(600).build())
             .addStep(new DistillingBrewerStep(6, 3))
             .color(0x679b33).bottle(BartendingItems.WINE_BOTTLE).name("Absinthe").build());
+    public static final AlcoholicDrink EVERCLEAR = register("everclear", new AlcoholicDrink.Builder().proof(190).ounces(1.5f)
+            .addStep(new BoilingBrewerStep.Builder()
+                    .addIngredient(Ingredient.of(Items.WHEAT), 128)
+                    .setTicks(3600).setLeeway(600).build())
+            .addStep(new DistillingBrewerStep(6, 3))
+            .bottle(BartendingItems.LIQUOR_BOTTLE).name("Everclear").build());
 
     private static AlcoholicDrink register(String id, AlcoholicDrink drink) {
         return Registry.register(BartendingRegistries.ALCOHOLIC_DRINK, TheArtOfBartending.asId(id), drink);

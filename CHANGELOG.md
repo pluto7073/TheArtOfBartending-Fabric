@@ -1,3 +1,8 @@
+## Additions
+- Added Everclear
+  - Made with 2 stacks of wheat, boiled for ~3 minutes, and distilled 6 times
+
+---
 
 ## Changes
 - Updated to PDAPI 0.3.12

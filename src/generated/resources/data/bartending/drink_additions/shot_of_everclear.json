@@ -1,0 +1,12 @@
+{
+  "changesColor": false,
+  "chemicals": {
+    "bartending:alcohol": 32.0
+  },
+  "color": 16777215,
+  "maxAmount": 0,
+  "name": "",
+  "onDrinkActions": [],
+  "volume": 1.5,
+  "weight": 0
+}

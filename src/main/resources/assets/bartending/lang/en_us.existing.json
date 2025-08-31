@@ -91,7 +91,6 @@
   "disconnect.bartending.still_blacked_out": "You are currently blacked out! Come back in %1$s",
   "pack.bartending.pdapi_overrides": "PDAPI Overrides",
   "gamerule.doBlackout": "Players Blackout",
-  "gamerule.doBlackout": "Should players have a chance to blackout after drinking too much alcohol",
   "gamerule.yearLengthTicks": "Year Length in Ticks",
   "gamerule.yearLengthTicks.description": "How many ticks is considered a year in fermenting"
 }

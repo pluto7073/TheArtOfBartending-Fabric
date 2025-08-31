@@ -92,6 +92,7 @@ public class BartendingCreativeTabs {
             stacks.accept(BartendingItems.TEQUILA);
             if (AlcoholicDrinks.ORANGE_LIQUEUR.isVisible()) stacks.accept(BartendingItems.ORANGE_LIQUEUR);
             stacks.accept(BartendingItems.WHISKEY);
+            stacks.accept(BartendingItems.EVERCLEAR);
 
             // Servings
             stacks.accept(BartendingItems.BOTTLE_OF_BEER);
@@ -121,6 +122,7 @@ public class BartendingCreativeTabs {
             stacks.accept(BartendingItems.SHOT_OF_TEQUILA);
             if (AlcoholicDrinks.ORANGE_LIQUEUR.isVisible()) stacks.accept(BartendingItems.SHOT_OF_ORANGE_LIQUEUR);
             stacks.accept(BartendingItems.SHOT_OF_WHISKEY);
+            stacks.accept(BartendingItems.SHOT_OF_EVERCLEAR);
         });
     }
 

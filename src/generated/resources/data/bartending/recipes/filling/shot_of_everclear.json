@@ -1,0 +1,28 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:all_mods_loaded",
+      "values": [
+        "create"
+      ]
+    }
+  ],
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "bartending:shot_glass"
+    },
+    {
+      "amount": 2531,
+      "fluid": "bartending:alcohol",
+      "nbt": {
+        "Alcohol": "bartending:everclear"
+      }
+    }
+  ],
+  "results": [
+    {
+      "item": "bartending:shot_of_everclear"
+    }
+  ]
+}

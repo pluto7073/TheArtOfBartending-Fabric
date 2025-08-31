@@ -109,6 +109,9 @@ public class BartendingItems {
     public static final Item SHOT_OF_WHISKEY = shot(AlcoholicDrinks.WHISKEY);
     public static final Item WHISKEY = bottle(AlcoholicDrinks.WHISKEY);
 
+    public static final Item SHOT_OF_EVERCLEAR = shot(AlcoholicDrinks.EVERCLEAR);
+    public static final Item EVERCLEAR = bottle(AlcoholicDrinks.EVERCLEAR);
+
     public static final Item MIXED_DRINK = new MixedDrinkItem(new Item.Properties().stacksTo(1));
 
     // Block Items
