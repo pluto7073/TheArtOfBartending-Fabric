@@ -1,15 +1,13 @@
 package ml.pluto7073.bartending.foundations.step;
 
-import ml.pluto7073.bartending.foundations.config.BartendingGameRules;
+import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-import java.util.List;
 import java.util.function.Supplier;
 
 public class ExtraFermentingBrewerStep implements BrewerStep {
@@ -31,14 +29,14 @@ public class ExtraFermentingBrewerStep implements BrewerStep {
         ResourceLocation barrelId = new ResourceLocation(data.getString("barrel"));
         if (!barrel.test(BuiltInRegistries.BLOCK.get(barrelId))) return false;
         int ticks = data.getInt("ticks");
-        int years = ticks / level.getGameRules().getInt(BartendingGameRules.YEAR_LENGTH_TICKS);
+        int years = ticks / BrewingUtil.getConfig(level).yearLengthTicks;
         return years >= minYears;
     }
 
     @Override
     public int getDeviation(CompoundTag data, float standard, Level level) {
         int ticks = data.getInt("ticks");
-        int years = ticks / level.getGameRules().getInt(BartendingGameRules.YEAR_LENGTH_TICKS);
+        int years = ticks / BrewingUtil.getConfig(level).yearLengthTicks;
         return (int) ((1 - Math.exp(-(years - minYears) / (8f * minYears))) * standard);
     }
 

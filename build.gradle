@@ -20,7 +20,7 @@ base {
 repositories {
 	maven { url = "https://maven.shedaniel.me/" } // Cloth Config, REI
 	maven { url = "https://maven.terraformersmc.com/releases/" } // Modmenu
-	maven { url = "https://pluto-mod-maven.web.app/maven" } // PDAPI
+	maven { url = "https://maven.plutonia.xyz/maven" } // PDAPI
 	maven { url = "https://maven.parchmentmc.org" } // Parchment
 	maven { url = "https://maven.quiltmc.org/repository/release" } // Quilt Mappings
 	maven { url = "https://repo.greenhouse.house/releases/" } // Farmer's Delight

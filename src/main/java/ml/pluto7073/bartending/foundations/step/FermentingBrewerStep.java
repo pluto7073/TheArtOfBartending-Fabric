@@ -1,6 +1,5 @@
 package ml.pluto7073.bartending.foundations.step;
 
-import ml.pluto7073.bartending.foundations.config.BartendingGameRules;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -36,7 +35,7 @@ public class FermentingBrewerStep implements BrewerStep {
         if (!TYPE_ID.equals(data.getString("type"))) return false;
         ResourceLocation barrelId = new ResourceLocation(data.getString("barrel"));
         if (!predicate.test(BuiltInRegistries.BLOCK.get(barrelId))) return false;
-        int ticksPerYear = level.getGameRules().getInt(BartendingGameRules.YEAR_LENGTH_TICKS);
+        int ticksPerYear = BrewingUtil.getConfig(level).yearLengthTicks;
         int ticks = data.getInt("ticks");
         int years = ticks / ticksPerYear;
         return years <= this.years + this.yearLeeway;
@@ -53,7 +52,7 @@ public class FermentingBrewerStep implements BrewerStep {
         ResourceLocation barrelId = new ResourceLocation(data.getString("barrel"));
         if (!predicate.test(BuiltInRegistries.BLOCK.get(barrelId))) return false;
         int ticks = data.getInt("ticks");
-        int years = ticks / level.getGameRules().getInt(BartendingGameRules.YEAR_LENGTH_TICKS);
+        int years = ticks / BrewingUtil.getConfig(level).yearLengthTicks;
         if (years == 0) return false;
         int diff = Math.abs(years - this.years);
         return diff <= yearLeeway;
@@ -62,7 +61,7 @@ public class FermentingBrewerStep implements BrewerStep {
     @Override
     public int getDeviation(CompoundTag data, float standard, Level level) {
         int ticks = data.getInt("ticks");
-        int years = ticks / level.getGameRules().getInt(BartendingGameRules.YEAR_LENGTH_TICKS);
+        int years = ticks / BrewingUtil.getConfig(level).yearLengthTicks;
         return Math.round(Mth.clampedMap(years, this.years - yearLeeway,
                 this.years + yearLeeway, -0.25f, 0.25f) * standard);
     }
@@ -70,7 +69,7 @@ public class FermentingBrewerStep implements BrewerStep {
     @Override
     public void createExactMatchData(CompoundTag tag, Level level) {
         tag.putString("barrel", BuiltInRegistries.BLOCK.getKey(predicate.first()).toString());
-        tag.putInt("ticks", level.getGameRules().getInt(BartendingGameRules.YEAR_LENGTH_TICKS) * years);
+        tag.putInt("ticks", BrewingUtil.getConfig(level).yearLengthTicks * years);
     }
 
     public static void appendInProgressText(CompoundTag data, List<Component> tooltips, Level level) {
@@ -79,7 +78,7 @@ public class FermentingBrewerStep implements BrewerStep {
         tooltips.add(Component.translatable("tooltip.bartending.fermenting_in").append(Component.translatable(barrel.getDescriptionId()))
                 .withStyle(ChatFormatting.GRAY));
         if (level == null) return;
-        String time = "" + (ticks / level.getGameRules().getInt(BartendingGameRules.YEAR_LENGTH_TICKS));
+        String time = "" + (ticks / BrewingUtil.getConfig(level).yearLengthTicks);
         tooltips.add(Component.translatable("tooltip.bartending.fermenting_for", time).withStyle(ChatFormatting.GRAY));
     }
 

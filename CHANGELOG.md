@@ -1,3 +1,12 @@
+
+## Changes
+- Configuration is now managed through a config file rather than gamerules
+  - You will have to reset values for doBlackout and yearLengthTicks
+  - This config can be managed through ModMenu with Cloth Config installed
+  - This config is also joined with the PDAPI config and other Pluto's Drinks Mods
+
+---
+
 ## Additions
 - Added Everclear
   - Made with 2 stacks of wheat, boiled for ~3 minutes, and distilled 6 times

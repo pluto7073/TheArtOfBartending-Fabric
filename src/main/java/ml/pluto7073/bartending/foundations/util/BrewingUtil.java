@@ -1,10 +1,12 @@
 package ml.pluto7073.bartending.foundations.util;
 
+import ml.pluto7073.bartending.TheArtOfBartending;
 import ml.pluto7073.bartending.compat.create.TheArtOfCreate;
 import ml.pluto7073.bartending.content.item.BartendingItems;
 import ml.pluto7073.bartending.foundations.BartendingRegistries;
 import ml.pluto7073.bartending.foundations.alcohol.AlcDisplayType;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholicDrink;
+import ml.pluto7073.bartending.foundations.config.BartendingCommonConfig;
 import ml.pluto7073.bartending.foundations.step.*;
 import ml.pluto7073.bartending.foundations.tags.BartendingTags;
 import ml.pluto7073.pdapi.util.DrinkUtil;
@@ -39,6 +41,14 @@ public class BrewingUtil {
     @SafeVarargs
     public static <T> Stream<T> collectionsToStream(Collection<? extends T>... lists) {
         return Arrays.stream(lists).flatMap(Collection::stream);
+    }
+
+    public static BartendingCommonConfig getConfig(Level level) {
+        if (level.isClientSide) {
+            return TheArtOfBartending.CONFIG_TYPE.getCopy();
+        } else {
+            return BartendingCommonConfig.INSTANCE;
+        }
     }
 
     public static ItemStack createConcoctionFromBaseTicks(NonNullList<ItemStack> base, int ticks) {

@@ -3,6 +3,7 @@ package ml.pluto7073.bartending.foundations.alcohol;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import ml.pluto7073.bartending.TheArtOfBartending;
 import ml.pluto7073.bartending.client.TheArtOfClient;
+import ml.pluto7073.bartending.client.config.BartendingClientConfig;
 import ml.pluto7073.bartending.content.entity.effect.BartendingMobEffects;
 import ml.pluto7073.bartending.foundations.command.BartendingCommands;
 import ml.pluto7073.bartending.foundations.item.AlcoholicDrinkItem;
@@ -40,7 +41,7 @@ public class AlcoholHandler extends HalfLifeChemicalHandler {
     public static final StatFormatter ALCOHOL_FORMATTER = value -> {
         AlcDisplayType type = AlcDisplayType.GRAMS;
         if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
-            type = TheArtOfClient.config().getAlcoholDisplayType();
+            type = BartendingClientConfig.INSTANCE.alcoholDisplayType;
             if (type == AlcDisplayType.PROOF) type = AlcDisplayType.OUNCES;
         }
         float amount = BrewingUtil.convertType(value, AlcDisplayType.GRAMS, type);
@@ -71,7 +72,7 @@ public class AlcoholHandler extends HalfLifeChemicalHandler {
             appendTooltip(tooltip, amount, stack, AlcDisplayType.GRAMS);
             return;
         }
-        appendTooltip(tooltip, amount, stack, TheArtOfClient.config().getAlcoholDisplayType());
+        appendTooltip(tooltip, amount, stack, BartendingClientConfig.INSTANCE.alcoholDisplayType);
     }
 
     public void appendTooltip(List<Component> tooltip, float amount, ItemStack stack, AlcDisplayType display) {

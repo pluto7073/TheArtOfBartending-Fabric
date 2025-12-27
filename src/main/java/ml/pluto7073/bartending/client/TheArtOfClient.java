@@ -12,25 +12,17 @@ import ml.pluto7073.bartending.content.fluid.BartendingFluids;
 import ml.pluto7073.bartending.content.gui.BartendingMenuTypes;
 import ml.pluto7073.bartending.content.item.BartendingItems;
 import ml.pluto7073.bartending.content.item.ConcoctionItem;
-import ml.pluto7073.bartending.foundations.item.AlcoholicDrinkItem;
-import ml.pluto7073.bartending.foundations.network.BartendingClientboundPackets;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
-import ml.pluto7073.bartending.client.config.ClientConfig;
+import ml.pluto7073.bartending.client.config.BartendingClientConfig;
 import ml.pluto7073.bartending.foundations.util.ColorUtil;
+import ml.pluto7073.pdapi.config.PDClientConfig;
 import ml.pluto7073.pdapi.util.DrinkUtil;
 import ml.pluto7073.pdapi.addition.DrinkAddition;
-import ml.pluto7073.pdapi.item.PDItems;
-import ml.pluto7073.pdapi.specialty.SpecialtyDrink;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
-import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.RenderType;
@@ -38,7 +30,6 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.item.ClampedItemPropertyFunction;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -55,20 +46,15 @@ import java.util.List;
 @Environment(EnvType.CLIENT)
 public class TheArtOfClient implements ClientModInitializer {
 
-    private static ClientConfig CONFIG = null;
     private static final List<Item> GLASSES = new ArrayList<>();
 
     @Override
     public void onInitializeClient() {
+        PDClientConfig.INSTANCE.addManagedConfig(BartendingClientConfig.INSTANCE);
         initColors();
         registerScreens();
         initRendering();
         registerItemProperties();
-        BartendingClientboundPackets.registerReceivers();
-    }
-
-    public static ClientConfig config() {
-        return CONFIG == null ? CONFIG = new ClientConfig() : CONFIG;
     }
 
     private static void initColors() {

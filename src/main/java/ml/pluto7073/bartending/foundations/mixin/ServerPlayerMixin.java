@@ -2,9 +2,8 @@ package ml.pluto7073.bartending.foundations.mixin;
 
 import com.mojang.authlib.GameProfile;
 import ml.pluto7073.bartending.foundations.alcohol.AbsorbedAlcoholHandler;
-import ml.pluto7073.bartending.foundations.config.BartendingGameRules;
+import ml.pluto7073.bartending.foundations.config.BartendingCommonConfig;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
-import ml.pluto7073.bartending.foundations.alcohol.AlcoholHandler;
 import ml.pluto7073.bartending.foundations.alcohol.blackout.BlackoutData;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -29,7 +28,7 @@ public abstract class ServerPlayerMixin extends Player {
 
     @Inject(at = @At("TAIL"), method = "tick")
     public void bartending$TickBlackouts(CallbackInfo ci) {
-        if (!level().getGameRules().getBoolean(BartendingGameRules.DO_BLACKOUT)) return;
+        if (!BartendingCommonConfig.INSTANCE.doBlackout) return;
         float alc = BrewingUtil.calculateBAC(AbsorbedAlcoholHandler.INSTANCE.get(this));
         if (alc < 0.11f) {
             bartending$BlackoutData = null;
@@ -51,7 +50,7 @@ public abstract class ServerPlayerMixin extends Player {
 
     @Inject(at = @At("TAIL"), method = "readAdditionalSaveData")
     public void bartending$ReadBlackoutData(CompoundTag compound, CallbackInfo ci) {
-        if (!compound.contains("BlackoutData") || !level().getGameRules().getBoolean(BartendingGameRules.DO_BLACKOUT)) {
+        if (!compound.contains("BlackoutData") || !BartendingCommonConfig.INSTANCE.doBlackout) {
             bartending$BlackoutAttemptCooldown = 600;
             bartending$BlackoutData = null;
             return;

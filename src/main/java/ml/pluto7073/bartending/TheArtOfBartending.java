@@ -13,11 +13,15 @@ import ml.pluto7073.bartending.foundations.alcohol.AbsorbedAlcoholHandler;
 import ml.pluto7073.bartending.foundations.alcohol.BartendingEntityData;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholHandler;
 import ml.pluto7073.bartending.foundations.command.BartendingCommands;
-import ml.pluto7073.bartending.foundations.config.BartendingGameRules;
+import ml.pluto7073.bartending.foundations.config.BartendingCommonConfig;
 import ml.pluto7073.bartending.foundations.item.BartendingCreativeTabs;
 import ml.pluto7073.bartending.foundations.recipe.BartendingRecipes;
 import ml.pluto7073.bartending.foundations.specialty.GlassDrinkBaseSerializer;
+import ml.pluto7073.pdapi.config.PDCommonConfig;
+import ml.pluto7073.plutonium.PlutoniumConfig;
+import ml.pluto7073.plutonium.config.ServerConfigType;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,12 +32,14 @@ public class TheArtOfBartending implements ModInitializer {
 
     public static final String MOD_ID = "bartending";
     public static final Logger LOGGER = LogManager.getLogger("TheArtOfBartending");
+    public static final ServerConfigType<BartendingCommonConfig> CONFIG_TYPE =
+            Registry.register(PlutoniumConfig.SERVER_CONFIG_TYPES, asId("common"), new ServerConfigType<>(BartendingCommonConfig.INSTANCE, BartendingCommonConfig::new, true));
 
     @Override
     public void onInitialize() {
+        PDCommonConfig.INSTANCE.addManagedConfig(CONFIG_TYPE);
         GlassDrinkBaseSerializer.init();
         BartendingEntityData.init();
-        BartendingGameRules.init();
         AbsorbedAlcoholHandler.init();
         AlcoholHandler.init();
         Arrays.stream(BartendingRecipes.values()).forEach(BartendingRecipes::register);
