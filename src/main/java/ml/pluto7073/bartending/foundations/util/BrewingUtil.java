@@ -200,8 +200,8 @@ public class BrewingUtil {
         return averageColors(colors);
     }
 
-    public static int getColorForDrinkWithDefault(ItemStack drink, int normal) {
-        DrinkAddition[] additions = DrinkUtil.getAdditionsFromStack(drink);
+    public static int getColorForDrinkWithDefault(ItemStack drink, int normal, Level level) {
+        DrinkAddition[] additions = DrinkUtil.getAdditionsFromStack(drink, level);
         List<Integer> colors = Arrays.stream(additions).filter(DrinkAddition::changesColor)
                 .map(DrinkAddition::getColor).collect(Collectors.toCollection(ArrayList::new));
         colors.add(0, normal);

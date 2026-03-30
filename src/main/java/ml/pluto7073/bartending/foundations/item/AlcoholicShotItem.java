@@ -2,9 +2,10 @@ package ml.pluto7073.bartending.foundations.item;
 
 import ml.pluto7073.bartending.content.item.BartendingItems;
 import ml.pluto7073.bartending.foundations.BartendingStats;
-import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholHandler;
+import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholicDrink;
+import ml.pluto7073.chemicals.handlers.ConsumedInstance.AbsorptionType;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.network.chat.Component;
@@ -50,6 +51,7 @@ public class AlcoholicShotItem extends Item {
         return UseAnim.DRINK;
     }
 
+    @SuppressWarnings("UnstableApiUsage")
     @Override
     public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity user) {
         Player player = user instanceof Player ? (Player) user : null;
@@ -59,7 +61,7 @@ public class AlcoholicShotItem extends Item {
 
         if (!level.isClientSide) {
             if (player != null) {
-                AlcoholHandler.INSTANCE.add(player, alcohol);
+                player.addChemical(AlcoholHandler.INSTANCE, AbsorptionType.DRINK, alcohol);
             }
         }
 

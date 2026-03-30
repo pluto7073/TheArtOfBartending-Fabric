@@ -7,6 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 
 @MethodsReturnNonnullByDefault
 public class MixedDrinkItem extends AbstractCustomizableDrinkItem {
@@ -16,7 +17,7 @@ public class MixedDrinkItem extends AbstractCustomizableDrinkItem {
     }
 
     @Override
-    protected Item baseItem(ItemStack stack) {
+    protected Item baseItem(ItemStack stack, Level level) {
         ResourceLocation id = new ResourceLocation(stack.getOrCreateTag().getString("FromItem"));
         Item item = BuiltInRegistries.ITEM.get(id);
         if (item == Items.AIR) return baseItem;

@@ -2,7 +2,7 @@ package ml.pluto7073.bartending.foundations.alcohol.blackout;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import ml.pluto7073.bartending.TheArtOfBartending;
-import ml.pluto7073.bartending.foundations.alcohol.AbsorbedAlcoholHandler;
+import ml.pluto7073.bartending.foundations.alcohol.AlcoholHandler;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
@@ -22,7 +22,7 @@ import java.util.List;
 
 public class BlackoutData {
 
-    public static final float BAC_MULTIPLIER_AFTER_BLACKOUT = (float) Math.pow(0.5, 6000.0 / AbsorbedAlcoholHandler.ALCOHOL_HALF_LIFE_TICKS);
+    public static final float BAC_MULTIPLIER_AFTER_BLACKOUT = (float) Math.pow(0.5, 6000.0 / AlcoholHandler.ALCOHOL_HALF_LIFE_TICKS);
 
     private final ServerPlayer player;
     private short blackoutIn;
@@ -57,8 +57,8 @@ public class BlackoutData {
             return;
         }
         if (blackoutIn <= -100) {
-            float alc = AbsorbedAlcoholHandler.INSTANCE.get(player);
-            AbsorbedAlcoholHandler.INSTANCE.set(player, alc * BAC_MULTIPLIER_AFTER_BLACKOUT);
+            float alc = AlcoholHandler.INSTANCE.get(player);
+            AlcoholHandler.INSTANCE.set(player, alc * BAC_MULTIPLIER_AFTER_BLACKOUT);
             switch (afterWakeup) {
                 case BED -> {
                     BlockPos respawnPos = player.getRespawnPosition();

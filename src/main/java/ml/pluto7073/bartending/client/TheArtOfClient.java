@@ -23,6 +23,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.RenderType;
@@ -71,10 +72,10 @@ public class TheArtOfClient implements ClientModInitializer {
         ColorProviderRegistry.ITEM.register((stack, index) -> index > 0 ? -1 : ConcoctionItem.isFailed(stack) ? 0x545252 : BrewingUtil.getColorForConcoction(stack), BartendingItems.CONCOCTION);
 
         ColorProviderRegistry.ITEM.register((stack, i) -> {
-            DrinkAddition[] array = Arrays.stream(DrinkUtil.getAdditionsFromStack(stack))
+            DrinkAddition[] array = Arrays.stream(DrinkUtil.getAdditionsFromStack(stack, Minecraft.getInstance().level))
                     .filter(DrinkAddition::changesColor).toList().toArray(new DrinkAddition[0]);
             if (array.length == 0) return i > 0 ? -1 : 4210943;
-            return i > 0 ? -1 : BrewingUtil.getColorForDrinkWithDefault(stack, array[0].getColor());
+            return i > 0 ? -1 : BrewingUtil.getColorForDrinkWithDefault(stack, array[0].getColor(), Minecraft.getInstance().level);
         }, BartendingItems.MIXED_DRINK);
 
         BartendingBlocks.BARRELS.forEach((type, barrel) -> {
@@ -89,9 +90,9 @@ public class TheArtOfClient implements ClientModInitializer {
         BartendingItems.BOTTLES.forEach((drink, item) ->
                 ColorProviderRegistry.ITEM.register((stack, i) -> i > 0 ? -1 : drink.color(), item));
         BartendingItems.GLASSES.forEach((drink, item) ->
-                ColorProviderRegistry.ITEM.register((stack, i) -> i > 0 ? -1 : BrewingUtil.getColorForDrinkWithDefault(stack, drink.color()), item));
+                ColorProviderRegistry.ITEM.register((stack, i) -> i > 0 ? -1 : BrewingUtil.getColorForDrinkWithDefault(stack, drink.color(), Minecraft.getInstance().level), item));
         BartendingItems.SERVING_BOTTLES.forEach((drink, item) ->
-                ColorProviderRegistry.ITEM.register((stack, i) -> i > 0 ? -1 : BrewingUtil.getColorForDrinkWithDefault(stack, drink.color()), item));
+                ColorProviderRegistry.ITEM.register((stack, i) -> i > 0 ? -1 : BrewingUtil.getColorForDrinkWithDefault(stack, drink.color(), Minecraft.getInstance().level), item));
     }
 
     private static void initRendering() {

@@ -10,8 +10,18 @@ plugins {
 	id "com.matthewprenger.cursegradle" version "1.+"
 }
 
-version = project.minecraft_version + "+" + project.mod_version
+static String getBuildNo() {
+	if (System.getenv().containsKey("GITHUB_RUN_NUMBER")) {
+		return "+build." + System.getenv("GITHUB_RUN_NUMBER")
+	} else {
+		return "+dev"
+	}
+}
+
+version = project.minecraft_version + "+" + project.mod_version + getBuildNo()
 group = project.maven_group
+
+System.out.println("Version: " + version)
 
 base {
 	archivesName = project.archives_base_name
@@ -28,10 +38,11 @@ repositories {
 	// Optional mod addons
 	maven { url = "https://mvn.devos.one/releases/" }
 	maven { url = "https://mvn.devos.one/snapshots/" } // Create & Dep
+	maven { url = "https://maven.createmod.net/" } // Create Deps (Ponder, Flywheel)
 	maven { url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/" } // FCAPI ( Create )
 	maven { url = "https://maven.jamieswhiteshirt.com/libs-release" } // Reach Entity Attributes
 	maven { url = "https://jitpack.io/" } // MixinExtras, ASM
-	maven { url = "https://maven.tterrag.com/" } // Flywheel
+	maven { url = "https://maven.tterrag.com/" } // Flywheel Old
 	maven { url = "https://modmaven.dev/" }
 	maven { url = "https://api.modrinth.com/maven" } // Fruitful fun, Lychee, Carpet
 }
@@ -92,6 +103,7 @@ dependencies {
 	// Optional Addons
 
 	modCompileOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version}"
+	//modCompileOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version_six}" // CREATE 6.x COMING SOON
 
 	modCompileOnly "vectorwing:FarmersDelight:${minecraft_version}-${farmersdelight_version}+refabricated"
 
@@ -114,7 +126,8 @@ dependencies {
 	// Optional Integration Testing Toggles (these can be safely commented out... except when stated)
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
-	modRuntimeOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version}" // Required for Datagen
+	modRuntimeOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version}" // CREATE 0.5.1 - Required for Datagen
+	//modRuntimeOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version_six}" // CREATE 6.x COMING SOON
 
 	modRuntimeOnly "vectorwing:FarmersDelight:${minecraft_version}-${farmersdelight_version}+refabricated"
 

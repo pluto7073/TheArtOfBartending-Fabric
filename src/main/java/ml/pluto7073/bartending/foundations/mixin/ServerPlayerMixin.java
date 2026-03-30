@@ -1,7 +1,7 @@
 package ml.pluto7073.bartending.foundations.mixin;
 
 import com.mojang.authlib.GameProfile;
-import ml.pluto7073.bartending.foundations.alcohol.AbsorbedAlcoholHandler;
+import ml.pluto7073.bartending.foundations.alcohol.AlcoholHandler;
 import ml.pluto7073.bartending.foundations.config.BartendingCommonConfig;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import ml.pluto7073.bartending.foundations.alcohol.blackout.BlackoutData;
@@ -29,7 +29,7 @@ public abstract class ServerPlayerMixin extends Player {
     @Inject(at = @At("TAIL"), method = "tick")
     public void bartending$TickBlackouts(CallbackInfo ci) {
         if (!BartendingCommonConfig.INSTANCE.doBlackout) return;
-        float alc = BrewingUtil.calculateBAC(AbsorbedAlcoholHandler.INSTANCE.get(this));
+        float alc = BrewingUtil.calculateBAC(AlcoholHandler.INSTANCE.get(this));
         if (alc < 0.11f) {
             bartending$BlackoutData = null;
             bartending$BlackoutAttemptCooldown = 600;

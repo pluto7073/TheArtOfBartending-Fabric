@@ -1,10 +1,3 @@
-> [!WARNING]\
-> This Mod is currently in Alpha, meanining it is not complete and there are probably *a lot* of bugs.  Use at your own risk.
-> 
-> Another Note: If you encounter a bug, first check the changelog for in the known bugs section, and if it is not there, please report it on the github issue tracker
->
-> Another Another Note: Because this mod is in alpha, if you have a suggestion of a rework for something to make it better, share it! Use the "Alpha Improvement" template on the GitHub issues page, as I am looking for ways to make this mod better
-
 ![](https://img.shields.io/github/v/release/pluto7073/TheArtOfBartending-Fabric?label=Latest%20Release&style=for-the-badge) ![](https://img.shields.io/badge/enviornment-both-brightgreen?style=for-the-badge) ![](https://img.shields.io/badge/modloader-fabric-blue?style=for-the-badge) [<img src="https://i.imgur.com/Ol1Tcf8.png" alt="Requires Fabric API" width="90">](https://modrinth.com/mod/fabric-api)
 
 GOVERNMENT WARNING: (1) According to the Surgeon General, people should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery...

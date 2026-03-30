@@ -2,14 +2,14 @@ package ml.pluto7073.bartending.foundations.item;
 
 import ml.pluto7073.bartending.content.sound.BartendingSounds;
 import ml.pluto7073.bartending.foundations.BartendingStats;
+import ml.pluto7073.bartending.foundations.alcohol.AlcoholHandler;
 import ml.pluto7073.bartending.foundations.recipe.BartendingRecipes;
 import ml.pluto7073.bartending.foundations.recipe.PouringRecipe;
 import ml.pluto7073.bartending.foundations.step.FermentingBrewerStep;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import ml.pluto7073.bartending.foundations.alcohol.AlcDisplayType;
-import ml.pluto7073.bartending.foundations.alcohol.AlcoholHandler;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholicDrink;
-import ml.pluto7073.pdapi.item.AbstractCustomizableDrinkItem;
+import ml.pluto7073.chemicals.handlers.ConsumedInstance;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.network.chat.Component;
@@ -22,7 +22,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gameevent.GameEvent;
 import org.jetbrains.annotations.Nullable;
@@ -30,6 +29,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
+@SuppressWarnings("UnstableApiUsage")
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public class PourableBottleItem extends Item {
@@ -76,7 +76,7 @@ public class PourableBottleItem extends Item {
             }
             int alc = BrewingUtil.getAlcohol(drink, 1);
             if (!level.isClientSide) {
-                AlcoholHandler.INSTANCE.add(player, alc);
+                player.addChemical(AlcoholHandler.INSTANCE, ConsumedInstance.AbsorptionType.DRINK, alc);
             }
             player.awardStat(BartendingStats.CONSUME_ALCOHOL.get(), alc);
             stack.hurtAndBreak(2, player, user -> user.awardStat(BartendingStats.ALCOHOL_BOTTLES_DRANK.get()));
