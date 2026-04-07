@@ -102,8 +102,8 @@ dependencies {
 
 	// Optional Addons
 
-	modCompileOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version}"
-	//modCompileOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version_six}" // CREATE 6.x COMING SOON
+//	modCompileOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version}"
+	modCompileOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version_six}" // CREATE 6.x COMING SOON
 
 	modCompileOnly "vectorwing:FarmersDelight:${minecraft_version}-${farmersdelight_version}+refabricated"
 
@@ -126,8 +126,8 @@ dependencies {
 	// Optional Integration Testing Toggles (these can be safely commented out... except when stated)
 	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 
-	modRuntimeOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version}" // CREATE 0.5.1 - Required for Datagen
-	//modRuntimeOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version_six}" // CREATE 6.x COMING SOON
+//	modRuntimeOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version}" // CREATE 0.5.1 - Required for Datagen
+	modRuntimeOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version_six}" // CREATE 6.x COMING SOON
 
 	modRuntimeOnly "vectorwing:FarmersDelight:${minecraft_version}-${farmersdelight_version}+refabricated"
 

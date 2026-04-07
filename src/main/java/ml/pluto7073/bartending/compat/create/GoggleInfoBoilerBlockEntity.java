@@ -1,6 +1,6 @@
 package ml.pluto7073.bartending.compat.create;
 
-import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
+import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import ml.pluto7073.bartending.content.block.entity.BoilerBlockEntity;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import net.minecraft.ChatFormatting;

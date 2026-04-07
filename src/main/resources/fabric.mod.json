@@ -53,5 +53,7 @@
 		"fabric-api": ">=${fabric_version}",
 		"pdapi": ">=${pdapi_version}"
 	},
-	"suggests": {}
+	"breaks": {
+		"create": "<6.0"
+	}
 }

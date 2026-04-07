@@ -1,10 +1,10 @@
 package ml.pluto7073.bartending.foundations.datagen;
 
 import com.simibubi.create.AllRecipeTypes;
+import com.simibubi.create.api.data.recipe.ProcessingRecipeGen;
 import com.simibubi.create.content.processing.recipe.HeatCondition;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
-import com.simibubi.create.foundation.data.recipe.ProcessingRecipeGen;
 import com.simibubi.create.foundation.fluid.FluidIngredient;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import io.github.fabricators_of_create.porting_lib.fluids.FluidStack;
@@ -206,7 +206,7 @@ public class BartendingRecipeProviders extends FabricRecipeProvider {
     public static abstract class BartendingProcessingGen extends ProcessingRecipeGen {
 
         public BartendingProcessingGen(FabricDataOutput generator) {
-            super(generator);
+            super(generator, TheArtOfBartending.MOD_ID);
         }
 
         @Override
