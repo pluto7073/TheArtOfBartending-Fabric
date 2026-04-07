@@ -1,5 +1,10 @@
 
 ## Changes
+- Updated to Create 6.x
+
+---
+
+## Changes
 - Updated for PDAPI 0.4.x and Chemicals 2.x
 - Configuration is now managed through a config file rather than gamerules
   - You will have to reset values for doBlackout and yearLengthTicks
