@@ -69,6 +69,12 @@ public class BartendingItems {
     public static final Item GLASS_OF_CHAMPAGNE = glass(AlcoholicDrinks.CHAMPAGNE, WINE_GLASS);
     public static final Item CHAMPAGNE = bottle(AlcoholicDrinks.CHAMPAGNE);
 
+    public static final Item GLASS_OF_SWEET_BERRY_WINE = glass(AlcoholicDrinks.SWEET_BERRY_WINE, WINE_GLASS);
+    public static final Item SWEET_BERRY_WINE = bottle(AlcoholicDrinks.SWEET_BERRY_WINE);
+
+    public static final Item GLASS_OF_GLOW_BERRY_WINE = glass(AlcoholicDrinks.GLOW_BERRY_WINE, WINE_GLASS);
+    public static final Item GLOW_BERRY_WINE = bottle(AlcoholicDrinks.GLOW_BERRY_WINE);
+
     public static final Item GLASS_OF_CRIMSON_WINE = glass(AlcoholicDrinks.CRIMSON_WINE, COCKTAIL_GLASS);
     public static final Item CRIMSON_WINE = bottle(AlcoholicDrinks.CRIMSON_WINE);
 
@@ -141,7 +147,6 @@ public class BartendingItems {
 
     private static AlcoholicDrinkItem glass(AlcoholicDrink drink, Item glass) {
         Item.Properties props = new Item.Properties()
-                .defaultDurability((int) drink.standardOunces() * 2)
                 .rarity(Rarity.UNCOMMON);
         AlcoholicDrinkItem item = new AlcoholicDrinkItem(drink, glass, props);
         GLASSES.put(drink, item);
@@ -152,7 +157,6 @@ public class BartendingItems {
         int ouncesTotal = BrewingUtil.getOuncesFromBottle(drink.bottle());
         int servings = ouncesTotal * 2;
         Item.Properties properties = new Item.Properties()
-                .defaultDurability(servings)
                 .rarity(Rarity.UNCOMMON);
         PourableBottleItem item = new PourableBottleItem(drink.bottle(), drink, properties);
         registerFinalDrink(drink, item);
@@ -162,7 +166,6 @@ public class BartendingItems {
 
     private static AlcoholicDrinkItem servingBottle(AlcoholicDrink drink) {
         Item.Properties props = new Item.Properties()
-                .defaultDurability((int) drink.standardOunces() * 2)
                 .rarity(Rarity.UNCOMMON);
         AlcoholicDrinkItem item = new AlcoholicDrinkItem(drink, BartendingItems.BEER_BOTTLE, props);
         SERVING_BOTTLES.put(drink, item);

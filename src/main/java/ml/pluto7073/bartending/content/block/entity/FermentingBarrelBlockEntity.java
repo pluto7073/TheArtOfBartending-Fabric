@@ -4,7 +4,7 @@ import ml.pluto7073.bartending.TheArtOfBartending;
 import ml.pluto7073.bartending.content.block.FermentingBarrelBlock;
 import ml.pluto7073.bartending.content.item.BartendingItems;
 import ml.pluto7073.bartending.foundations.item.PourableBottleItem;
-import ml.pluto7073.bartending.foundations.step.FermentingBrewerStep;
+import ml.pluto7073.bartending.foundations.step.BarrelAgingBrewerStep;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -96,7 +96,7 @@ public class FermentingBarrelBlockEntity extends RandomizableContainerBlockEntit
                 if (stack.getItem() instanceof PourableBottleItem) {
                     CompoundTag data = stack.getOrCreateTagElement("ExtraFermentingData");
                     BrewingUtil.computeIfAbsent(data, "type", key ->
-                            StringTag.valueOf(FermentingBrewerStep.TYPE_ID));
+                            StringTag.valueOf(BarrelAgingBrewerStep.TYPE_ID));
                     BrewingUtil.computeIfAbsent(data, "barrel", key ->
                             StringTag.valueOf(TheArtOfBartending.asId(entity.woodType.name() + "_fermenting_barrel").toString()));
                     BrewingUtil.<IntTag>compute(data, "ticks", (key, val) ->
@@ -106,11 +106,11 @@ public class FermentingBarrelBlockEntity extends RandomizableContainerBlockEntit
             }
             ListTag steps = stack.getOrCreateTag().getList("BrewingSteps", Tag.TAG_COMPOUND);
             CompoundTag data = steps.getCompound(steps.size() - 1);
-            if (!FermentingBrewerStep.TYPE_ID.equals(data.getString("type")) ||
+            if (!BarrelAgingBrewerStep.TYPE_ID.equals(data.getString("type")) ||
                     !(TheArtOfBartending.asId(entity.woodType.name() + "_fermenting_barrel"))
                             .toString().equals(data.getString("barrel"))) {
                 CompoundTag tag = new CompoundTag();
-                tag.putString("type", FermentingBrewerStep.TYPE_ID);
+                tag.putString("type", BarrelAgingBrewerStep.TYPE_ID);
                 tag.putString("barrel", TheArtOfBartending.asId(entity.woodType.name() + "_fermenting_barrel").toString());
                 tag.putInt("ticks", 1);
                 steps.add(tag);

@@ -7,31 +7,22 @@ import me.shedaniel.rei.api.client.gui.Renderer;
 import me.shedaniel.rei.api.client.gui.widgets.*;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
-import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import ml.pluto7073.bartending.client.gui.BoilerScreen;
 import ml.pluto7073.bartending.compat.rei.TextWidget;
 import ml.pluto7073.bartending.compat.rei.TheArtOfREI;
 import ml.pluto7073.bartending.compat.rei.display.AlcoholBrewingDisplay;
-import ml.pluto7073.bartending.content.block.BartendingBlocks;
 import ml.pluto7073.bartending.content.item.BartendingItems;
-import ml.pluto7073.bartending.foundations.step.BoilingBrewerStep;
+import ml.pluto7073.bartending.foundations.step.FermentingBrewerStep;
 import ml.pluto7073.bartending.foundations.step.BrewerStep;
 import ml.pluto7073.bartending.foundations.step.DistillingBrewerStep;
-import ml.pluto7073.bartending.foundations.step.FermentingBrewerStep;
+import ml.pluto7073.bartending.foundations.step.BarrelAgingBrewerStep;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
-import org.jetbrains.annotations.NotNull;
-import org.spongepowered.asm.mixin.injection.struct.InjectorGroupInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,9 +42,9 @@ public class AlcoholBrewingCategory implements DisplayCategory<AlcoholBrewingDis
         widgets.add(Widgets.createRecipeBase(bounds));
 
         for (BrewerStep step : display.drink.steps()) {
-            if (step instanceof BoilingBrewerStep boiling) {
+            if (step instanceof FermentingBrewerStep boiling) {
                 setupBoilingDisplay(widgets, y += 40, boiling, bounds);
-            } else if (step instanceof FermentingBrewerStep fermenting) {
+            } else if (step instanceof BarrelAgingBrewerStep fermenting) {
                 setupFermentingDisplay(widgets, y += 52, fermenting, bounds);
             } else if (step instanceof DistillingBrewerStep distilling) {
                 setupDistillingDisplay(widgets, y += 40, distilling, bounds);
@@ -84,7 +75,7 @@ public class AlcoholBrewingCategory implements DisplayCategory<AlcoholBrewingDis
         return EntryStacks.of(BartendingItems.RED_WINE);
     }
 
-    private static void setupFermentingDisplay(ArrayList<Widget> widgets, int baseY, FermentingBrewerStep step, Rectangle bounds) {
+    private static void setupFermentingDisplay(ArrayList<Widget> widgets, int baseY, BarrelAgingBrewerStep step, Rectangle bounds) {
         widgets.add(Widgets.createRecipeBase(new Rectangle(bounds.x, baseY - 12, bounds.width, 52)));
         widgets.add(Widgets.createSlot(new Point(bounds.x + 8, baseY + 6))
                 .entries(EntryIngredients.ofIngredient(step.predicate.asIngredient())).markInput());
@@ -97,7 +88,7 @@ public class AlcoholBrewingCategory implements DisplayCategory<AlcoholBrewingDis
         widgets.add(new TextWidget(text, ChatFormatting.WHITE, new Point(bounds.x + 8, baseY + 8)));
     }
 
-    private static void setupBoilingDisplay(ArrayList<Widget> widgets, int baseY, BoilingBrewerStep step, Rectangle bounds) {
+    private static void setupBoilingDisplay(ArrayList<Widget> widgets, int baseY, FermentingBrewerStep step, Rectangle bounds) {
         widgets.add(Widgets.createRecipeBase(new Rectangle(bounds.x, baseY - 12, bounds.width, 52)));
         int tx = bounds.x + 8;
         for (Map.Entry<Ingredient, Pair<Integer, Integer>> e : step.ingredients.entrySet()) {

@@ -88,6 +88,8 @@ public class BartendingCreativeTabs {
             stacks.accept(BartendingItems.RED_WINE);
             stacks.accept(BartendingItems.WHITE_WINE);
             stacks.accept(BartendingItems.CHAMPAGNE);
+            stacks.accept(BartendingItems.SWEET_BERRY_WINE);
+            stacks.accept(BartendingItems.GLOW_BERRY_WINE);
             stacks.accept(BartendingItems.CRIMSON_WINE);
             stacks.accept(BartendingItems.WARPED_WINE);
             stacks.accept(BartendingItems.SWEET_VERMOUTH);
@@ -115,6 +117,8 @@ public class BartendingCreativeTabs {
             stacks.accept(BartendingItems.GLASS_OF_RED_WINE);
             stacks.accept(BartendingItems.GLASS_OF_WHITE_WINE);
             stacks.accept(BartendingItems.GLASS_OF_CHAMPAGNE);
+            stacks.accept(BartendingItems.GLASS_OF_SWEET_BERRY_WINE);
+            stacks.accept(BartendingItems.GLASS_OF_GLOW_BERRY_WINE);
             stacks.accept(BartendingItems.GLASS_OF_CRIMSON_WINE);
             stacks.accept(BartendingItems.GLASS_OF_WARPED_WINE);
             stacks.accept(BartendingItems.GLASS_OF_DRY_VERMOUTH);

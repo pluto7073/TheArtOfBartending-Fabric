@@ -8,12 +8,11 @@ import ml.pluto7073.bartending.compat.rei.TheArtOfREI;
 import ml.pluto7073.bartending.content.alcohol.AlcoholicDrinks;
 import ml.pluto7073.bartending.content.block.BartendingBlocks;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholicDrink;
-import ml.pluto7073.bartending.foundations.step.BoilingBrewerStep;
-import ml.pluto7073.bartending.foundations.step.BrewerStep;
 import ml.pluto7073.bartending.foundations.step.FermentingBrewerStep;
+import ml.pluto7073.bartending.foundations.step.BrewerStep;
+import ml.pluto7073.bartending.foundations.step.BarrelAgingBrewerStep;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class AlcoholBrewingDisplay extends BasicDisplay {
@@ -33,9 +32,9 @@ public class AlcoholBrewingDisplay extends BasicDisplay {
     private static List<EntryIngredient> getAllIngredientsForDrink(AlcoholicDrink drink) {
         ArrayList<EntryIngredient> list = new ArrayList<>();
         for (BrewerStep step : drink.steps()) {
-            if (step instanceof BoilingBrewerStep boiling) {
+            if (step instanceof FermentingBrewerStep boiling) {
                 list.addAll(boiling.ingredients.keySet().stream().map(EntryIngredients::ofIngredient).toList());
-            } else if (step instanceof FermentingBrewerStep fermenting) {
+            } else if (step instanceof BarrelAgingBrewerStep fermenting) {
                 list.addAll(BartendingBlocks.BARRELS.values().stream().filter(fermenting.predicate).map(EntryIngredients::of).toList());
             }
         }

@@ -53,7 +53,7 @@ public class BrewingUtil {
 
     public static ItemStack createConcoctionFromBaseTicks(NonNullList<ItemStack> base, int ticks) {
         CompoundTag data = new CompoundTag();
-        data.putString("type", BoilingBrewerStep.TYPE_ID);
+        data.putString("type", FermentingBrewerStep.TYPE_ID);
         data.putInt("ticks", ticks);
         if (isInventorySingleItem(base)) {
             data.putString("item", BuiltInRegistries.ITEM.getKey(base.get(0).getItem()).toString());
@@ -324,8 +324,8 @@ public class BrewingUtil {
         for (Tag tag : steps) {
             if (!(tag instanceof CompoundTag data)) continue;
             switch (data.getString("type")) {
-                case BoilingBrewerStep.TYPE_ID -> ticksBoiled += data.getInt("ticks");
-                case FermentingBrewerStep.TYPE_ID -> ticksFermented += data.getInt("ticks");
+                case FermentingBrewerStep.TYPE_ID -> ticksBoiled += data.getInt("ticks");
+                case BarrelAgingBrewerStep.TYPE_ID -> ticksFermented += data.getInt("ticks");
                 case DistillingBrewerStep.TYPE_ID -> distilled += data.getInt("runs");
             }
         }

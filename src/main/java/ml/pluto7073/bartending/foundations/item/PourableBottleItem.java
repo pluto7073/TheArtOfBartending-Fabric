@@ -5,7 +5,7 @@ import ml.pluto7073.bartending.foundations.BartendingStats;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholHandler;
 import ml.pluto7073.bartending.foundations.recipe.BartendingRecipes;
 import ml.pluto7073.bartending.foundations.recipe.PouringRecipe;
-import ml.pluto7073.bartending.foundations.step.FermentingBrewerStep;
+import ml.pluto7073.bartending.foundations.step.BarrelAgingBrewerStep;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import ml.pluto7073.bartending.foundations.alcohol.AlcDisplayType;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholicDrink;
@@ -105,7 +105,7 @@ public class PourableBottleItem extends Item {
         amount += BrewingUtil.getAlcoholDeviation(stack);
         if (isAdvanced.isAdvanced() || isAdvanced.isCreative()) AlcoholHandler.INSTANCE.appendTooltip(tooltip, amount, stack, AlcDisplayType.PROOF);
         if (stack.getOrCreateTag().contains("ExtraFermentingData")) {
-            FermentingBrewerStep.appendInProgressText(stack.getOrCreateTagElement("ExtraFermentingData"), tooltip, level);
+            BarrelAgingBrewerStep.appendInProgressText(stack.getOrCreateTagElement("ExtraFermentingData"), tooltip, level);
         }
         super.appendHoverText(stack, level, tooltip, isAdvanced);
     }

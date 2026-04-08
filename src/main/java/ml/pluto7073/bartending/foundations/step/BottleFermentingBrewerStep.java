@@ -10,7 +10,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.function.Supplier;
 
-public class ExtraFermentingBrewerStep implements BrewerStep {
+public class BottleFermentingBrewerStep implements BrewerStep {
 
     public static final String TYPE_ID = "extra_fermenting";
 
@@ -18,7 +18,7 @@ public class ExtraFermentingBrewerStep implements BrewerStep {
     private final BarrelPredicate barrel;
     private final Supplier<Item> baseItem;
 
-    public ExtraFermentingBrewerStep(int minYears, BarrelPredicate barrel, Supplier<Item> baseItem) {
+    public BottleFermentingBrewerStep(int minYears, BarrelPredicate barrel, Supplier<Item> baseItem) {
         this.minYears = minYears;
         this.barrel = barrel;
         this.baseItem = baseItem;

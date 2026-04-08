@@ -2,9 +2,9 @@ package ml.pluto7073.bartending.content.item;
 
 import ml.pluto7073.bartending.content.alcohol.AlcoholicDrinks;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholicDrink;
-import ml.pluto7073.bartending.foundations.step.BoilingBrewerStep;
-import ml.pluto7073.bartending.foundations.step.DistillingBrewerStep;
 import ml.pluto7073.bartending.foundations.step.FermentingBrewerStep;
+import ml.pluto7073.bartending.foundations.step.DistillingBrewerStep;
+import ml.pluto7073.bartending.foundations.step.BarrelAgingBrewerStep;
 import ml.pluto7073.bartending.foundations.tags.BartendingTags;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import net.minecraft.ChatFormatting;
@@ -123,8 +123,8 @@ public class ConcoctionItem extends Item {
             if (!(tag instanceof CompoundTag data)) continue;
             String type = data.getString("type");
             switch (type) {
-                case BoilingBrewerStep.TYPE_ID -> BoilingBrewerStep.appendInProgressText(data, tooltip);
-                case FermentingBrewerStep.TYPE_ID -> FermentingBrewerStep.appendInProgressText(data, tooltip, level);
+                case FermentingBrewerStep.TYPE_ID -> FermentingBrewerStep.appendInProgressText(data, tooltip);
+                case BarrelAgingBrewerStep.TYPE_ID -> BarrelAgingBrewerStep.appendInProgressText(data, tooltip, level);
                 case DistillingBrewerStep.TYPE_ID -> DistillingBrewerStep.appendInProgressText(data, tooltip);
             }
         }

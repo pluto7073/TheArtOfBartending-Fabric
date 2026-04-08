@@ -4,7 +4,7 @@ import ml.pluto7073.bartending.content.alcohol.AlcoholicDrinks;
 import ml.pluto7073.bartending.content.gui.BottlerMenu;
 import ml.pluto7073.bartending.content.item.BartendingItems;
 import ml.pluto7073.bartending.foundations.step.BrewerStep;
-import ml.pluto7073.bartending.foundations.step.ExtraFermentingBrewerStep;
+import ml.pluto7073.bartending.foundations.step.BottleFermentingBrewerStep;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholicDrink;
 import ml.pluto7073.bartending.foundations.item.PourableBottleItem;
@@ -123,7 +123,7 @@ public class BottlerBlockEntity extends BaseContainerBlockEntity implements Worl
             drinkLoop: for (AlcoholicDrink drink : AlcoholicDrinks.values()) {
                 if (drink.steps().length != 1) continue;
                 for (BrewerStep step : drink.steps()) {
-                    if (!(step instanceof ExtraFermentingBrewerStep extra)) continue drinkLoop;
+                    if (!(step instanceof BottleFermentingBrewerStep extra)) continue drinkLoop;
                     if (!extra.matches(concoction.getOrCreateTagElement("ExtraFermentingData"), level))
                         continue drinkLoop;
                     if (!extra.testItem(concoction)) continue drinkLoop;

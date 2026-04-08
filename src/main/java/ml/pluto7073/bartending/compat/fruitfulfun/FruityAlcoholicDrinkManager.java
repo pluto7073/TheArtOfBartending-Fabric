@@ -1,19 +1,15 @@
 package ml.pluto7073.bartending.compat.fruitfulfun;
 
-import ml.pluto7073.bartending.content.fluid.BartendingFluids;
 import ml.pluto7073.bartending.content.item.BartendingItems;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholicDrink;
 import ml.pluto7073.bartending.foundations.step.AlternativeBrewerStep;
-import ml.pluto7073.bartending.foundations.step.BoilingBrewerStep;
+import ml.pluto7073.bartending.foundations.step.FermentingBrewerStep;
 import ml.pluto7073.bartending.foundations.step.BrewerStep;
 import ml.pluto7073.bartending.foundations.step.DistillingBrewerStep;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.Ingredient;
-import snownee.fruits.CoreFruitTypes;
 import snownee.fruits.CoreModule;
 
 import java.util.Optional;
@@ -31,7 +27,7 @@ public final class FruityAlcoholicDrinkManager {
         Optional<Item> orange = BrewingUtil.supplyIfLoaded("fruitfulfun", () -> () -> CoreModule.ORANGE.getOrCreate());
 
         if (orange.isPresent()) {
-            boiling = new BoilingBrewerStep.Builder().addIngredient(Ingredient.of(orange.get()), 40, 10)
+            boiling = new FermentingBrewerStep.Builder().addIngredient(Ingredient.of(orange.get()), 40, 10)
                     .setTicks(24000).setLeeway(6000).build();
         } else boiling = new AlternativeBrewerStep();
 

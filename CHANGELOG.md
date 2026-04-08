@@ -4,6 +4,16 @@
 ## Additions
 - Added vine frames and vine-based plants
 - Added green and red grapes
+- Added the ability to change initial fermentation durations via config
+
+## Changes
+- Default year length for fermentation is 3 minecraft days (72000 ticks)
+- Renamed some steps:
+  - Boiling is now called Fermentation, Initial Fermentation, or Primary Fermentation
+  - Fermentation (Barrel) is now called Barrel Aging
+- Edited some recipes
+  - Both red and white wine are made using grapes now
+  - All wine recipes require 3 stacks of the primary item
 
 ---
 
