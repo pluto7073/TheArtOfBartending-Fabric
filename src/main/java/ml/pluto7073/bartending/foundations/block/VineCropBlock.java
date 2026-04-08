@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.*;
@@ -70,10 +71,29 @@ public class VineCropBlock extends CropBlock {
         return AGE;
     }
 
-    @Override
+    public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+        if (!world.isClientSide) {
+            if (player.isCreative()) {
+                EmptyVineFrameBlock.preventCreativeDropFromBottomPart(world, pos, state, player);
+            } else {
+                dropResources(state, world, pos, null, player, player.getMainHandItem());
+            }
+        }
+
+        super.playerWillDestroy(world, pos, state, player);
+    }
+
+    public void playerDestroy(Level world, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
+        super.playerDestroy(world, player, pos, Blocks.AIR.defaultBlockState(), blockEntity, stack);
+    }
+
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        BlockState blockState = world.getBlockState(pos.below());
-        return super.canSurvive(state, world, pos) && (state.getValue(HALF) == LOWER ? blockState.isFaceSturdy(world, pos.below(), Direction.UP) || blockState.is(BartendingTags.C_FARMLAND) : blockState.is(this));
+        if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
+            return super.canSurvive(state, world, pos);
+        } else {
+            BlockState blockState = world.getBlockState(pos.below());
+            return blockState.is(this) && blockState.getValue(HALF) == DoubleBlockHalf.LOWER;
+        }
     }
 
     @Override
@@ -147,10 +167,10 @@ public class VineCropBlock extends CropBlock {
 
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         DoubleBlockHalf doubleBlockHalf = state.getValue(HALF);
-        if (direction.getAxis() == Direction.Axis.Y && doubleBlockHalf == DoubleBlockHalf.LOWER == (direction == Direction.UP)) {
-            return neighborState.is(this) && neighborState.getValue(HALF) != doubleBlockHalf ? state.setValue(FACING, neighborState.getValue(FACING)) : Blocks.AIR.defaultBlockState();
-        } else {
+        if (direction.getAxis() != Direction.Axis.Y || doubleBlockHalf == DoubleBlockHalf.LOWER != (direction == Direction.UP) || neighborState.is(this) && neighborState.getValue(HALF) != doubleBlockHalf) {
             return doubleBlockHalf == DoubleBlockHalf.LOWER && direction == Direction.DOWN && !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, neighborState, world, pos, neighborPos);
+        } else {
+            return Blocks.AIR.defaultBlockState();
         }
     }
 

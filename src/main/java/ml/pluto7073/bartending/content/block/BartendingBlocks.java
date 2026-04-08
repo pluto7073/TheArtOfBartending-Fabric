@@ -37,6 +37,7 @@ public class BartendingBlocks {
     public static final Block BOTTLER = new BottlerBlock(BlockBehaviour.Properties.copy(Blocks.BREWING_STAND));
     public static final Block DISTILLERY = new DistilleryBlock(BlockBehaviour.Properties.copy(Blocks.BREWING_STAND));
     public static final Block COUNTER_TOP = new CountertopBlock(BlockBehaviour.Properties.copy(PDBlocks.DRINK_WORKSTATION));
+    @SuppressWarnings("deprecation")
     public static final Block VINE_FRAME = new EmptyVineFrameBlock(BlockBehaviour.Properties.of()
             .mapColor(Blocks.OAK_PLANKS.defaultMapColor())
             .instrument(NoteBlockInstrument.BASS)

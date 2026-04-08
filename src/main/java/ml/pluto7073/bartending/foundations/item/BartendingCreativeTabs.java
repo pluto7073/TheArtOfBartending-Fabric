@@ -58,6 +58,15 @@ public class BartendingCreativeTabs {
                     .sorted(DrinkUtil.alphabetizer(barrel -> BuiltInRegistries.BLOCK.getKey(barrel).toString()))
                     .map(Block::asItem).map(ItemStack::new).toList());
 
+            // Plants
+            stacks.accept(BartendingItems.VINE_FRAME);
+            stacks.accept(BartendingItems.RED_GRAPE_SEEDS);
+            stacks.accept(BartendingItems.GREEN_GRAPE_SEEDS);
+            stacks.accept(BartendingItems.RED_GRAPE_PLANT);
+            stacks.accept(BartendingItems.GREEN_GRAPE_PLANT);
+            stacks.accept(BartendingItems.RED_GRAPE);
+            stacks.accept(BartendingItems.GREEN_GRAPE);
+
             // Bottles
             stacks.accept(BartendingItems.WINE_BOTTLE);
             stacks.accept(BartendingItems.BEER_BOTTLE);

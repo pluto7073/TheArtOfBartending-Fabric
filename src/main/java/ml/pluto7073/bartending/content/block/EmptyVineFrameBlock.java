@@ -20,12 +20,14 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -77,7 +79,8 @@ public class EmptyVineFrameBlock extends Block {
         if (!map.containsKey(seeds.getItem())) return InteractionResult.PASS;
         if (!world.isClientSide) {
             VineCropBlock block = map.get(seeds.getItem());
-            world.setBlock(pos, block.defaultBlockState(), UPDATE_ALL);
+            //world.setBlock(pos.above(), block.defaultBlockState().setValue(HALF, UPPER).setValue(FACING, state.getValue(FACING)), UPDATE_ALL);
+            world.setBlock(pos, block.defaultBlockState().setValue(FACING, state.getValue(FACING)), UPDATE_ALL);
             if (!player.getAbilities().instabuild) {
                 seeds.shrink(1);
                 if (seeds.isEmpty()) {
@@ -87,15 +90,45 @@ public class EmptyVineFrameBlock extends Block {
         }
         return InteractionResult.sidedSuccess(world.isClientSide);
     }
-    @Override
+
+    public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+        if (!world.isClientSide) {
+            if (player.isCreative()) {
+                EmptyVineFrameBlock.preventCreativeDropFromBottomPart(world, pos, state, player);
+            } else {
+                dropResources(state, world, pos, null, player, player.getMainHandItem());
+            }
+        }
+
+        super.playerWillDestroy(world, pos, state, player);
+    }
+
+    public void playerDestroy(Level world, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
+        super.playerDestroy(world, player, pos, Blocks.AIR.defaultBlockState(), blockEntity, stack);
+    }
+
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        BlockState blockState = world.getBlockState(pos.below());
-        return super.canSurvive(state, world, pos) && (state.getValue(HALF) == LOWER ? blockState.isFaceSturdy(world, pos.below(), Direction.UP) || blockState.is(BartendingTags.C_FARMLAND) : blockState.is(this));
+        if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
+            return super.canSurvive(state, world, pos);
+        } else {
+            BlockState blockState = world.getBlockState(pos.below());
+            return blockState.is(this) && blockState.getValue(HALF) == DoubleBlockHalf.LOWER;
+        }
     }
 
     @Override
     public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        world.setBlock(pos.above(), defaultBlockState().setValue(HALF, UPPER), UPDATE_ALL);
+        world.setBlock(pos.above(), defaultBlockState().setValue(HALF, UPPER).setValue(FACING, state.getValue(FACING)), UPDATE_ALL);
+    }
+
+    @Override
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+        DoubleBlockHalf doubleBlockHalf = state.getValue(HALF);
+        if (direction.getAxis() != Direction.Axis.Y || doubleBlockHalf == DoubleBlockHalf.LOWER != (direction == Direction.UP) || neighborState.is(this) && neighborState.getValue(HALF) != doubleBlockHalf) {
+            return doubleBlockHalf == DoubleBlockHalf.LOWER && direction == Direction.DOWN && !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, neighborState, world, pos, neighborPos);
+        } else {
+            return Blocks.AIR.defaultBlockState();
+        }
     }
 
     @Nullable
@@ -109,17 +142,23 @@ public class EmptyVineFrameBlock extends Block {
         }
     }
 
-    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
-        DoubleBlockHalf doubleBlockHalf = state.getValue(HALF);
-        if (direction.getAxis() == Direction.Axis.Y && doubleBlockHalf == DoubleBlockHalf.LOWER == (direction == Direction.UP)) {
-            return neighborState.is(this) && neighborState.getValue(HALF) != doubleBlockHalf ? state.setValue(FACING, neighborState.getValue(FACING)) : Blocks.AIR.defaultBlockState();
-        } else {
-            return doubleBlockHalf == DoubleBlockHalf.LOWER && direction == Direction.DOWN && !state.canSurvive(world, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, direction, neighborState, world, pos, neighborPos);
-        }
-    }
-
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return VineCropBlock.AXIS_SHAPE_MAP.get(state.getValue(FACING).getAxis()).get(state.getValue(HALF));
     }
+
+    public static void preventCreativeDropFromBottomPart(Level world, BlockPos pos, BlockState state, Player player) {
+        DoubleBlockHalf doubleBlockHalf = state.getValue(HALF);
+        if (doubleBlockHalf == DoubleBlockHalf.UPPER) {
+            BlockPos blockPos = pos.below();
+            BlockState blockState = world.getBlockState(blockPos);
+            if (blockState.is(state.getBlock()) && blockState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+                BlockState blockState2 = blockState.getFluidState().is(Fluids.WATER) ? Blocks.WATER.defaultBlockState() : Blocks.AIR.defaultBlockState();
+                world.setBlock(blockPos, blockState2, 35);
+                world.levelEvent(player, 2001, blockPos, Block.getId(blockState));
+            }
+        }
+
+    }
+
 }
