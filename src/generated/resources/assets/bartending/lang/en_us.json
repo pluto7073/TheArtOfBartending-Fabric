@@ -178,6 +178,8 @@
   "option.pdapi.client.alcoholDisplayType.ounces": "Ounces",
   "option.pdapi.client.alcoholDisplayType.proof": "Proof",
   "option.pdapi.common.doBlackout": "Players Blackout",
+  "option.pdapi.common.fermentationTimeScale": "Fermentation Time Scale",
+  "option.pdapi.common.fermentationTimeScale.desc": "Multiplier for how long things need to be fermented in a boiler",
   "option.pdapi.common.yearLengthTicks": "Year Length (Ticks)",
   "option.pdapi.common.yearLengthTicks.desc": "How many ticks is considered a year in fermenting",
   "pack.bartending.pdapi_overrides": "PDAPI Overrides",

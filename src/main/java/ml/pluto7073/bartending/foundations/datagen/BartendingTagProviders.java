@@ -16,6 +16,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -50,6 +51,7 @@ public class BartendingTagProviders {
             BartendingBlocks.BARRELS.values().stream()
                     .sorted(DrinkUtil.alphabetizer(FermentingBarrelBlock::getDescriptionId))
                     .forEach(axe::add);
+            getOrCreateTagBuilder(BartendingTags.C_FARMLAND).add(Blocks.FARMLAND);
         }
 
     }
@@ -79,6 +81,11 @@ public class BartendingTagProviders {
                     BartendingItems.GLASSES.values(), BartendingItems.SERVING_BOTTLES.values())
                             .sorted(DrinkUtil.alphabetizer(Item::getDescriptionId))
                                     .forEach(uprightOnBelt::add);
+
+            getOrCreateTagBuilder(BartendingTags.C_FRUITS)
+                    .add(Items.APPLE, Items.MELON_SLICE, Items.SWEET_BERRIES, Items.CHORUS_FRUIT, Items.GLOW_BERRIES, BartendingItems.RED_GRAPE, BartendingItems.GREEN_GRAPE, BartendingItems.SKINNED_GRAPE);
+            getOrCreateTagBuilder(BartendingTags.UNSKINNED_GRAPES)
+                    .add(BartendingItems.RED_GRAPE, BartendingItems.GREEN_GRAPE);
         }
     }
 

@@ -97,6 +97,8 @@
   "option.pdapi.common.doBlackout": "Players Blackout",
   "option.pdapi.common.yearLengthTicks": "Year Length (Ticks)",
   "option.pdapi.common.yearLengthTicks.desc": "How many ticks is considered a year in fermenting",
+  "option.pdapi.common.fermentationTimeScale": "Fermentation Time Scale",
+  "option.pdapi.common.fermentationTimeScale.desc": "Multiplier for how long things need to be fermented in a boiler",
   "tooltip.bartending.risky_drink": "Drink at your own risk",
   "command.drink.alcohol.get": "%1$s's BAC is currently %2$s",
   "command.drink.alcohol.set": "Set the BAC of %1$s to %2$s",

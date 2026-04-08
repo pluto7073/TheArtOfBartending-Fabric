@@ -121,6 +121,7 @@ public class BartendingItems {
 
     public static final Item RED_GRAPE = new Item(new Item.Properties().food(new FoodProperties.Builder().fast().nutrition(1).saturationMod(0.25f).build()));
     public static final Item GREEN_GRAPE = new Item(new Item.Properties().food(Objects.requireNonNull(RED_GRAPE.getFoodProperties())));
+    public static final Item SKINNED_GRAPE = new Item(new Item.Properties().food(Objects.requireNonNull(RED_GRAPE.getFoodProperties())));
 
     // Block Items
 
@@ -217,6 +218,7 @@ public class BartendingItems {
 
         register("red_grape", RED_GRAPE);
         register("green_grape", GREEN_GRAPE);
+        register("skinned_grape", SKINNED_GRAPE);
 
         register("boiler", BOILER);
         register("bottler", BOTTLER);

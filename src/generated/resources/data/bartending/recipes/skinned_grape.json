@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "g": [
+      {
+        "item": "bartending:red_grape"
+      },
+      {
+        "item": "bartending:green_grape"
+      }
+    ]
+  },
+  "pattern": [
+    "gg",
+    "gg"
+  ],
+  "result": {
+    "count": 4,
+    "item": "bartending:skinned_grape"
+  },
+  "show_notification": true
+}

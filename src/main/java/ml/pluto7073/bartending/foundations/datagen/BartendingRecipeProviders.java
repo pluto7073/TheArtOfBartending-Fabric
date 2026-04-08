@@ -26,10 +26,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
-import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -176,12 +173,24 @@ public class BartendingRecipeProviders extends FabricRecipeProvider {
         simpleShapeless(BartendingItems.VINE_FRAME, Optional.of(BartendingItems.RED_GRAPE_SEEDS), BartendingItems.RED_GRAPE_PLANT, RecipeCategory.FOOD, "grape_plant", 1, exporter);
         simpleShapeless(BartendingItems.VINE_FRAME, Optional.of(BartendingItems.GREEN_GRAPE_SEEDS), BartendingItems.GREEN_GRAPE_PLANT, RecipeCategory.FOOD, "grape_plant", 1, exporter);
 
+        shaped(RecipeCategory.FOOD, BartendingItems.SKINNED_GRAPE, 4, builder ->
+                builder.pattern("gg")
+                        .pattern("gg")
+                        .define('g', Ingredient.of(BartendingItems.RED_GRAPE, BartendingItems.GREEN_GRAPE))
+                        .unlockedBy("has_grape", has(BartendingTags.UNSKINNED_GRAPES)), exporter);
+
         Consumer<FinishedRecipe> createExporter =
                 withConditions(exporter, DefaultResourceConditions.allModsLoaded("create"));
 
         emptying.buildRecipes(createExporter);
         filling.buildRecipes(createExporter);
         mixing.buildRecipes(exporter);
+    }
+
+    private void shaped(RecipeCategory category, ItemLike result, int count, UnaryOperator<ShapedRecipeBuilder> builder, Consumer<FinishedRecipe> exporter) {
+        ShapedRecipeBuilder shaped = ShapedRecipeBuilder.shaped(category, result, count);
+        builder.apply(shaped);
+        shaped.save(exporter);
     }
 
     private void simpleShapeless(ItemLike input, Optional<ItemLike> addition, ItemLike result, RecipeCategory category, String group, int resultCount, Consumer<FinishedRecipe> exporter) {

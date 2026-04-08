@@ -5,6 +5,9 @@
     "minecraft:melon_slice",
     "minecraft:sweet_berries",
     "minecraft:chorus_fruit",
-    "minecraft:glow_berries"
+    "minecraft:glow_berries",
+    "bartending:red_grape",
+    "bartending:green_grape",
+    "bartending:skinned_grape"
   ]
 }

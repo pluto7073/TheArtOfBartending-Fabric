@@ -20,6 +20,7 @@ public class BartendingTags {
     public static final TagKey<Item> WARPED_BOTANICALS = item("warped_botanicals");
     public static final TagKey<Item> CRIMSON_BOTANICALS = item("crimson_botanicals");
     public static final TagKey<Item> GLASSES = item("glasses");
+    public static final TagKey<Item> UNSKINNED_GRAPES = item("unskinned_grapes");
 
     private static TagKey<Item> item(String name) {
         if (name.contains(":")) {
