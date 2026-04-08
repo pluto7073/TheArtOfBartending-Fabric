@@ -1,4 +1,12 @@
 
+### We're Finally at 1.0!
+
+## Additions
+- Added vine frames and vine-based plants
+- Added green and red grapes
+
+---
+
 ## Changes
 - Updated to Create 6.x
 
