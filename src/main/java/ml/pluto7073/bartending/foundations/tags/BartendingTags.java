@@ -11,6 +11,7 @@ public class BartendingTags {
 
     public static final TagKey<Block> EXTRA_BOILER_HEATERS = block("extra_boiler_heaters");
     public static final TagKey<Block> SUPERHEATING_BLOCKS = block("superheating_blocks");
+    public static final TagKey<Block> C_FARMLAND = block("c:farmland");
 
     public static final TagKey<Item> EMPTY_GLASS_BOTTLES = item("empty_glass_bottles");
     public static final TagKey<Item> BOILABLES = item("boilables");
@@ -28,6 +29,9 @@ public class BartendingTags {
     }
 
     private static TagKey<Block> block(String name) {
+        if (name.contains(":")) {
+            return TagKey.create(Registries.BLOCK, new ResourceLocation(name));
+        }
         return TagKey.create(Registries.BLOCK, TheArtOfBartending.asId(name));
     }
 

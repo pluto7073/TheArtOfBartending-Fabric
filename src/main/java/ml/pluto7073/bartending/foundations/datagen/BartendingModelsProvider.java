@@ -11,6 +11,7 @@ import net.minecraft.data.models.BlockModelGenerators;
 import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.data.models.blockstates.*;
 import net.minecraft.data.models.model.ModelTemplate;
+import net.minecraft.data.models.model.ModelTemplates;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -92,6 +93,13 @@ public class BartendingModelsProvider extends FabricModelProvider {
                 ));
             }
         }
+
+        generators.generateFlatItem(BartendingItems.RED_GRAPE_PLANT, ModelTemplates.FLAT_ITEM);
+        generators.generateFlatItem(BartendingItems.RED_GRAPE_SEEDS, ModelTemplates.FLAT_ITEM);
+        generators.generateFlatItem(BartendingItems.RED_GRAPE, ModelTemplates.FLAT_ITEM);
+        generators.generateFlatItem(BartendingItems.GREEN_GRAPE_PLANT, ModelTemplates.FLAT_ITEM);
+        generators.generateFlatItem(BartendingItems.GREEN_GRAPE_SEEDS, ModelTemplates.FLAT_ITEM);
+        generators.generateFlatItem(BartendingItems.GREEN_GRAPE, ModelTemplates.FLAT_ITEM);
     }
 
 }

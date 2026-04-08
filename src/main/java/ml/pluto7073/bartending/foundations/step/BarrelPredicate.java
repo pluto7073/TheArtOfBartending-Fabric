@@ -11,32 +11,37 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class BarrelPredicate implements Predicate<Block> {
 
     public static final BarrelPredicate ANY = new BarrelPredicate(
-            BartendingBlocks.BARRELS.values().toArray(new FermentingBarrelBlock[0])
+            () -> BartendingBlocks.BARRELS.values().stream().toList()
     );
 
-    private final List<FermentingBarrelBlock> allowed;
+    private final Supplier<List<FermentingBarrelBlock>> allowed;
 
     public BarrelPredicate(FermentingBarrelBlock... allowed) {
-        this.allowed = Lists.newArrayList(allowed);
+        this.allowed = () -> Lists.newArrayList(allowed);
+    }
+
+    private BarrelPredicate(Supplier<List<FermentingBarrelBlock>> allowed) {
+        this.allowed = allowed;
     }
 
     public FermentingBarrelBlock first() {
-        return allowed.get(0);
+        return allowed.get().get(0);
     }
 
     @Override
     public boolean test(Block block) {
         if (this == ANY) return true;
         if (!(block instanceof FermentingBarrelBlock fermentingBarrelBlock)) return false;
-        return allowed.contains(fermentingBarrelBlock);
+        return allowed.get().contains(fermentingBarrelBlock);
     }
 
     public Ingredient asIngredient() {
-        return Ingredient.of(allowed.toArray(ItemLike[]::new));
+        return Ingredient.of(allowed.get().toArray(ItemLike[]::new));
     }
 
     public static BarrelPredicate ofWood(WoodType... types) {

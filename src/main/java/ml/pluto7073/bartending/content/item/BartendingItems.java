@@ -11,10 +11,12 @@ import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import net.minecraft.Util;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.properties.WoodType;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import static ml.pluto7073.bartending.content.alcohol.AlcoholicDrinks.registerFinalDrink;
 import static net.minecraft.world.item.Items.*;
@@ -114,12 +116,21 @@ public class BartendingItems {
 
     public static final Item MIXED_DRINK = new MixedDrinkItem(new Item.Properties().stacksTo(1));
 
+    public static final Item RED_GRAPE_SEEDS = new Item(new Item.Properties());
+    public static final Item GREEN_GRAPE_SEEDS = new Item(new Item.Properties());
+
+    public static final Item RED_GRAPE = new Item(new Item.Properties().food(new FoodProperties.Builder().fast().nutrition(1).saturationMod(0.25f).build()));
+    public static final Item GREEN_GRAPE = new Item(new Item.Properties().food(Objects.requireNonNull(RED_GRAPE.getFoodProperties())));
+
     // Block Items
 
     public static final Item BOILER = new BlockItem(BartendingBlocks.BOILER, new Item.Properties());
     public static final Item BOTTLER = new BlockItem(BartendingBlocks.BOTTLER, new Item.Properties());
     public static final Item DISTILLERY = new BlockItem(BartendingBlocks.DISTILLERY, new Item.Properties());
     public static final Item COUNTER_TOP = new BlockItem(BartendingBlocks.COUNTER_TOP, new Item.Properties());
+    public static final Item VINE_FRAME = new BlockItem(BartendingBlocks.VINE_FRAME, new Item.Properties());
+    public static final Item RED_GRAPE_PLANT = new BlockItem(BartendingBlocks.RED_GRAPE_PLANT, new Item.Properties());
+    public static final Item GREEN_GRAPE_PLANT = new BlockItem(BartendingBlocks.GREEN_GRAPE_PLANT, new Item.Properties());
 
     public static final HashMap<WoodType, BlockItem> FERMENTING_BARRELS = Util.make(() -> {
         HashMap<WoodType, BlockItem> map = new HashMap<>();
@@ -169,7 +180,7 @@ public class BartendingItems {
     }
 
     private static void register(String id, Item item) {
-        Registry.register(BuiltInRegistries.ITEM, TheArtOfBartending.asId(id), item);
+        Items.registerItem(TheArtOfBartending.asId(id), item);
     }
 
     public static void init() {
@@ -201,10 +212,19 @@ public class BartendingItems {
         register("short_glass", SHORT_GLASS);
         register("mixed_drink", MIXED_DRINK);
 
+        register("red_grape_seeds", RED_GRAPE_SEEDS);
+        register("green_grape_seeds", GREEN_GRAPE_SEEDS);
+
+        register("red_grape", RED_GRAPE);
+        register("green_grape", GREEN_GRAPE);
+
         register("boiler", BOILER);
         register("bottler", BOTTLER);
         register("distillery", DISTILLERY);
         register("countertop", COUNTER_TOP);
+        register("vine_frame", VINE_FRAME);
+        register("red_grape_plant", RED_GRAPE_PLANT);
+        register("green_grape_plant", GREEN_GRAPE_PLANT);
         FERMENTING_BARRELS.forEach((type, item) -> register(type.name() + "_fermenting_barrel", item));
     }
 

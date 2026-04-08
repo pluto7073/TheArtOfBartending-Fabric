@@ -1,0 +1,6 @@
+{
+  "parent": "bartending:block/vine_plant_lower",
+  "textures": {
+    "plant": "bartending:block/grape_plant3"
+  }
+}

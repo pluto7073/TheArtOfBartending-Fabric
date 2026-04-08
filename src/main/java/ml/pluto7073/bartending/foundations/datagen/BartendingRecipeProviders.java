@@ -28,6 +28,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -41,6 +42,7 @@ import snownee.fruits.CoreFruitTypes;
 import snownee.fruits.CoreModule;
 import snownee.fruits.FruitType;
 
+import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.UnaryOperator;
 
@@ -169,12 +171,26 @@ public class BartendingRecipeProviders extends FabricRecipeProvider {
         stonecutting(exporter, RecipeCategory.TOOLS, Items.GREEN_STAINED_GLASS, BartendingItems.WINE_BOTTLE, 2);
         stonecutting(exporter, RecipeCategory.TOOLS, Items.GLASS, BartendingItems.LIQUOR_BOTTLE, 2);
 
+        simpleShapeless(BartendingItems.RED_GRAPE, Optional.empty(), BartendingItems.RED_GRAPE_SEEDS, RecipeCategory.FOOD, "grape_seeds", 1, exporter);
+        simpleShapeless(BartendingItems.GREEN_GRAPE, Optional.empty(), BartendingItems.GREEN_GRAPE_SEEDS, RecipeCategory.FOOD, "grape_seeds", 1, exporter);
+        simpleShapeless(BartendingItems.VINE_FRAME, Optional.of(BartendingItems.RED_GRAPE_SEEDS), BartendingItems.RED_GRAPE_PLANT, RecipeCategory.FOOD, "grape_plant", 1, exporter);
+        simpleShapeless(BartendingItems.VINE_FRAME, Optional.of(BartendingItems.GREEN_GRAPE_SEEDS), BartendingItems.GREEN_GRAPE_PLANT, RecipeCategory.FOOD, "grape_plant", 1, exporter);
+
         Consumer<FinishedRecipe> createExporter =
                 withConditions(exporter, DefaultResourceConditions.allModsLoaded("create"));
 
         emptying.buildRecipes(createExporter);
         filling.buildRecipes(createExporter);
         mixing.buildRecipes(exporter);
+    }
+
+    private void simpleShapeless(ItemLike input, Optional<ItemLike> addition, ItemLike result, RecipeCategory category, String group, int resultCount, Consumer<FinishedRecipe> exporter) {
+        ShapelessRecipeBuilder builder = ShapelessRecipeBuilder.shapeless(category, result, resultCount)
+                .unlockedBy("has_input", has(input))
+                .requires(input)
+                .group(group);
+        addition.ifPresent(item -> builder.requires(item).unlockedBy("has_addition", has(item)));
+        builder.save(exporter);
     }
 
     private void stonecutting(Consumer<FinishedRecipe> exporter, RecipeCategory category, ItemLike in, ItemLike out, int count) {

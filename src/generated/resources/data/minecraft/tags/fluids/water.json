@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "bartending:flowing_alcohol",
-    "bartending:alcohol"
+    "bartending:alcohol",
+    "bartending:flowing_alcohol"
   ]
 }

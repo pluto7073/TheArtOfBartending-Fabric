@@ -1,0 +1,451 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "bartending:block/vine_frame_lower"
+      },
+      "when": { "facing": "north", "half": "lower" }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/vine_frame_lower"
+      },
+      "when": { "facing": "south", "half": "lower" }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/vine_frame_lower",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "lower" }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/vine_frame_lower",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "lower" }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/vine_frame_upper"
+      },
+      "when": { "facing": "north", "half": "upper" }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/vine_frame_upper"
+      },
+      "when": { "facing": "south", "half": "upper" }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/vine_frame_upper",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "upper" }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/vine_frame_upper",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "upper" }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower0"
+      },
+      "when": { "facing": "north", "half": "lower", "age": 0 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower0"
+      },
+      "when": { "facing": "south", "half": "lower", "age": 0 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower0",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "lower", "age": 0 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower0",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "lower", "age": 0 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower0"
+      },
+      "when": { "facing": "north", "half": "lower", "age": 1 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower0"
+      },
+      "when": { "facing": "south", "half": "lower", "age": 1 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower0",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "lower", "age": 1 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower0",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "lower", "age": 1 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower1",
+        "y": 0
+      },
+      "when": { "facing": "north", "half": "lower", "age": 2 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower1",
+        "y": 0
+      },
+      "when": { "facing": "south", "half": "lower", "age": 2 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower1",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "lower", "age": 2 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower1",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "lower", "age": 2 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower1",
+        "y": 0
+      },
+      "when": { "facing": "north", "half": "lower", "age": 3 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower1",
+        "y": 0
+      },
+      "when": { "facing": "south", "half": "lower", "age": 3 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower1",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "lower", "age": 3 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower1",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "lower", "age": 3 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower2",
+        "y": 0
+      },
+      "when": { "facing": "north", "half": "lower", "age": 4 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower2",
+        "y": 0
+      },
+      "when": { "facing": "south", "half": "lower", "age": 4 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower2",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "lower", "age": 4 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower2",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "lower", "age": 4 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower2",
+        "y": 0
+      },
+      "when": { "facing": "north", "half": "lower", "age": 5 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower2",
+        "y": 0
+      },
+      "when": { "facing": "south", "half": "lower", "age": 5 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower2",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "lower", "age": 5 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower2",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "lower", "age": 5 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower3",
+        "y": 0
+      },
+      "when": { "facing": "north", "half": "lower", "age": 6 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower3",
+        "y": 0
+      },
+      "when": { "facing": "south", "half": "lower", "age": 6 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower3",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "lower", "age": 6 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_lower3",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "lower", "age": 6 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/red_grape_plant_lower7",
+        "y": 0
+      },
+      "when": { "facing": "north", "half": "lower", "age": 7 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/red_grape_plant_lower7",
+        "y": 0
+      },
+      "when": { "facing": "south", "half": "lower", "age": 7 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/red_grape_plant_lower7",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "lower", "age": 7 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/red_grape_plant_lower7",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "lower", "age": 7 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper0",
+        "y": 0
+      },
+      "when": { "facing": "north", "half": "upper", "age": 0 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper0",
+        "y": 0
+      },
+      "when": { "facing": "south", "half": "upper", "age": 0 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper0",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "upper", "age": 0 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper0",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "upper", "age": 0 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper0",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "upper", "age": 0 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper4",
+        "y": 0
+      },
+      "when": { "facing": "north", "half": "upper", "age": 3 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper4",
+        "y": 0
+      },
+      "when": { "facing": "south", "half": "upper", "age": 3 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper4",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "upper", "age": 3 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper4",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "upper", "age": 3 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper4",
+        "y": 0
+      },
+      "when": { "facing": "north", "half": "upper", "age": 4 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper4",
+        "y": 0
+      },
+      "when": { "facing": "south", "half": "upper", "age": 4 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper4",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "upper", "age": 4 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper4",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "upper", "age": 4 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper5",
+        "y": 0
+      },
+      "when": { "facing": "north", "half": "upper", "age": 5 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper5",
+        "y": 0
+      },
+      "when": { "facing": "south", "half": "upper", "age": 5 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper5",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "upper", "age": 5 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper5",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "upper", "age": 5 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper6",
+        "y": 0
+      },
+      "when": { "facing": "north", "half": "upper", "age": 6 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper6",
+        "y": 0
+      },
+      "when": { "facing": "south", "half": "upper", "age": 6 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper6",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "upper", "age": 6 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/grape_plant_upper6",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "upper", "age": 6 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/red_grape_plant_upper7",
+        "y": 0
+      },
+      "when": { "facing": "north", "half": "upper", "age": 7 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/red_grape_plant_upper7",
+        "y": 0
+      },
+      "when": { "facing": "south", "half": "upper", "age": 7 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/red_grape_plant_upper7",
+        "y": 90
+      },
+      "when": { "facing": "east", "half": "upper", "age": 7 }
+    },
+    {
+      "apply": {
+        "model": "bartending:block/red_grape_plant_upper7",
+        "y": 90
+      },
+      "when": { "facing": "west", "half": "upper", "age": 7 }
+    }
+  ]
+}
