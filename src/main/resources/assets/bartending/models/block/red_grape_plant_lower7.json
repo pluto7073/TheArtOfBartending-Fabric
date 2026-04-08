@@ -1,5 +1,5 @@
 {
-  "parent": "bartending:block/vine_frame_lower",
+  "parent": "bartending:block/vine_plant_lower",
   "textures": {
     "plant": "bartending:block/red_grape_plant7"
   }
