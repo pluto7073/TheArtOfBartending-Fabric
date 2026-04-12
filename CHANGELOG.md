@@ -57,7 +57,7 @@
     - In create basin, now 16 coffee beans are required
     - Without Create: now start with a bottle of Vodka OR Rum and add 3 sugar and 16 coffee beans, age in any barrel for about 6 minutes then rebottle
     - Lowered Coffee liqueur to 35% ABV (from 40%)
-  - Grain alcohol can now be made with potatoes, distinct from vodka by distillation count
+  - Grain alcohol can now be made with potatoes and skinned grapes, distinct from vodka by distillation count
   - Grain alcohol is now initially fermented for 1-2 days, and distilled 6 (5 - 7) times
   - Absinthe is now made with a base of Grain Alcohol, then by adding the normal ingredients to the bottle and by distilling ~6 times
   - The items with create specific recipes can now be crafted using their non-create recipes even if create is installed (create recipes are just more efficient)

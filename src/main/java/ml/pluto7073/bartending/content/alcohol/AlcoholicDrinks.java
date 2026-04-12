@@ -102,7 +102,7 @@ public final class AlcoholicDrinks {
             .bottle(BartendingItems.WINE_BOTTLE).name("Warped Wine")
             .color(0x1af2f2).build());
     public static final AlcoholicDrink VODKA = register("vodka", AlcoholicDrink.builder().proof(80).ounces(1.5f)
-            .addStep(new FermentingBrewerStep.Builder().addIngredient(Ingredient.of(Items.POTATO, Items.POISONOUS_POTATO), 10)
+            .addStep(new FermentingBrewerStep.Builder().addIngredient(Ingredient.of(Items.POTATO, Items.POISONOUS_POTATO, BartendingItems.SKINNED_GRAPE, Items.WHEAT), 10)
                     .setTicks(24000).setLeeway(12000).build())
             .addStep(new DistillingBrewerStep(3, 1)).bottle(BartendingItems.LIQUOR_BOTTLE)
             .name("Vodka").build());
@@ -157,7 +157,7 @@ public final class AlcoholicDrinks {
             .name("Whiskey").color(0x442612).bottle(BartendingItems.LIQUOR_BOTTLE).build());
     public static final AlcoholicDrink GRAIN_ALCOHOL = register("grain_alcohol", AlcoholicDrink.builder().proof(190).ounces(1.5f)
             .addStep(new FermentingBrewerStep.Builder()
-                    .addIngredient(Ingredient.of(Items.WHEAT), 128)
+                    .addIngredient(Ingredient.of(Items.WHEAT, Items.POTATO, BartendingItems.SKINNED_GRAPE, Items.POISONOUS_POTATO), 128)
                     .setTicks(36000).setLeeway(12000).build())
             .addStep(new DistillingBrewerStep(6, 1))
             .bottle(BartendingItems.LIQUOR_BOTTLE).name("Grain Alcohol").build());
