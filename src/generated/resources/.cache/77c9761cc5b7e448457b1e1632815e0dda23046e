@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-11T20:42:12.970098552	The Art of Bartending/Recipes
+// 1.20.1	2026-04-11T20:54:39.057497201	The Art of Bartending/Recipes
 efb430ac22ea3a9da3b2d58c29fa70bff6f337d0 data/bartending/advancements/recipes/workstation/drink_workstation/sweet_berries.json
 cb003af61a7b0eeb17301c7debc01b1660889a83 data/bartending/recipes/red_grape_seeds.json
 1444d6f6268a0c9d4bf9e22aaf756ce516541535 data/bartending/recipes/emptying/gin.json
@@ -107,8 +107,8 @@ a81921144831c59b7d4a948ee425cd06d68777c7 data/bartending/recipes/drink_workstati
 8f295daae9c78ef5a24fda73b539bddf8b829157 data/bartending/recipes/emptying/crimson_wine.json
 038a442e94d334d80589a2f97683de462a450b31 data/bartending/advancements/recipes/workstation/drink_workstation/cocoa_beans.json
 59e1d9916d26944ce818f2819a01ee9e8a4fd66b data/bartending/recipes/emptying/glass_of_champagne.json
-7d0323ec18ddaaa08bf3ac1aea1f6ab6af9567ab data/bartending/recipes/emptying/champagne.json
 c551f08695f34ff2149e05dc570f0ee017ac8be4 data/bartending/recipes/drink_workstation/add_vodka.json
+7d0323ec18ddaaa08bf3ac1aea1f6ab6af9567ab data/bartending/recipes/emptying/champagne.json
 35dcd0213fda10fc8a86449658fa023b25e21f2f data/bartending/recipes/pouring/shot_of_coffee_liqueur.json
 4595816018cbdec8775e8b5094a7c23c80b8aca6 data/bartending/recipes/emptying/glass_of_warped_wine.json
 43d29ed092bedf87fbb6ac9d48aa62f38bb03837 data/bartending/recipes/filling/shot_of_apple_liqueur.json
