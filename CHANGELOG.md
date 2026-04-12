@@ -59,6 +59,7 @@
     - Lowered Coffee liqueur to 35% ABV (from 40%)
   - Grain alcohol can now be made with potatoes and skinned grapes, distinct from vodka by distillation count
   - Grain alcohol is now initially fermented for 1-2 days, and distilled 6 (5 - 7) times
+  - Grain alcohol can now be watered down into vodka using 2 water bottles and rebottling
   - Absinthe is now made with a base of Grain Alcohol, then by adding the normal ingredients to the bottle and by distilling ~6 times
   - The items with create specific recipes can now be crafted using their non-create recipes even if create is installed (create recipes are just more efficient)
   - See [the wiki](https://www.github.com/pluto7073/PlutosDrinksAPI/wiki) or use [REI](https://modrinth.com/mod/rei) for full recipes
