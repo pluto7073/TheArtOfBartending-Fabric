@@ -127,6 +127,9 @@ public class AlcoholicDrink {
             CompoundTag data = steps.getCompound(i);
             deviation += step.getDeviation(data, standard, level);
         }
+        if (BrewingUtil.getProof(this, standard + deviation) > 190) {
+            return (int) (BrewingUtil.getAlcohol(this, standardOunces) - standard);
+        }
         return deviation;
     }
 
