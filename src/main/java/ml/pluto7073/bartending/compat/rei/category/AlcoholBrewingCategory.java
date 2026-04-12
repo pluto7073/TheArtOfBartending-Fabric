@@ -13,20 +13,25 @@ import ml.pluto7073.bartending.client.gui.BoilerScreen;
 import ml.pluto7073.bartending.compat.rei.TextWidget;
 import ml.pluto7073.bartending.compat.rei.TheArtOfREI;
 import ml.pluto7073.bartending.compat.rei.display.AlcoholBrewingDisplay;
+import ml.pluto7073.bartending.content.alcohol.AlcoholicDrinks;
 import ml.pluto7073.bartending.content.item.BartendingItems;
-import ml.pluto7073.bartending.foundations.step.FermentingBrewerStep;
-import ml.pluto7073.bartending.foundations.step.BrewerStep;
-import ml.pluto7073.bartending.foundations.step.DistillingBrewerStep;
-import ml.pluto7073.bartending.foundations.step.BarrelAgingBrewerStep;
+import ml.pluto7073.bartending.foundations.alcohol.AlcoholicDrink;
+import ml.pluto7073.bartending.foundations.alcohol.SecondaryAlcoholicDrink;
+import ml.pluto7073.bartending.foundations.step.*;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
+import java.util.function.Supplier;
+import java.util.stream.Collector;
 
 public class AlcoholBrewingCategory implements DisplayCategory<AlcoholBrewingDisplay> {
     @Override
@@ -41,13 +46,19 @@ public class AlcoholBrewingCategory implements DisplayCategory<AlcoholBrewingDis
 
         widgets.add(Widgets.createRecipeBase(bounds));
 
+        if (display.drink instanceof SecondaryAlcoholicDrink secondary) {
+            setupSecondaryBaseDisplay(widgets, y += 52, secondary, bounds);
+        }
+
         for (BrewerStep step : display.drink.steps()) {
             if (step instanceof FermentingBrewerStep boiling) {
-                setupBoilingDisplay(widgets, y += 40, boiling, bounds);
+                setupBoilingDisplay(widgets, y += 52, boiling, bounds);
             } else if (step instanceof BarrelAgingBrewerStep fermenting) {
                 setupFermentingDisplay(widgets, y += 52, fermenting, bounds);
             } else if (step instanceof DistillingBrewerStep distilling) {
                 setupDistillingDisplay(widgets, y += 40, distilling, bounds);
+            } else if (step instanceof AddingItemBrewerStep adding) {
+                setupAddItemDisplay(widgets, y += 52, adding, bounds);
             }
         }
 
@@ -108,6 +119,20 @@ public class AlcoholBrewingCategory implements DisplayCategory<AlcoholBrewingDis
         widgets.add(Widgets.createTexturedWidget(BoilerScreen.TEXTURE, new Rectangle(bounds.x + 8, baseY + 20, 17, 11), 176, 0));
         widgets.add(new TextWidget(Component.translatable("tooltip.bartending.boiling_in_progress", BrewingUtil.getTimeString(step.wantedTicks / 20)),
                 ChatFormatting.WHITE, new Point(bounds.x + 28, baseY + 24)));
+    }
+
+    private static void setupSecondaryBaseDisplay(ArrayList<Widget> widgets, int baseY, SecondaryAlcoholicDrink drink, Rectangle bounds) {
+        widgets.add(Widgets.createRecipeBase(new Rectangle(bounds.x, baseY - 12, bounds.width, 42)));
+        widgets.add(new TextWidget(Component.translatable("tooltip.bartending.base"), ChatFormatting.WHITE, new Point(bounds.x + 8, baseY + 6)));
+        widgets.add(Widgets.createSlot(new Point(Minecraft.getInstance().font.width(Component.translatable("tooltip.bartending.base")) + bounds.x + 18, baseY + 8))
+                .entries(EntryIngredients.ofIngredient(Ingredient.of(drink.getBases().stream().map(AlcoholicDrinks::getFinalDrink).map(ItemStack::new)))).markInput());
+    }
+
+    private static void setupAddItemDisplay(ArrayList<Widget> widgets, int baseY, AddingItemBrewerStep step, Rectangle bounds) {
+        widgets.add(Widgets.createRecipeBase(new Rectangle(bounds.x, baseY - 12, bounds.width, 42)));
+        widgets.add(new TextWidget(Component.translatable("tooltip.bartending.added"), ChatFormatting.WHITE, new Point(bounds.x + 8, baseY + 6)));
+        widgets.add(Widgets.createSlot(new Point(Minecraft.getInstance().font.width(Component.translatable("tooltip.bartending.added")) + bounds.x + 18, baseY + 8))
+                .entries(EntryIngredients.ofIngredient(Ingredient.of(Arrays.stream(step.ingredient().get().getItems()).peek(stack -> stack.setCount(step.amount()))))));
     }
 
 }
