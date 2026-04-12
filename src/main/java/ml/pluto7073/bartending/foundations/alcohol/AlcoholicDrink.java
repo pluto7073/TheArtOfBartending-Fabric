@@ -134,12 +134,8 @@ public class AlcoholicDrink {
         return Objects.requireNonNull(BartendingRegistries.ALCOHOLIC_DRINK.getKey(this)).toLanguageKey("alcohol");
     }
 
-    public static SecondaryBuilder secondaryBuilder(SecondaryAlcoholicDrink.Criteria<AlcoholicDrink> base, boolean hideWithCreate) {
-        return new SecondaryBuilder(base, hideWithCreate);
-    }
-
     public static SecondaryBuilder secondaryBuilder(SecondaryAlcoholicDrink.Criteria<AlcoholicDrink> base) {
-        return secondaryBuilder(base, false);
+        return new SecondaryBuilder(base);
     }
 
     public static Builder builder() {
@@ -149,19 +145,14 @@ public class AlcoholicDrink {
     public static class SecondaryBuilder extends Builder {
 
         private final SecondaryAlcoholicDrink.Criteria<AlcoholicDrink> baseDrink;
-        private final boolean hideWithCreate;
 
-        private SecondaryBuilder(SecondaryAlcoholicDrink.Criteria<AlcoholicDrink> baseDrink, boolean hideWithCreate) {
+        private SecondaryBuilder(SecondaryAlcoholicDrink.Criteria<AlcoholicDrink> baseDrink) {
             this.baseDrink = baseDrink;
-            this.hideWithCreate = hideWithCreate;
-            if (hideWithCreate && FabricLoader.getInstance().isModLoaded("create")) {
-                addStep(new AlternativeBrewerStep());
-            }
         }
 
         @Override
         public AlcoholicDrink build() {
-            return new SecondaryAlcoholicDrink(baseDrink, hideWithCreate, steps.toArray(BrewerStep[]::new), standardProof, standardOunces, color, bottle, isVisible, name);
+            return new SecondaryAlcoholicDrink(baseDrink, steps.toArray(BrewerStep[]::new), standardProof, standardOunces, color, bottle, isVisible, name);
         }
     }
 

@@ -137,14 +137,16 @@ public final class AlcoholicDrinks {
             .addStep(new DistillingBrewerStep(2, 1))
             .color(0xEFEFEF).name("Tequila").bottle(BartendingItems.LIQUOR_BOTTLE).build());
     public static final AlcoholicDrink ORANGE_LIQUEUR = register("orange_liqueur", FruityAlcoholicDrinkManager.createOrangeLiqueur());
-    public static final AlcoholicDrink DRY_VERMOUTH = register("dry_vermouth", AlcoholicDrink.secondaryBuilder(() -> List.of(WHITE_WINE, GLOW_BERRY_WINE), true)
+    public static final AlcoholicDrink DRY_VERMOUTH = register("dry_vermouth", AlcoholicDrink.secondaryBuilder(() -> List.of(WHITE_WINE, GLOW_BERRY_WINE))
             .proof(33).ounces(5).addStep(new AddingItemBrewerStep(() -> Ingredient.of(BartendingItems.SHOT_OF_VODKA), 5, 1))
             .addStep(new AddingItemBrewerStep(() -> Ingredient.of(BartendingTags.BOTANICAL_ELEMENTS), 3, 0))
+            .addStep(new BarrelAgingBrewerStep(BarrelPredicate.ANY, 0.5f))
             .color(0xfcf3ba).name("Dry Vermouth").bottle(BartendingItems.WINE_BOTTLE).build());
-    public static final AlcoholicDrink SWEET_VERMOUTH = register("sweet_vermouth", AlcoholicDrink.secondaryBuilder(() -> List.of(RED_WINE, SWEET_BERRY_WINE), true)
+    public static final AlcoholicDrink SWEET_VERMOUTH = register("sweet_vermouth", AlcoholicDrink.secondaryBuilder(() -> List.of(RED_WINE, SWEET_BERRY_WINE))
             .proof(33).ounces(5).addStep(new AddingItemBrewerStep(() -> Ingredient.of(BartendingItems.SHOT_OF_VODKA), 5, 1))
             .addStep(new AddingItemBrewerStep(() -> Ingredient.of(Items.SUGAR, Items.HONEY_BOTTLE), 3, 0))
             .addStep(new AddingItemBrewerStep(() -> Ingredient.of(BartendingTags.BOTANICAL_ELEMENTS), 3, 0))
+            .addStep(new BarrelAgingBrewerStep(BarrelPredicate.ANY, 1, -0.5f))
             .color(0x51190d).name("Sweet Vermouth").bottle(BartendingItems.WINE_BOTTLE).build());
     public static final AlcoholicDrink WHISKEY = register("whiskey", AlcoholicDrink.builder().proof(80).ounces(1.5f)
             .addStep(new FermentingBrewerStep.Builder()

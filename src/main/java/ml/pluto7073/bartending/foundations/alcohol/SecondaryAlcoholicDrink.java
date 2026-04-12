@@ -19,9 +19,8 @@ import java.util.function.Supplier;
 public class SecondaryAlcoholicDrink extends AlcoholicDrink {
 
     private final Criteria<AlcoholicDrink> base;
-    private final boolean hideWithCreate;
 
-    protected SecondaryAlcoholicDrink(Criteria<AlcoholicDrink> base, boolean hideWithCreate, BrewerStep[] steps, int standardProof, float standardOunces, int color, Item bottle, Supplier<Boolean> isVisible, String englishName) {
+    protected SecondaryAlcoholicDrink(Criteria<AlcoholicDrink> base, BrewerStep[] steps, int standardProof, float standardOunces, int color, Item bottle, Supplier<Boolean> isVisible, String englishName) {
         super(steps, standardProof, standardOunces, color, bottle, isVisible, englishName);
         for (AlcoholicDrink drink : base.get()) {
             if (!AlcoholicDrinks.BASES.contains(drink)) {
@@ -29,12 +28,10 @@ public class SecondaryAlcoholicDrink extends AlcoholicDrink {
             }
         }
         this.base = base;
-        this.hideWithCreate = hideWithCreate;
     }
 
     @Override
     public boolean matches(ItemStack stack, Level level) {
-        if (hideWithCreate && FabricLoader.getInstance().isModLoaded("create")) return false;
         if (!(stack.getItem() instanceof PourableBottleItem pourable)) {
             return false;
         }

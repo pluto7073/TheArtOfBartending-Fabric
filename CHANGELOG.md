@@ -51,6 +51,7 @@
     - Add ~5 shots of vodka
     - If sweet: add 3 sugar OR 3 honey bottles
     - Add 3 of Hanging Roots, Flowers, Seeds, OR Tree bark with Farmer's Delight
+    - Age in any barrel for at least half a year
     - Rebottle in a wine bottle
   - Changed Recipe for Coffee Liqueur with (and without) Create
     - In create basin, now 16 coffee beans are required
@@ -59,6 +60,7 @@
   - Grain alcohol can now be made with potatoes, distinct from vodka by distillation count
   - Grain alcohol is now initially fermented for 1-2 days, and distilled 6 (5 - 7) times
   - Absinthe is now made with a base of Grain Alcohol, then by adding the normal ingredients to the bottle and by distilling ~6 times
+  - The items with create specific recipes can now be crafted using their non-create recipes even if create is installed (create recipes are just more efficient)
   - See [the wiki](https://www.github.com/pluto7073/PlutosDrinksAPI/wiki) or use [REI](https://modrinth.com/mod/rei) for full recipes
 - Changed how barrel fermentation works:
   - Now, each alcoholic drink that requires barrel aging has a minimum amount of "years" required but can be aged as long as desired, additionally there is a lower padding limit provided which will produce less than the normal amount of alcohol

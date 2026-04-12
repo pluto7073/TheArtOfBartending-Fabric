@@ -21,7 +21,7 @@ import java.util.Optional;
 public final class CaffeinatedAlcoholicDrinkManager {
 
     public static AlcoholicDrink createCoffeeLiqueur() {
-        AlcoholicDrink.Builder builder = AlcoholicDrink.secondaryBuilder(() -> List.of(AlcoholicDrinks.VODKA, AlcoholicDrinks.RUM), true).name("Coffee Liqueur")
+        AlcoholicDrink.Builder builder = AlcoholicDrink.secondaryBuilder(() -> List.of(AlcoholicDrinks.VODKA, AlcoholicDrinks.RUM)).name("Coffee Liqueur")
                 .addStep(new AddingItemBrewerStep(() -> Ingredient.of(Items.SUGAR), 3, 0))
                 .setVisibleWhen(() -> FabricLoader.getInstance().isModLoaded("plutoscoffee"))
                 .color(0x211304).ounces(1.5f).proof(70).bottle(BartendingItems.LIQUOR_BOTTLE);
