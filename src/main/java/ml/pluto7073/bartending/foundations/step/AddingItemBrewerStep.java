@@ -1,29 +1,20 @@
 package ml.pluto7073.bartending.foundations.step;
 
-import com.mojang.datafixers.util.Pair;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 
-import java.util.HashMap;
+import java.util.List;
 import java.util.function.Supplier;
 
-public class AddingItemBrewerStep implements BrewerStep {
+public record AddingItemBrewerStep(Supplier<Ingredient> ingredient, int amount, int leeway) implements BrewerStep {
 
     public static final String TYPE_ID = "add_item";
-
-    public final Supplier<Ingredient> ingredient;
-    public final int amount;
-    private final int leeway;
-
-    public AddingItemBrewerStep(Supplier<Ingredient> ingredient, int amount, int leeway) {
-        this.ingredient = ingredient;
-        this.amount = amount;
-        this.leeway = leeway;
-    }
 
     @Override
     public boolean mightMatch(CompoundTag data, Level level) {
