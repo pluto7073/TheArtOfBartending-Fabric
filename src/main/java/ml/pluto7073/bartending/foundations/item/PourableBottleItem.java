@@ -1,18 +1,27 @@
 package ml.pluto7073.bartending.foundations.item;
 
+import ml.pluto7073.bartending.content.alcohol.AlcoholicDrinks;
 import ml.pluto7073.bartending.content.sound.BartendingSounds;
 import ml.pluto7073.bartending.foundations.BartendingStats;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholHandler;
 import ml.pluto7073.bartending.foundations.recipe.BartendingRecipes;
 import ml.pluto7073.bartending.foundations.recipe.PouringRecipe;
+import ml.pluto7073.bartending.foundations.step.AddingItemBrewerStep;
 import ml.pluto7073.bartending.foundations.step.BarrelAgingBrewerStep;
+import ml.pluto7073.bartending.foundations.step.DistillingBrewerStep;
+import ml.pluto7073.bartending.foundations.step.FermentingBrewerStep;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import ml.pluto7073.bartending.foundations.alcohol.AlcDisplayType;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholicDrink;
 import ml.pluto7073.chemicals.handlers.ConsumedInstance;
+import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.stats.Stats;
@@ -104,8 +113,9 @@ public class PourableBottleItem extends Item {
         int amount = BrewingUtil.getStandardAlcohol(drink);
         amount += BrewingUtil.getAlcoholDeviation(stack);
         if (isAdvanced.isAdvanced() || isAdvanced.isCreative()) AlcoholHandler.INSTANCE.appendTooltip(tooltip, amount, stack, AlcDisplayType.PROOF);
-        if (stack.getOrCreateTag().contains("ExtraFermentingData")) {
-            BarrelAgingBrewerStep.appendInProgressText(stack.getOrCreateTagElement("ExtraFermentingData"), tooltip, level);
+        if (stack.getOrCreateTag().contains("BrewingSteps")) {
+            tooltip.add(Component.empty());
+            BrewingUtil.appendBrewingStepTooltip(stack, level, tooltip);
         }
         super.appendHoverText(stack, level, tooltip, isAdvanced);
     }

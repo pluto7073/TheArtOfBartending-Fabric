@@ -83,6 +83,8 @@
   "tooltip.bartending.currently_boiling": "Currently Boiling: ",
   "tooltip.bartending.boiler_info": "Boiler Information:",
   "tooltip.bartending.empty": "Empty",
+  "tooltip.bartending.base": "Start With Base:",
+  "tooltip.bartending.added": "Add: ",
   "itemGroup.bartending.main": "Bartending Items",
   "sound.bartending.liquid_pour": "Bottle Pours",
   "title.bartending.config": "The Art of Bartending Config",

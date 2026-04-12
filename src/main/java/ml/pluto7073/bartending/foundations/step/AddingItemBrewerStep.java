@@ -43,7 +43,7 @@ public class AddingItemBrewerStep implements BrewerStep {
 
     @Override
     public int getDeviation(CompoundTag data, float standard, Level level) {
-        float diff = data.getInt("count") - leeway;
+        float diff = data.getInt("count") - amount;
         float avgDiff = diff / leeway;
         return Math.round((0.0625f) * avgDiff);
     }
@@ -61,4 +61,11 @@ public class AddingItemBrewerStep implements BrewerStep {
     public String id() {
         return TYPE_ID;
     }
+
+    public static void appendInProgressText(CompoundTag data, List<Component> tooltip) {
+        tooltip.add(Component.translatable("tooltip.bartending.added").append(BuiltInRegistries.ITEM.get(new ResourceLocation(data.getString("item"))).getDescription())
+                .append(Component.literal(" "))
+                .append(Component.literal("x" + data.getInt("count"))).withStyle(ChatFormatting.GRAY));
+    }
+
 }

@@ -2,6 +2,7 @@ package ml.pluto7073.bartending.foundations.util;
 
 import ml.pluto7073.bartending.TheArtOfBartending;
 import ml.pluto7073.bartending.compat.create.TheArtOfCreate;
+import ml.pluto7073.bartending.content.alcohol.AlcoholicDrinks;
 import ml.pluto7073.bartending.content.item.BartendingItems;
 import ml.pluto7073.bartending.foundations.BartendingRegistries;
 import ml.pluto7073.bartending.foundations.alcohol.AlcDisplayType;
@@ -14,11 +15,13 @@ import ml.pluto7073.pdapi.addition.DrinkAddition;
 import ml.pluto7073.pdapi.item.AbstractCustomizableDrinkItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Item;
@@ -302,6 +305,48 @@ public class BrewingUtil {
         float ounces = drink.standardOunces();
         float ounceAlc = convertType(newAmount, AlcDisplayType.GRAMS, AlcDisplayType.OUNCES);
         return Math.round(200 * (ounceAlc / ounces));
+    }
+
+    public static void appendBrewingStepTooltip(ItemStack stack, Level level, List<Component> tooltip) {
+        ListTag steps = stack.getOrCreateTag().getList("BrewingSteps", ListTag.TAG_COMPOUND);
+
+        if (level != null) {
+            List<AlcoholicDrink> matches = AlcoholicDrinks.values().stream().filter(drink -> drink.mightMatch(stack, level)).toList();
+
+            if (!matches.isEmpty()) {
+                int index = matches.size();
+
+                if (stack.getOrCreateTag().contains("suggestIndex")) {
+                    index = stack.getOrCreateTag().getInt("suggestIndex");
+                }
+
+                if (index >= matches.size()) {
+                    index = level.random.nextInt(matches.size());
+                }
+
+                stack.getOrCreateTag().putInt("suggestIndex", index);
+
+                AlcoholicDrink match = matches.get(index);
+                ResourceLocation id = AlcoholicDrinks.getId(match);
+
+                tooltip.add(Component.translatable("tooltip.bartending.might_create").withStyle(ChatFormatting.GRAY)
+                        .append(Component.translatable(id.toLanguageKey("alcohol")).withStyle(ChatFormatting.AQUA)));
+            } else {
+                tooltip.add(Component.translatable("tooltip.bartending.might_create").withStyle(ChatFormatting.GRAY)
+                        .append(Component.translatable("item.bartending.concoction")).withStyle(ChatFormatting.AQUA));
+            }
+        }
+
+        for (Tag tag : steps) {
+            if (!(tag instanceof CompoundTag data)) continue;
+            String type = data.getString("type");
+            switch (type) {
+                case FermentingBrewerStep.TYPE_ID -> FermentingBrewerStep.appendInProgressText(data, tooltip);
+                case BarrelAgingBrewerStep.TYPE_ID -> BarrelAgingBrewerStep.appendInProgressText(data, tooltip, level);
+                case DistillingBrewerStep.TYPE_ID -> DistillingBrewerStep.appendInProgressText(data, tooltip);
+                case AddingItemBrewerStep.TYPE_ID -> AddingItemBrewerStep.appendInProgressText(data, tooltip);
+            }
+        }
     }
 
     public static float calculateBAC(float grams) {

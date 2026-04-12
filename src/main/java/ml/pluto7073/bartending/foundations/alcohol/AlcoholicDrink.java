@@ -1,6 +1,10 @@
 package ml.pluto7073.bartending.foundations.alcohol;
 
+import com.google.common.collect.ImmutableList;
+import com.mojang.datafixers.util.Pair;
 import ml.pluto7073.bartending.foundations.BartendingRegistries;
+import ml.pluto7073.bartending.foundations.alcohol.SecondaryAlcoholicDrink.Criteria;
+import ml.pluto7073.bartending.foundations.item.PourableBottleItem;
 import ml.pluto7073.bartending.foundations.step.AlternativeBrewerStep;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import ml.pluto7073.bartending.foundations.step.BrewerStep;
@@ -10,12 +14,10 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -30,8 +32,9 @@ public class AlcoholicDrink {
     private final Supplier<Boolean> isVisible;
     private final String englishName;
     private final HashMap<Item, Integer> itemToAmountMap;
+    private final List<Pair<Optional<Criteria<AlcoholicDrink>>, BrewerStep[]>> otherMethods;
 
-    protected AlcoholicDrink(BrewerStep[] steps, int standardProof, float standardOunces, int color, Item bottle, Supplier<Boolean> isVisible, String englishName) {
+    protected AlcoholicDrink(BrewerStep[] steps, List<Pair<Optional<Criteria<AlcoholicDrink>>, BrewerStep[]>> otherMethods, int standardProof, float standardOunces, int color, Item bottle, Supplier<Boolean> isVisible, String englishName) {
         this.steps = steps;
         this.standardProof = standardProof;
         this.standardOunces = standardOunces;
@@ -40,6 +43,7 @@ public class AlcoholicDrink {
         this.isVisible = isVisible;
         this.englishName = englishName;
         itemToAmountMap = new HashMap<>();
+        this.otherMethods = ImmutableList.copyOf(otherMethods);
     }
 
     public void addItem(Item item, int mb) {
@@ -81,6 +85,17 @@ public class AlcoholicDrink {
     public boolean matches(ItemStack stack, Level level) {
         ListTag steps = stack.getOrCreateTag().getList("BrewingSteps", CompoundTag.TAG_COMPOUND);
 
+        outer: for (Pair<Optional<Criteria<AlcoholicDrink>>, BrewerStep[]> pair : otherMethods) {
+            if (pair.getFirst().isPresent()) {
+                if (!pair.getFirst().get().test(((PourableBottleItem) stack.getItem()).drink)) continue;
+            }
+            if (steps.size() != pair.getSecond().length) continue;
+            for (int i = 0; i < steps.size(); i++) {
+                if (!pair.getSecond()[i].matches(steps.getCompound(i), level)) continue outer;
+            }
+            return true;
+        }
+
         if (steps.size() != this.steps.length) return false;
 
         for (int i = 0; i < steps.size(); i++) {
@@ -101,6 +116,18 @@ public class AlcoholicDrink {
      */
     public boolean mightMatch(ItemStack stack, Level level) {
         ListTag steps = stack.getOrCreateTag().getList("BrewingSteps", CompoundTag.TAG_COMPOUND);
+        outer: for (Pair<Optional<Criteria<AlcoholicDrink>>, BrewerStep[]> pair : otherMethods) {
+            if (pair.getFirst().isPresent()) {
+                if (!pair.getFirst().get().test(((PourableBottleItem) stack.getItem()).drink)) continue;
+            }
+            if (steps.size() != pair.getSecond().length) continue;
+            for (int i = 0; i < steps.size(); i++) {
+                BrewerStep step = pair.getSecond()[i];
+                CompoundTag data = steps.getCompound(i);
+                if (!step.mightMatch(data, level)) continue outer;
+            }
+            return true;
+        }
         if (steps.size() > this.steps.length) return false;
         for (int i = 0; i < steps.size(); i++) {
             BrewerStep step = this.steps[i];
@@ -122,6 +149,23 @@ public class AlcoholicDrink {
         ListTag steps = stack.getOrCreateTag().getList("BrewingSteps", CompoundTag.TAG_COMPOUND);
         int deviation = 0;
         float standard = BrewingUtil.getStandardAlcohol(this);
+        outer: for (Pair<Optional<Criteria<AlcoholicDrink>>, BrewerStep[]> pair : otherMethods) {
+            deviation = 0;
+            if (pair.getFirst().isPresent()) {
+                if (!pair.getFirst().get().test(((PourableBottleItem) stack.getItem()).drink)) continue;
+            }
+            if (steps.size() != pair.getSecond().length) continue;
+            for (int i = 0; i < steps.size(); i++) {
+                BrewerStep step = pair.getSecond()[i];
+                CompoundTag data = steps.getCompound(i);
+                if (!step.mightMatch(data, level)) continue outer;
+                deviation += step.getDeviation(data, standard, level);
+            }
+            if (BrewingUtil.getProof(this, standard + deviation) > 190) {
+                return (int) (BrewingUtil.getAlcohol(this, standardOunces) - standard);
+            }
+            return deviation;
+        }
         for (int i = 0; i < steps.size(); i++) {
             BrewerStep step = this.steps[i];
             CompoundTag data = steps.getCompound(i);
@@ -137,7 +181,7 @@ public class AlcoholicDrink {
         return Objects.requireNonNull(BartendingRegistries.ALCOHOLIC_DRINK.getKey(this)).toLanguageKey("alcohol");
     }
 
-    public static SecondaryBuilder secondaryBuilder(SecondaryAlcoholicDrink.Criteria<AlcoholicDrink> base) {
+    public static SecondaryBuilder secondaryBuilder(Criteria<AlcoholicDrink> base) {
         return new SecondaryBuilder(base);
     }
 
@@ -147,21 +191,22 @@ public class AlcoholicDrink {
 
     public static class SecondaryBuilder extends Builder {
 
-        private final SecondaryAlcoholicDrink.Criteria<AlcoholicDrink> baseDrink;
+        private final Criteria<AlcoholicDrink> baseDrink;
 
-        private SecondaryBuilder(SecondaryAlcoholicDrink.Criteria<AlcoholicDrink> baseDrink) {
+        private SecondaryBuilder(Criteria<AlcoholicDrink> baseDrink) {
             this.baseDrink = baseDrink;
         }
 
         @Override
         public AlcoholicDrink build() {
-            return new SecondaryAlcoholicDrink(baseDrink, steps.toArray(BrewerStep[]::new), standardProof, standardOunces, color, bottle, isVisible, name);
+            return new SecondaryAlcoholicDrink(baseDrink, alternatives, steps.toArray(BrewerStep[]::new), standardProof, standardOunces, color, bottle, isVisible, name);
         }
     }
 
     public static class Builder {
 
         final List<BrewerStep> steps = new ArrayList<>();
+        final List<Pair<Optional<Criteria<AlcoholicDrink>>, BrewerStep[]>> alternatives = new ArrayList<>();
         int standardProof = 0, color = 0xFFFFFF;
         float standardOunces = 0f;
         Item bottle = Items.GLASS_BOTTLE;
@@ -169,6 +214,11 @@ public class AlcoholicDrink {
         String name = "[UNNAMED ALCOHOLIC DRINK]";
 
         private Builder() {}
+
+        public Builder addAlternativeSteps(Optional<Criteria<AlcoholicDrink>> base, BrewerStep... steps) {
+            alternatives.add(new Pair<>(base, steps));
+            return this;
+        }
 
         public Builder addStep(BrewerStep step) {
             steps.add(step);
@@ -206,7 +256,7 @@ public class AlcoholicDrink {
         }
 
         public AlcoholicDrink build() {
-            return new AlcoholicDrink(steps.toArray(BrewerStep[]::new), standardProof, standardOunces, color, bottle, isVisible, name);
+            return new AlcoholicDrink(steps.toArray(BrewerStep[]::new), alternatives, standardProof, standardOunces, color, bottle, isVisible, name);
         }
 
     }

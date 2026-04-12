@@ -2,6 +2,7 @@ package ml.pluto7073.bartending.content.item;
 
 import ml.pluto7073.bartending.content.alcohol.AlcoholicDrinks;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholicDrink;
+import ml.pluto7073.bartending.foundations.step.AddingItemBrewerStep;
 import ml.pluto7073.bartending.foundations.step.FermentingBrewerStep;
 import ml.pluto7073.bartending.foundations.step.DistillingBrewerStep;
 import ml.pluto7073.bartending.foundations.step.BarrelAgingBrewerStep;
@@ -90,44 +91,7 @@ public class ConcoctionItem extends Item {
             tooltip.add(Component.translatable("tooltip.bartending.risky_drink").withStyle(ChatFormatting.GRAY));
             return;
         }
-        ListTag steps = stack.getOrCreateTag().getList("BrewingSteps", ListTag.TAG_COMPOUND);
-
-        if (level != null) {
-            List<AlcoholicDrink> matches = AlcoholicDrinks.values().stream().filter(drink -> drink.mightMatch(stack, level)).toList();
-
-            if (!matches.isEmpty()) {
-                int index = matches.size();
-
-                if (stack.getOrCreateTag().contains("suggestIndex")) {
-                    index = stack.getOrCreateTag().getInt("suggestIndex");
-                }
-
-                if (index >= matches.size()) {
-                    index = level.random.nextInt(matches.size());
-                }
-
-                stack.getOrCreateTag().putInt("suggestIndex", index);
-
-                AlcoholicDrink match = matches.get(index);
-                ResourceLocation id = AlcoholicDrinks.getId(match);
-
-                tooltip.add(Component.translatable("tooltip.bartending.might_create").withStyle(ChatFormatting.GRAY)
-                        .append(Component.translatable(id.toLanguageKey("alcohol")).withStyle(ChatFormatting.AQUA)));
-            } else {
-                tooltip.add(Component.translatable("tooltip.bartending.might_create").withStyle(ChatFormatting.GRAY)
-                        .append(Component.translatable("item.bartending.concoction")).withStyle(ChatFormatting.AQUA));
-            }
-        }
-
-        for (Tag tag : steps) {
-            if (!(tag instanceof CompoundTag data)) continue;
-            String type = data.getString("type");
-            switch (type) {
-                case FermentingBrewerStep.TYPE_ID -> FermentingBrewerStep.appendInProgressText(data, tooltip);
-                case BarrelAgingBrewerStep.TYPE_ID -> BarrelAgingBrewerStep.appendInProgressText(data, tooltip, level);
-                case DistillingBrewerStep.TYPE_ID -> DistillingBrewerStep.appendInProgressText(data, tooltip);
-            }
-        }
+        BrewingUtil.appendBrewingStepTooltip(stack, level, tooltip);
     }
 
     @Override
