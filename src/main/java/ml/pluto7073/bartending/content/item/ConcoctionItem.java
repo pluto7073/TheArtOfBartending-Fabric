@@ -93,7 +93,7 @@ public class ConcoctionItem extends Item {
         ListTag steps = stack.getOrCreateTag().getList("BrewingSteps", ListTag.TAG_COMPOUND);
 
         if (level != null) {
-            List<AlcoholicDrink> matches = AlcoholicDrinks.values().stream().filter(drink -> drink.mightMatch(steps, level)).toList();
+            List<AlcoholicDrink> matches = AlcoholicDrinks.values().stream().filter(drink -> drink.mightMatch(stack, level)).toList();
 
             if (!matches.isEmpty()) {
                 int index = matches.size();

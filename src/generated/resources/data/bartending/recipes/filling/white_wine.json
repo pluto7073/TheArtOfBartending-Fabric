@@ -22,10 +22,7 @@
   ],
   "results": [
     {
-      "item": "bartending:white_wine",
-      "nbt": {
-        "Damage": 0
-      }
+      "item": "bartending:white_wine"
     }
   ]
 }

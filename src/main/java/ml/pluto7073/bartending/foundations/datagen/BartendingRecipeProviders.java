@@ -270,13 +270,17 @@ public class BartendingRecipeProviders extends FabricRecipeProvider {
 
         private static final TagKey<Item> COFFEE_GROUNDS = TagKey.create(Registries.ITEM, new ResourceLocation("plutoscoffee:ground_coffee_beans"));
 
-        public GeneratedRecipe COFFEE_LIQUEUR = create(asId("coffee_liqueur"), recipe ->
-                recipe.withCondition(DefaultResourceConditions.allModsLoaded("create", "plutoscoffee"))
-                        .require(Ingredient.of(Items.SUGAR)).require(Ingredient.of(Items.SUGAR)).require(Ingredient.of(Items.SUGAR))
-                        .require(COFFEE_GROUNDS).require(COFFEE_GROUNDS).require(COFFEE_GROUNDS)
-                        .require(FluidIngredient.fromFluidStack(createAlcoholFluid(20250, AlcoholicDrinks.RUM)))
-                        .output(createAlcoholFluid(20250, AlcoholicDrinks.COFFEE_LIQUEUR))
-                        .requiresHeat(HeatCondition.HEATED));
+        public GeneratedRecipe COFFEE_LIQUEUR = create(asId("coffee_liqueur"), recipe -> {
+                    recipe.withCondition(DefaultResourceConditions.allModsLoaded("create", "plutoscoffee"))
+                    .require(Ingredient.of(Items.SUGAR)).require(Ingredient.of(Items.SUGAR)).require(Ingredient.of(Items.SUGAR));
+                    for (int i = 0; i < 16; i++) {
+                        recipe.require(COFFEE_GROUNDS);
+                    }
+                    recipe.require(FluidIngredient.fromFluidStack(createAlcoholFluid(20250, AlcoholicDrinks.RUM)))
+                    .output(createAlcoholFluid(20250, AlcoholicDrinks.COFFEE_LIQUEUR))
+                    .requiresHeat(HeatCondition.HEATED);
+            return recipe;
+        });
 
         public GeneratedRecipe SWEET_VERMOUTH = create(asId("sweet_vermouth"), recipe ->
                 recipe.whenModLoaded("create").require(Items.SUGAR).require(Items.SUGAR).require(Items.SUGAR)

@@ -7,22 +7,20 @@
       ]
     }
   ],
-  "type": "create:filling",
+  "type": "create:emptying",
   "ingredients": [
+    {
+      "item": "bartending:shot_of_grain_alcohol"
+    }
+  ],
+  "results": [
     {
       "item": "bartending:shot_glass"
     },
     {
       "amount": 2531,
       "fluid": "bartending:alcohol",
-      "nbt": {
-        "Alcohol": "bartending:everclear"
-      }
-    }
-  ],
-  "results": [
-    {
-      "item": "bartending:shot_of_everclear"
+      "nbt": "{Alcohol:\"bartending:grain_alcohol\"}"
     }
   ]
 }

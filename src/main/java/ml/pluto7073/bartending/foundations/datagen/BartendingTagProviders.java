@@ -13,6 +13,7 @@ import ml.pluto7073.pdapi.util.DrinkUtil;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -86,6 +87,9 @@ public class BartendingTagProviders {
                     .add(Items.APPLE, Items.MELON_SLICE, Items.SWEET_BERRIES, Items.CHORUS_FRUIT, Items.GLOW_BERRIES, BartendingItems.RED_GRAPE, BartendingItems.GREEN_GRAPE, BartendingItems.SKINNED_GRAPE);
             getOrCreateTagBuilder(BartendingTags.UNSKINNED_GRAPES)
                     .add(BartendingItems.RED_GRAPE, BartendingItems.GREEN_GRAPE);
+            getOrCreateTagBuilder(BartendingTags.C_APPLES)
+                    .add(Items.APPLE, Items.GOLDEN_APPLE, Items.ENCHANTED_GOLDEN_APPLE)
+                    .addOptional(new ResourceLocation("create:honeyed_apple"));
         }
     }
 

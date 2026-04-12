@@ -10,17 +10,17 @@
   "type": "create:emptying",
   "ingredients": [
     {
-      "item": "bartending:everclear"
+      "item": "bartending:glow_berry_wine"
     }
   ],
   "results": [
     {
-      "item": "bartending:liquor_bottle"
+      "item": "bartending:wine_bottle"
     },
     {
-      "amount": 50625,
+      "amount": 42187,
       "fluid": "bartending:alcohol",
-      "nbt": "{Alcohol:\"bartending:everclear\"}"
+      "nbt": "{Alcohol:\"bartending:glow_berry_wine\"}"
     }
   ]
 }

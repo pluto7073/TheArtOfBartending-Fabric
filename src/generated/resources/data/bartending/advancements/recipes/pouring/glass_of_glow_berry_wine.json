@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "bartending:shot_glass"
+              "bartending:wine_glass"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "bartending:pouring/shot_of_everclear"
+        "recipe": "bartending:pouring/glass_of_glow_berry_wine"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "bartending:pouring/shot_of_everclear"
+      "bartending:pouring/glass_of_glow_berry_wine"
     ]
   },
   "sends_telemetry_event": false

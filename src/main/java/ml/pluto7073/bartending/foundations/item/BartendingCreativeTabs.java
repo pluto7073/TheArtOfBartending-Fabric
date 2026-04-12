@@ -3,9 +3,7 @@ package ml.pluto7073.bartending.foundations.item;
 import ml.pluto7073.bartending.TheArtOfBartending;
 import ml.pluto7073.bartending.content.alcohol.AlcoholicDrinks;
 import ml.pluto7073.bartending.content.block.BartendingBlocks;
-import ml.pluto7073.bartending.content.fluid.BartendingFluids;
 import ml.pluto7073.bartending.content.item.BartendingItems;
-import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import ml.pluto7073.pdapi.block.PDBlocks;
 import ml.pluto7073.pdapi.util.DrinkUtil;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -21,9 +19,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.WoodType;
-
-import java.util.Comparator;
-import java.util.Map;
 
 public class BartendingCreativeTabs {
 
@@ -103,7 +98,7 @@ public class BartendingCreativeTabs {
             stacks.accept(BartendingItems.TEQUILA);
             if (AlcoholicDrinks.ORANGE_LIQUEUR.isVisible()) stacks.accept(BartendingItems.ORANGE_LIQUEUR);
             stacks.accept(BartendingItems.WHISKEY);
-            stacks.accept(BartendingItems.EVERCLEAR);
+            stacks.accept(BartendingItems.GRAIN_ALCOHOL);
 
             // Servings
             stacks.accept(BartendingItems.BOTTLE_OF_BEER);
@@ -135,7 +130,7 @@ public class BartendingCreativeTabs {
             stacks.accept(BartendingItems.SHOT_OF_TEQUILA);
             if (AlcoholicDrinks.ORANGE_LIQUEUR.isVisible()) stacks.accept(BartendingItems.SHOT_OF_ORANGE_LIQUEUR);
             stacks.accept(BartendingItems.SHOT_OF_WHISKEY);
-            stacks.accept(BartendingItems.SHOT_OF_EVERCLEAR);
+            stacks.accept(BartendingItems.SHOT_OF_GRAIN_ALCOHOL);
         });
     }
 

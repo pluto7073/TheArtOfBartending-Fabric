@@ -102,43 +102,21 @@ public class BottlerBlockEntity extends BaseContainerBlockEntity implements Worl
         ItemStack output = entity.getItem(RESULT_SLOT);
 
         // Testing for start of bottling
-        if (concoction.is(BartendingItems.CONCOCTION) && display.isEmpty() && concoction.getOrCreateTag().contains("BrewingSteps") && entity.bottleTick == 0) {
-            ListTag steps = concoction.getOrCreateTag().getList("BrewingSteps", CompoundTag.TAG_COMPOUND);
+        if ((concoction.is(BartendingItems.CONCOCTION) || AlcoholicDrinks.BASE_ITEMS.contains(concoction.getItem())) && display.isEmpty() && concoction.getOrCreateTag().contains("BrewingSteps") && entity.bottleTick == 0) {
             AlcoholicDrink match = null;
             for (AlcoholicDrink drink : AlcoholicDrinks.values()) {
-                if (drink.matches(steps, level)) match = drink;
+                if (drink.matches(concoction, level)) match = drink;
             }
             if (match == null) {
                 display = BrewingUtil.constructFailedConcoction(concoction);
                 concoction = new ItemStack(Items.GLASS_BOTTLE);
             } else {
                 entity.currentResult = new ItemStack(AlcoholicDrinks.getFinalDrink(match));
-                int deviation = match.getTotalDeviation(steps, level);
+                int deviation = match.getTotalDeviation(concoction, level);
                 BrewingUtil.setAlcoholDeviation(entity.currentResult, deviation);
                 entity.bottleTick++;
             }
             setChanged(level, pos, state);
-        } else if (concoction.getItem() instanceof PourableBottleItem && display.isEmpty() && concoction.getOrCreateTag().contains("ExtraFermentingData") && entity.bottleTick == 0) {
-            AlcoholicDrink match = null;
-            drinkLoop: for (AlcoholicDrink drink : AlcoholicDrinks.values()) {
-                if (drink.steps().length != 1) continue;
-                for (BrewerStep step : drink.steps()) {
-                    if (!(step instanceof BottleFermentingBrewerStep extra)) continue drinkLoop;
-                    if (!extra.matches(concoction.getOrCreateTagElement("ExtraFermentingData"), level))
-                        continue drinkLoop;
-                    if (!extra.testItem(concoction)) continue drinkLoop;
-                    match = drink;
-                }
-            }
-            if (match != null) {
-                entity.currentResult = new ItemStack(AlcoholicDrinks.getFinalDrink(match));
-                ListTag stepList = new ListTag();
-                stepList.add(concoction.getOrCreateTagElement("ExtraFermentingData"));
-                int deviation = match.getTotalDeviation(stepList, level);
-                deviation += BrewingUtil.getAlcoholDeviation(concoction);
-                BrewingUtil.setAlcoholDeviation(entity.currentResult, deviation);
-                entity.bottleTick++;
-            }
         } else if (!display.isEmpty() || concoction.isEmpty() || concoction.is(Items.GLASS_BOTTLE) || !(concoction.getOrCreateTag().contains("BrewingSteps") || concoction.getOrCreateTag().contains("ExtraFermentingData"))) {
             entity.bottleTick = 0;
             entity.currentResult = ItemStack.EMPTY;
@@ -156,7 +134,7 @@ public class BottlerBlockEntity extends BaseContainerBlockEntity implements Worl
         // Test for finish bottling
         if (entity.bottleTick >= MAX_BOTTLE_TIME && !entity.currentResult.isEmpty()) {
             display = entity.currentResult;
-            Item bottleItem = Items.GLASS_BOTTLE;
+            Item bottleItem = AlcoholicDrinks.BASE_ITEMS.contains(concoction.getItem()) ? ((PourableBottleItem) concoction.getItem()).emptyBottleItem : Items.GLASS_BOTTLE;
             if (concoction.getItem() instanceof PourableBottleItem pourable) {
                 bottleItem = pourable.emptyBottleItem;
             }

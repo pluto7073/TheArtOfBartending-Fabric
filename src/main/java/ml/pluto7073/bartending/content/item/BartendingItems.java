@@ -9,8 +9,6 @@ import ml.pluto7073.bartending.foundations.item.AlcoholicDrinkItem;
 import ml.pluto7073.bartending.foundations.item.PourableBottleItem;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import net.minecraft.Util;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.properties.WoodType;
@@ -29,6 +27,13 @@ public class BartendingItems {
     public static final HashMap<AlcoholicDrink, AlcoholicDrinkItem> SERVING_BOTTLES = new HashMap<>();
 
     // Items
+
+    public static final Item RED_GRAPE_SEEDS = new Item(new Item.Properties());
+    public static final Item GREEN_GRAPE_SEEDS = new Item(new Item.Properties());
+
+    public static final Item RED_GRAPE = new Item(new Item.Properties().food(new FoodProperties.Builder().fast().nutrition(1).saturationMod(0.25f).build()));
+    public static final Item GREEN_GRAPE = new Item(new Item.Properties().food(Objects.requireNonNull(RED_GRAPE.getFoodProperties())));
+    public static final Item SKINNED_GRAPE = new Item(new Item.Properties().food(Objects.requireNonNull(RED_GRAPE.getFoodProperties())));
 
     public static final ConcoctionItem CONCOCTION =
             new ConcoctionItem(new Item.Properties().stacksTo(1).craftRemainder(GLASS_BOTTLE));
@@ -117,17 +122,10 @@ public class BartendingItems {
     public static final Item SHOT_OF_WHISKEY = shot(AlcoholicDrinks.WHISKEY);
     public static final Item WHISKEY = bottle(AlcoholicDrinks.WHISKEY);
 
-    public static final Item SHOT_OF_EVERCLEAR = shot(AlcoholicDrinks.EVERCLEAR);
-    public static final Item EVERCLEAR = bottle(AlcoholicDrinks.EVERCLEAR);
+    public static final Item SHOT_OF_GRAIN_ALCOHOL = shot(AlcoholicDrinks.GRAIN_ALCOHOL);
+    public static final Item GRAIN_ALCOHOL = bottle(AlcoholicDrinks.GRAIN_ALCOHOL);
 
     public static final Item MIXED_DRINK = new MixedDrinkItem(new Item.Properties().stacksTo(1));
-
-    public static final Item RED_GRAPE_SEEDS = new Item(new Item.Properties());
-    public static final Item GREEN_GRAPE_SEEDS = new Item(new Item.Properties());
-
-    public static final Item RED_GRAPE = new Item(new Item.Properties().food(new FoodProperties.Builder().fast().nutrition(1).saturationMod(0.25f).build()));
-    public static final Item GREEN_GRAPE = new Item(new Item.Properties().food(Objects.requireNonNull(RED_GRAPE.getFoodProperties())));
-    public static final Item SKINNED_GRAPE = new Item(new Item.Properties().food(Objects.requireNonNull(RED_GRAPE.getFoodProperties())));
 
     // Block Items
 
@@ -154,8 +152,6 @@ public class BartendingItems {
     }
 
     private static PourableBottleItem bottle(AlcoholicDrink drink) {
-        int ouncesTotal = BrewingUtil.getOuncesFromBottle(drink.bottle());
-        int servings = ouncesTotal * 2;
         Item.Properties properties = new Item.Properties()
                 .rarity(Rarity.UNCOMMON);
         PourableBottleItem item = new PourableBottleItem(drink.bottle(), drink, properties);

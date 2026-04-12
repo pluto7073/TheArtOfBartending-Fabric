@@ -10,17 +10,17 @@
   "type": "create:emptying",
   "ingredients": [
     {
-      "item": "bartending:shot_of_everclear"
+      "item": "bartending:sweet_berry_wine"
     }
   ],
   "results": [
     {
-      "item": "bartending:shot_glass"
+      "item": "bartending:wine_bottle"
     },
     {
-      "amount": 2531,
+      "amount": 42187,
       "fluid": "bartending:alcohol",
-      "nbt": "{Alcohol:\"bartending:everclear\"}"
+      "nbt": "{Alcohol:\"bartending:sweet_berry_wine\"}"
     }
   ]
 }

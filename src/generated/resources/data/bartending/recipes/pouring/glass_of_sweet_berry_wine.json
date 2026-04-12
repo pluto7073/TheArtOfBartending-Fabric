@@ -1,0 +1,11 @@
+{
+  "type": "bartending:pouring",
+  "alcoholType": "bartending:sweet_berry_wine",
+  "glass": {
+    "item": "bartending:wine_glass"
+  },
+  "ounces": 5.0,
+  "result": {
+    "item": "bartending:glass_of_sweet_berry_wine"
+  }
+}

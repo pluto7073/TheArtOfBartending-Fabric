@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_input": {
+    "has_glass": {
       "conditions": {
         "items": [
           {
             "items": [
-              "bartending:shot_of_everclear"
+              "bartending:shot_glass"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "bartending:workstation/drink_workstation/add_everclear"
+        "recipe": "bartending:pouring/shot_of_grain_alcohol"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_input",
+      "has_glass",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "bartending:workstation/drink_workstation/add_everclear"
+      "bartending:pouring/shot_of_grain_alcohol"
     ]
   },
   "sends_telemetry_event": false

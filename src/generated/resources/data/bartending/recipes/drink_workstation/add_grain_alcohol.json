@@ -1,10 +1,10 @@
 {
   "type": "pdapi:drink_workstation",
   "addition": {
-    "item": "bartending:shot_of_everclear"
+    "item": "bartending:shot_of_grain_alcohol"
   },
   "base": {
     "tag": "pdapi:workstation_drinks"
   },
-  "result": "bartending:shot_of_everclear"
+  "result": "bartending:shot_of_grain_alcohol"
 }

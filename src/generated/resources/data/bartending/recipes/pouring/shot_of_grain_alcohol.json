@@ -1,11 +1,11 @@
 {
   "type": "bartending:pouring",
-  "alcoholType": "bartending:everclear",
+  "alcoholType": "bartending:grain_alcohol",
   "glass": {
     "item": "bartending:shot_glass"
   },
   "ounces": 1.5,
   "result": {
-    "item": "bartending:shot_of_everclear"
+    "item": "bartending:shot_of_grain_alcohol"
   }
 }

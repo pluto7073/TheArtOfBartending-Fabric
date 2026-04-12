@@ -10,22 +10,19 @@
   "type": "create:filling",
   "ingredients": [
     {
-      "item": "bartending:liquor_bottle"
+      "item": "bartending:wine_glass"
     },
     {
-      "amount": 50625,
+      "amount": 8437,
       "fluid": "bartending:alcohol",
       "nbt": {
-        "Alcohol": "bartending:everclear"
+        "Alcohol": "bartending:sweet_berry_wine"
       }
     }
   ],
   "results": [
     {
-      "item": "bartending:everclear",
-      "nbt": {
-        "Damage": 0
-      }
+      "item": "bartending:glass_of_sweet_berry_wine"
     }
   ]
 }

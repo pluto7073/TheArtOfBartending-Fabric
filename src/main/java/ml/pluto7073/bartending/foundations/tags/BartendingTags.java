@@ -19,6 +19,8 @@ public class BartendingTags {
     public static final TagKey<Item> C_FRUITS = item("c:fruits");
     public static final TagKey<Item> WINE_FRUITS = item("bartending:wine_fruits");
     public static final TagKey<Item> NETHER_WINE_FRUITS = item("bartending:nether_wine_fruits");
+    public static final TagKey<Item> C_APPLES = item("c:apples");
+    public static final TagKey<Item> PLUTOSCOFFEE_ROASTED_COFFEE_BEANS = item("plutoscoffee:roasted_coffee_beans");
     public static final TagKey<Item> WARPED_BOTANICALS = item("warped_botanicals");
     public static final TagKey<Item> CRIMSON_BOTANICALS = item("crimson_botanicals");
     public static final TagKey<Item> GLASSES = item("glasses");

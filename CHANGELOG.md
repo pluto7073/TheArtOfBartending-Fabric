@@ -10,10 +10,59 @@
 - Default year length for fermentation is 3 minecraft days (72000 ticks)
 - Renamed some steps:
   - Boiling is now called Fermentation, Initial Fermentation, or Primary Fermentation
-  - Fermentation (Barrel) is now called Barrel Aging
+  - Fermentation (Barrel) is now called Barrel Aging or Barrel Fermentation
+- Renamed Everclear to generic "Grain Alcohol"
 - Edited some recipes
   - Both red and white wine are made using grapes now
   - All wine recipes require 3 stacks of the primary item
+  - Beer now needs to be barrel aged for less time
+    - Beer now at least 1/2 a "year" with a 1/4 "year" lower limit (default 1.5 days, min ~1 day)
+    - Wheat Beer now at least 1/3 a "year" with a 1/6 "year" lower limit (default 1 day, min 1/2 day)
+    - Dark Beer now at least 2/3 a "year" with a 1/3 "year" lower limit (default 2 days, min 1 day)
+  - Changed amount of wheat required for dark beer, from (20 → 28) to (26 → 38) 
+  - Changed length of initial fermentation of various recipes:
+    - Beer: now 1-3 minecraft days
+    - Wheat Beer: now 1-2 minecraft days
+    - Dark Beer: now 2-4 minecraft days
+    - Mead & Apple Mead: now 4-6 minecraft days
+    - Normal Wines: now around 1 minecraft day
+    - Nether Wines: now 1-3 minecraft days
+    - Gin: now 1-2 days
+    - Tequila: now ~1 day
+  - Changed amount of honey required for mead and apple mead: 4 to 8
+  - Tequila only needs to be barrel aged for around 1 year (default 3 days, min 1 day)
+  - Tequila also needs to be distilled before being barrel aged
+  - Changed Orange Liqueur recipe
+    - Starts by fermenting beets for ~1 day
+    - Then distilling 2 times
+    - Then adding ~10 oranges to the bottle using the drink workstation
+    - Then redistilled 3 times
+  - Changed Apple Liqueur recipe
+    - Start with a base of Vodka and add 64 of any apple (Create Honeyed Apples included) (Must all be same apple)
+    - Distill this 3 times
+    - Age in a Cherry or Acacia Barrel for ~6 years (default 18 days, min 12 days)
+  - Changed Vodka Recipe
+    - Can now be made with Wheat or Skinned Grapes in addition to potatoes
+    - Fermented for ~1 day
+    - Distilled 3 (2-4) times
+    - Now used as a base for many liqueur recipes
+  - Added recipes for both Vermouths without create
+    - Take a bottle of wine (red for sweet, white for dry)
+    - Add ~5 shots of vodka
+    - If sweet: add 3 sugar OR 3 honey bottles
+    - Add 3 of Hanging Roots, Flowers, Seeds, OR Tree bark with Farmer's Delight
+    - Rebottle in a wine bottle
+  - Changed Recipe for Coffee Liqueur with (and without) Create
+    - In create basin, now 16 coffee beans are required
+    - Without Create: now start with a bottle of Vodka OR Rum and add 3 sugar and 16 coffee beans, age in any barrel for about 6 minutes then rebottle
+    - Lowered Coffee liqueur to 35% ABV (from 40%)
+  - Grain alcohol can now be made with potatoes, distinct from vodka by distillation count
+  - Grain alcohol is now initially fermented for 1-2 days, and distilled 6 (5 - 7) times
+  - Absinthe is now made with a base of Grain Alcohol, then by adding the normal ingredients to the bottle and by distilling ~6 times
+  - See [the wiki](https://www.github.com/pluto7073/PlutosDrinksAPI/wiki) or use [REI](https://modrinth.com/mod/rei) for full recipes
+- Changed how barrel fermentation works:
+  - Now, each alcoholic drink that requires barrel aging has a minimum amount of "years" required but can be aged as long as desired, additionally there is a lower padding limit provided which will produce less than the normal amount of alcohol
+  - (Alcohol content stops increasing after a certain length)
 
 ---
 

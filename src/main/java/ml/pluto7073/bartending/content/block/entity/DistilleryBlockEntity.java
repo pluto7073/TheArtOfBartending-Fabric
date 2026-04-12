@@ -1,7 +1,9 @@
 package ml.pluto7073.bartending.content.block.entity;
 
+import ml.pluto7073.bartending.content.alcohol.AlcoholicDrinks;
 import ml.pluto7073.bartending.content.gui.DistilleryMenu;
 import ml.pluto7073.bartending.content.item.BartendingItems;
+import ml.pluto7073.bartending.foundations.alcohol.SecondaryAlcoholicDrink;
 import ml.pluto7073.bartending.foundations.step.DistillingBrewerStep;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import net.minecraft.MethodsReturnNonnullByDefault;
@@ -105,7 +107,7 @@ public class DistilleryBlockEntity extends BaseContainerBlockEntity implements W
         ItemStack input = entity.getItem(INPUT_SLOT_INDEX);
         ItemStack progress = entity.getItem(DISPLAY_SLOT_INDEX);
         ItemStack output = entity.getItem(RESULT_SLOT_INDEX);
-        if (output.isEmpty() && (input.is(BartendingItems.CONCOCTION) || progress.is(BartendingItems.CONCOCTION)) && lit) {
+        if (output.isEmpty() && (input.is(BartendingItems.CONCOCTION) || progress.is(BartendingItems.CONCOCTION) || AlcoholicDrinks.BASE_ITEMS.contains(input.getItem()) || AlcoholicDrinks.BASE_ITEMS.contains(progress.getItem())) && lit) {
             if (entity.distillTime == 0 && !input.isEmpty() && progress.isEmpty()) {
                 progress = input.copy();
                 entity.setItem(INPUT_SLOT_INDEX, ItemStack.EMPTY);

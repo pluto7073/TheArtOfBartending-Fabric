@@ -16,37 +16,30 @@ public class BarrelAgingBrewerStep implements BrewerStep {
 
     public static final String TYPE_ID = "barrel_aging";
 
+    private static final float DEVIATION_CONST = (float) (1 / (1 + Math.exp(-1)));
+
     public final BarrelPredicate predicate;
-    public final int years;
-    public final int[] yearRange;
+    public final float years;
+    public final float yearMin;
 
-    public BarrelAgingBrewerStep(BarrelPredicate predicate, int years) {
-        this(predicate, years, 1);
+    public BarrelAgingBrewerStep(BarrelPredicate predicate, float years) {
+        this(predicate, years, 0);
     }
 
-    public BarrelAgingBrewerStep(BarrelPredicate predicate, int years, int yearLeeway) {
-        this(predicate, years, yearLeeway, yearLeeway);
-    }
-
-    public BarrelAgingBrewerStep(BarrelPredicate predicate, int years, int lower, int upper) {
-        this(predicate, years, new int[] { lower == -1 ? Integer.MIN_VALUE : years - lower, upper == -1 ? Integer.MAX_VALUE : years + upper });
-    }
-
-    public BarrelAgingBrewerStep(BarrelPredicate predicate, int years, int[] range) {
+    public BarrelAgingBrewerStep(BarrelPredicate predicate, float years, float lower) {
         this.predicate = predicate;
         this.years = years;
-        this.yearRange = range;
+        if (lower < 0) {
+            lower = 0;
+        }
+        this.yearMin = years + lower;
     }
 
     @Override
     public boolean mightMatch(CompoundTag data, Level level) {
         if (!TYPE_ID.equals(data.getString("type"))) return false;
         ResourceLocation barrelId = new ResourceLocation(data.getString("barrel"));
-        if (!predicate.test(BuiltInRegistries.BLOCK.get(barrelId))) return false;
-        int ticksPerYear = BrewingUtil.getConfig(level).yearLengthTicks;
-        int ticks = data.getInt("ticks");
-        int years = ticks / ticksPerYear;
-        return years <= this.years + this.yearLeeway;
+        return predicate.test(BuiltInRegistries.BLOCK.get(barrelId));
     }
 
     @Override
@@ -60,24 +53,23 @@ public class BarrelAgingBrewerStep implements BrewerStep {
         ResourceLocation barrelId = new ResourceLocation(data.getString("barrel"));
         if (!predicate.test(BuiltInRegistries.BLOCK.get(barrelId))) return false;
         int ticks = data.getInt("ticks");
-        int years = Math.round((float) ticks / BrewingUtil.getConfig(level).yearLengthTicks);
-        if (years == 0) return false;
-        int diff = Math.abs(years - this.years);
-        return diff <= yearLeeway;
+        float years = (float) ticks / BrewingUtil.getConfig(level).yearLengthTicks;
+        if (years <= 0) return false;
+        return years >= yearMin;
     }
 
     @Override
     public int getDeviation(CompoundTag data, float standard, Level level) {
         int ticks = data.getInt("ticks");
-        int years = ticks / BrewingUtil.getConfig(level).yearLengthTicks;
-        return Math.round(Mth.clampedMap(years, this.years - yearLeeway,
-                this.years + yearLeeway, -0.25f, 0.25f) * standard);
+        float years = ticks / (float) BrewingUtil.getConfig(level).yearLengthTicks;
+
+        return Math.round((1f / (float) (1 + Math.exp(-years / (double) this.years)) - DEVIATION_CONST) * standard);
     }
 
     @Override
     public void createExactMatchData(CompoundTag tag, Level level) {
         tag.putString("barrel", BuiltInRegistries.BLOCK.getKey(predicate.first()).toString());
-        tag.putInt("ticks", BrewingUtil.getConfig(level).yearLengthTicks * years);
+        tag.putInt("ticks", (int) (BrewingUtil.getConfig(level).yearLengthTicks * years));
     }
 
     public static void appendInProgressText(CompoundTag data, List<Component> tooltips, Level level) {

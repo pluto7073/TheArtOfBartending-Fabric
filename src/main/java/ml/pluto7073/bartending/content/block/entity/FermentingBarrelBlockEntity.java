@@ -1,6 +1,7 @@
 package ml.pluto7073.bartending.content.block.entity;
 
 import ml.pluto7073.bartending.TheArtOfBartending;
+import ml.pluto7073.bartending.content.alcohol.AlcoholicDrinks;
 import ml.pluto7073.bartending.content.block.FermentingBarrelBlock;
 import ml.pluto7073.bartending.content.item.BartendingItems;
 import ml.pluto7073.bartending.foundations.item.PourableBottleItem;
@@ -92,19 +93,11 @@ public class FermentingBarrelBlockEntity extends RandomizableContainerBlockEntit
 
     public static void tick(Level level, BlockPos pos, BlockState state, FermentingBarrelBlockEntity entity) {
         for (ItemStack stack : entity.getItems()) {
-            if (!stack.is(BartendingItems.CONCOCTION)) {
-                if (stack.getItem() instanceof PourableBottleItem) {
-                    CompoundTag data = stack.getOrCreateTagElement("ExtraFermentingData");
-                    BrewingUtil.computeIfAbsent(data, "type", key ->
-                            StringTag.valueOf(BarrelAgingBrewerStep.TYPE_ID));
-                    BrewingUtil.computeIfAbsent(data, "barrel", key ->
-                            StringTag.valueOf(TheArtOfBartending.asId(entity.woodType.name() + "_fermenting_barrel").toString()));
-                    BrewingUtil.<IntTag>compute(data, "ticks", (key, val) ->
-                            val == null ? IntTag.valueOf(0) : IntTag.valueOf(val.getAsInt() + 1));
-                }
+            if (!stack.is(BartendingItems.CONCOCTION) && !AlcoholicDrinks.BASE_ITEMS.contains(stack.getItem())) {
                 continue;
             }
             ListTag steps = stack.getOrCreateTag().getList("BrewingSteps", Tag.TAG_COMPOUND);
+            stack.getOrCreateTag().put("BrewingSteps", steps);
             CompoundTag data = steps.getCompound(steps.size() - 1);
             if (!BarrelAgingBrewerStep.TYPE_ID.equals(data.getString("type")) ||
                     !(TheArtOfBartending.asId(entity.woodType.name() + "_fermenting_barrel"))
@@ -119,7 +112,6 @@ public class FermentingBarrelBlockEntity extends RandomizableContainerBlockEntit
                 data.putInt("ticks", ++ticks);
                 steps.set(steps.size() - 1, data);
             }
-            stack.getOrCreateTag().put("BrewingSteps", steps);
         }
         setChanged(level, pos, state);
     }

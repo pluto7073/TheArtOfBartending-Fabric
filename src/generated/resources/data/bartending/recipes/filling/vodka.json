@@ -22,10 +22,7 @@
   ],
   "results": [
     {
-      "item": "bartending:vodka",
-      "nbt": {
-        "Damage": 0
-      }
+      "item": "bartending:vodka"
     }
   ]
 }
