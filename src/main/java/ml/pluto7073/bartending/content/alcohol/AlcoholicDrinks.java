@@ -47,13 +47,13 @@ public final class AlcoholicDrinks {
             .color(0x211408).build());
     public static final AlcoholicDrink MEAD = register("mead", AlcoholicDrink.builder().proof(20).ounces(5)
             .addStep(new FermentingBrewerStep.Builder().addIngredient(Ingredient.of(Items.HONEY_BOTTLE), 8, 2)
-                    .setTicks(96000).setLeeway(24000).build())
+                    .setTicks(18000).setLeeway(12000).build())
             .addStep(new BarrelAgingBrewerStep(new BarrelPredicate(BartendingBlocks.BARRELS.get(WoodType.OAK)), 4, 2))
             .bottle(BartendingItems.WINE_BOTTLE).name("Mead")
             .color(0xedeba1).build());
     public static final AlcoholicDrink APPLE_MEAD = register("apple_mead", AlcoholicDrink.builder().proof(30).ounces(5)
             .addStep(new FermentingBrewerStep.Builder().addIngredient(Ingredient.of(Items.HONEY_BOTTLE), 8, 2)
-                    .addIngredient(Ingredient.of(Items.APPLE), 16, 4).setTicks(96000).setLeeway(24000).build())
+                    .addIngredient(Ingredient.of(Items.APPLE), 16, 4).setTicks(18000).setLeeway(12000).build())
             .addStep(new BarrelAgingBrewerStep(new BarrelPredicate(BartendingBlocks.BARRELS.get(WoodType.OAK)), 4, 2))
             .bottle(BartendingItems.WINE_BOTTLE).name("Apple Mead")
             .color(0x683222).build());
