@@ -61,6 +61,7 @@ public class BartendingCreativeTabs {
             stacks.accept(BartendingItems.GREEN_GRAPE_PLANT);
             stacks.accept(BartendingItems.RED_GRAPE);
             stacks.accept(BartendingItems.GREEN_GRAPE);
+            stacks.accept(BartendingItems.SKINNED_GRAPE);
 
             // Bottles
             stacks.accept(BartendingItems.WINE_BOTTLE);

@@ -99,6 +99,7 @@ public class TheArtOfClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(BartendingBlocks.DISTILLERY, RenderType.translucent());
         BlockRenderLayerMap.INSTANCE.putBlock(BartendingBlocks.GREEN_GRAPE_PLANT, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BartendingBlocks.RED_GRAPE_PLANT, RenderType.cutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(BartendingBlocks.VINE_FRAME, RenderType.cutout());
         BlockEntityRenderers.register(BartendingBlockEntities.BOTTLER_BLOCK_ENTITY_TYPE, BottlerBlockEntityRenderer::new);
 
         BartendingFluids.initRendering();

@@ -94,12 +94,11 @@ public class BartendingModelsProvider extends FabricModelProvider {
             }
         }
 
-        generators.generateFlatItem(BartendingItems.RED_GRAPE_PLANT, ModelTemplates.FLAT_ITEM);
         generators.generateFlatItem(BartendingItems.RED_GRAPE_SEEDS, ModelTemplates.FLAT_ITEM);
         generators.generateFlatItem(BartendingItems.RED_GRAPE, ModelTemplates.FLAT_ITEM);
-        generators.generateFlatItem(BartendingItems.GREEN_GRAPE_PLANT, ModelTemplates.FLAT_ITEM);
         generators.generateFlatItem(BartendingItems.GREEN_GRAPE_SEEDS, ModelTemplates.FLAT_ITEM);
         generators.generateFlatItem(BartendingItems.GREEN_GRAPE, ModelTemplates.FLAT_ITEM);
+        generators.generateFlatItem(BartendingItems.SKINNED_GRAPE, ModelTemplates.FLAT_ITEM);
     }
 
 }

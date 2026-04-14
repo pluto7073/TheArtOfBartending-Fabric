@@ -1,0 +1,7 @@
+{
+  "parent": "bartending:item/vine_frame",
+  "textures": {
+    "lower": "bartending:item/red_grape_plant_lower",
+    "upper": "bartending:item/red_grape_plant_upper"
+  }
+}

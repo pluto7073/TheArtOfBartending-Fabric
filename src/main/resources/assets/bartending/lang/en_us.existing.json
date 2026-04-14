@@ -34,6 +34,7 @@
   "item.bartending.red_grape": "Red Grape",
   "item.bartending.green_grape_seeds": "Green Grape Seeds",
   "item.bartending.green_grape": "Green Grape",
+  "item.bartending.skinned_grape": "Skinned Grape",
   "enchantment.bartending.vineyard_walker": "Vineyard Walker",
   "enchantment.bartending.vineyard_walker.desc": "Allows the wearer to walk among sweet berries and other bush blocks without being slowed or taking damage",
   "drink_addition.bartending.compat/fruitfulfun/lime": "Lime Juice x%1$s",
