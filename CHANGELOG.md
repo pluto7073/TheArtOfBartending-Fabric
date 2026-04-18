@@ -3,7 +3,7 @@
 
 ## Additions
 - Added vine frames and vine-based plants
-- Added green and red grapes
+- Grapes!
 - Added the ability to change initial fermentation durations via config
 
 ## Changes

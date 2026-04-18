@@ -62,7 +62,7 @@ public class BartendingBlocks {
         register("bottler", BOTTLER, true);
         register("distillery", DISTILLERY, true);
         register("countertop", COUNTER_TOP, true);
-        register("vine_frame", VINE_FRAME, true);
+        register("vine_frame", VINE_FRAME);
         register("red_grape_plant", RED_GRAPE_PLANT);
         register("green_grape_plant", GREEN_GRAPE_PLANT);
 

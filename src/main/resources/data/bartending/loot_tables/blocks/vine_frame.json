@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "bartending:vine_frame"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "bartending:vine_frame",
+          "properties": {
+            "half": "upper"
+          }
+        }
+      ]
+    }
+  ],
+  "random_sequence": "bartending:block/vine_frame"
+}

@@ -44,6 +44,8 @@ public class ColorUtil {
         COLORS_REGISTRY.put("bartending:warped", 0x54bfbf);
         COLORS_REGISTRY.put("bartending:crimson", 0xbf5454);
         COLORS_REGISTRY.put("fruitfulfun:orange", 0xf2b91d);
+        COLORS_REGISTRY.put("bartending:red_grape", 9321518);
+        COLORS_REGISTRY.put("bartending:skinned_grape", 12223780);
 
         COLORS_REGISTRY.put("bartending:oak_fermenting_barrel", 0xc29d62);
         COLORS_REGISTRY.put("bartending:cherry_fermenting_barrel", 0xefd0ef);

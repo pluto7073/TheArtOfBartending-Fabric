@@ -19,10 +19,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -74,7 +71,7 @@ public class VineCropBlock extends CropBlock {
     public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
         if (!world.isClientSide) {
             if (player.isCreative()) {
-                EmptyVineFrameBlock.preventCreativeDropFromBottomPart(world, pos, state, player);
+                DoublePlantBlock.preventCreativeDropFromBottomPart(world, pos, state, player);
             } else {
                 dropResources(state, world, pos, null, player, player.getMainHandItem());
             }

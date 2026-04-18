@@ -3,3 +3,4 @@ accessWidener v2 named
 accessible class net/minecraft/core/registries/BuiltInRegistries$RegistryBootstrap
 accessible method net/minecraft/core/registries/BuiltInRegistries registerSimple (Lnet/minecraft/resources/ResourceKey;Lnet/minecraft/core/registries/BuiltInRegistries$RegistryBootstrap;)Lnet/minecraft/core/Registry;
 accessible method net/minecraft/server/commands/SpreadPlayersCommand spreadPlayers (Lnet/minecraft/commands/CommandSourceStack;Lnet/minecraft/world/phys/Vec2;FFIZLjava/util/Collection;)I
+accessible method net/minecraft/world/level/block/DoublePlantBlock preventCreativeDropFromBottomPart (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/entity/player/Player;)V
