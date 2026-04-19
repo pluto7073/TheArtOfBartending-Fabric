@@ -2,7 +2,7 @@
 import java.nio.file.Files
 
 ext {
-    changelog_text = getChangelog(file("KNOWN_BUGS.md"), file("CHANGELOG.md"))
+    changelog_text = getChangelog(file("CHANGELOG.md"))
 }
 
 tasks.register("publishMod") {
@@ -13,11 +13,9 @@ tasks.register("publishMod") {
     dependsOn(tasks.curseforge)
 }
 
-static String getChangelog(File bugs, File changelog) {
-    String knownBugs = Files.readString(bugs.toPath())
+static String getChangelog(File changelog) {
     String changelogBase = Files.readString(changelog.toPath())
-    String log = !knownBugs.trim().isEmpty() ? "## Known Bugs\n" + knownBugs + "\n\n" : ""
-    log += changelogBase.split("---")[0].trim()
+    String log = changelogBase.split("---")[0].trim()
     return log
 }
 
