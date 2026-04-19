@@ -55,7 +55,13 @@ public abstract class DrinkWorkstationMenuMixin extends ItemCombinerMenu {
         if (!AlcoholicDrinks.BASE_ITEMS.contains(stack.getItem())) {
             return;
         }
-        inputSlots.setItem(1, ItemStack.EMPTY);
+        if (inputSlots.getItem(1).getItem().hasCraftingRemainingItem()) {
+            ItemStack remainder = inputSlots.getItem(1).getItem().getRecipeRemainder(inputSlots.getItem(1));
+            remainder.setCount(inputSlots.getItem(1).getCount());
+            inputSlots.setItem(1, remainder);
+        } else {
+            inputSlots.setItem(1, ItemStack.EMPTY);
+        }
         access.execute((world, pos) -> {
             world.levelEvent(10000, pos, 0);
         });

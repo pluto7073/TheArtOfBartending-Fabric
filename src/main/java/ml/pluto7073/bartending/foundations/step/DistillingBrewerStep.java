@@ -7,11 +7,9 @@ import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class DistillingBrewerStep implements BrewerStep {
+public record DistillingBrewerStep(int runs, int leeway) implements BrewerStep {
 
     public static final String TYPE_ID = "distilling";
-
-    public final int runs, leeway;
 
     public DistillingBrewerStep() {
         this(1);
@@ -19,11 +17,6 @@ public class DistillingBrewerStep implements BrewerStep {
 
     public DistillingBrewerStep(int runs) {
         this(runs, 0);
-    }
-
-    public DistillingBrewerStep(int runs, int leeway) {
-        this.runs = runs;
-        this.leeway = leeway;
     }
 
     @Override

@@ -85,15 +85,18 @@ public class AlcoholicDrink {
     public boolean matches(ItemStack stack, Level level) {
         ListTag steps = stack.getOrCreateTag().getList("BrewingSteps", CompoundTag.TAG_COMPOUND);
 
-        outer: for (Pair<Optional<Criteria<AlcoholicDrink>>, BrewerStep[]> pair : otherMethods) {
-            if (pair.getFirst().isPresent()) {
-                if (!pair.getFirst().get().test(((PourableBottleItem) stack.getItem()).drink)) continue;
+        if (stack.getItem() instanceof PourableBottleItem) {
+            outer:
+            for (Pair<Optional<Criteria<AlcoholicDrink>>, BrewerStep[]> pair : otherMethods) {
+                if (pair.getFirst().isPresent()) {
+                    if (!pair.getFirst().get().test(((PourableBottleItem) stack.getItem()).drink)) continue;
+                }
+                if (steps.size() != pair.getSecond().length) continue;
+                for (int i = 0; i < steps.size(); i++) {
+                    if (!pair.getSecond()[i].matches(steps.getCompound(i), level)) continue outer;
+                }
+                return true;
             }
-            if (steps.size() != pair.getSecond().length) continue;
-            for (int i = 0; i < steps.size(); i++) {
-                if (!pair.getSecond()[i].matches(steps.getCompound(i), level)) continue outer;
-            }
-            return true;
         }
 
         if (steps.size() != this.steps.length) return false;

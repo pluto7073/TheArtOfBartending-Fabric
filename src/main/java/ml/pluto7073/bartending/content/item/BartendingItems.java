@@ -152,7 +152,10 @@ public class BartendingItems {
     }
 
     private static PourableBottleItem bottle(AlcoholicDrink drink) {
+        int ouncesTotal = BrewingUtil.getOuncesFromBottle(drink.bottle());
+        int servings = ouncesTotal * 2;
         Item.Properties properties = new Item.Properties()
+                .defaultDurability(servings)
                 .rarity(Rarity.UNCOMMON);
         PourableBottleItem item = new PourableBottleItem(drink.bottle(), drink, properties);
         registerFinalDrink(drink, item);
@@ -162,6 +165,7 @@ public class BartendingItems {
 
     private static AlcoholicDrinkItem servingBottle(AlcoholicDrink drink) {
         Item.Properties props = new Item.Properties()
+                .defaultDurability((int) drink.standardOunces() * 2)
                 .rarity(Rarity.UNCOMMON);
         AlcoholicDrinkItem item = new AlcoholicDrinkItem(drink, BartendingItems.BEER_BOTTLE, props);
         SERVING_BOTTLES.put(drink, item);

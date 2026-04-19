@@ -129,7 +129,6 @@ public final class AlcoholicDrinks {
     public static final AlcoholicDrink COFFEE_LIQUEUR = register("coffee_liqueur", CaffeinatedAlcoholicDrinkManager.createCoffeeLiqueur());
     public static final AlcoholicDrink GIN = register("gin", AlcoholicDrink.secondaryBuilder(() -> List.of(VODKA)).proof(90).ounces(1.5f)
             .addStep(new AddingItemBrewerStep(() -> Ingredient.of(Items.BLUE_ORCHID, Items.LILY_OF_THE_VALLEY, Items.CORNFLOWER, Items.ALLIUM), 10, 2))
-            .addStep(new AddingItemBrewerStep(() -> Ingredient.of(Items.WHEAT), 10, 3))
             .addStep(new AddingItemBrewerStep(() -> Ingredient.of(Items.SWEET_BERRIES), 20, 0))
             .addStep(new AddingItemBrewerStep(() -> Ingredient.of(BartendingTags.BOTANICAL_ELEMENTS), 5, 2))
             .addStep(new DistillingBrewerStep(2, 1)).name("Gin")
