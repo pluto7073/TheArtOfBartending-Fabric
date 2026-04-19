@@ -12,13 +12,12 @@ public class BartendingTags {
     public static final TagKey<Block> EXTRA_BOILER_HEATERS = block("extra_boiler_heaters");
     public static final TagKey<Block> SUPERHEATING_BLOCKS = block("superheating_blocks");
     public static final TagKey<Block> C_FARMLAND = block("c:farmland");
+    public static final TagKey<Block> C_OAK_LOGS = block("c:oak_logs");
 
     public static final TagKey<Item> EMPTY_GLASS_BOTTLES = item("empty_glass_bottles");
     public static final TagKey<Item> BOILABLES = item("boilables");
     public static final TagKey<Item> BOTANICAL_ELEMENTS = item("botanical_elements");
     public static final TagKey<Item> C_FRUITS = item("c:fruits");
-    public static final TagKey<Item> WINE_FRUITS = item("bartending:wine_fruits");
-    public static final TagKey<Item> NETHER_WINE_FRUITS = item("bartending:nether_wine_fruits");
     public static final TagKey<Item> C_APPLES = item("c:apples");
     public static final TagKey<Item> PLUTOSCOFFEE_ROASTED_COFFEE_BEANS = item("plutoscoffee:roasted_coffee_beans");
     public static final TagKey<Item> WARPED_BOTANICALS = item("warped_botanicals");

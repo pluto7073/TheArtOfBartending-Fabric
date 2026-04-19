@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:oak_log",
+    "minecraft:dark_oak_log",
+    {
+      "id": "palegardenbackport:pale_oak_log",
+      "required": false
+    }
+  ]
+}

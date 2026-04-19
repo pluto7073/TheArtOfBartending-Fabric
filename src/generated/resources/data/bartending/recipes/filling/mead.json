@@ -22,7 +22,10 @@
   ],
   "results": [
     {
-      "item": "bartending:mead"
+      "item": "bartending:mead",
+      "nbt": {
+        "Damage": 0
+      }
     }
   ]
 }

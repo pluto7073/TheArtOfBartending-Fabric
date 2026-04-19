@@ -115,10 +115,11 @@ public final class AlcoholicDrinks {
             .name("Vodka").build());
     public static final AlcoholicDrink RUM = register("rum", AlcoholicDrink.builder().proof(80).ounces(1.5f)
             .addStep(new FermentingBrewerStep.Builder().addIngredient(Ingredient.of(Items.SUGAR_CANE), 50)
-                    .setTicks(2400).setLeeway(600).build())
+                    .setTicks(4500).setLeeway(1500).build())
+            .addStep(new DistillingBrewerStep(2, 1))
             .addStep(new BarrelAgingBrewerStep(BarrelPredicate.ofWood(WoodType.OAK, WoodType.DARK_OAK),
-                    8, 2))
-            .addStep(new DistillingBrewerStep(2)).bottle(BartendingItems.LIQUOR_BOTTLE)
+                    1, -0.5f))
+            .bottle(BartendingItems.LIQUOR_BOTTLE)
             .color(0x825424).name("Rum").build());
     public static final AlcoholicDrink APPLE_LIQUEUR = register("apple_liqueur", AlcoholicDrink.secondaryBuilder(() -> List.of(VODKA))
             .proof(60).ounces(1.5f).addStep(new AddingItemBrewerStep(() -> Ingredient.of(BartendingTags.C_APPLES), 64, 0))

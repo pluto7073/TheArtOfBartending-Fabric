@@ -22,7 +22,10 @@
   ],
   "results": [
     {
-      "item": "bartending:tequila"
+      "item": "bartending:tequila",
+      "nbt": {
+        "Damage": 0
+      }
     }
   ]
 }

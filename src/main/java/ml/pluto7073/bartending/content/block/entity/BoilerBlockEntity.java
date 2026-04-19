@@ -191,14 +191,14 @@ public class BoilerBlockEntity extends BaseContainerBlockEntity implements World
                 return true;
             }
             if (!current.is(stack.getItem())) continue;
-            if (current.getCount() >= 256) return false;
+            if (current.getCount() >= 255) return false;
             boilTicks = 0;
-            if (current.getCount() <= 256 - stack.getCount()) {
+            if (current.getCount() <= 255 - stack.getCount()) {
                 current.grow(stack.getCount());
                 return true;
             }
-            int diff = 256 - current.getCount();
-            current.setCount(256);
+            int diff = 255 - current.getCount();
+            current.setCount(255);
             stack.shrink(diff);
             return false;
         }

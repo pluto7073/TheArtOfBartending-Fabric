@@ -22,7 +22,10 @@
   ],
   "results": [
     {
-      "item": "bartending:whiskey"
+      "item": "bartending:whiskey",
+      "nbt": {
+        "Damage": 0
+      }
     }
   ]
 }

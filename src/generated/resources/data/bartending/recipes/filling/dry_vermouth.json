@@ -22,7 +22,10 @@
   ],
   "results": [
     {
-      "item": "bartending:dry_vermouth"
+      "item": "bartending:dry_vermouth",
+      "nbt": {
+        "Damage": 0
+      }
     }
   ]
 }

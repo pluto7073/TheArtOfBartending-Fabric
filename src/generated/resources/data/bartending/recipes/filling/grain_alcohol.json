@@ -22,7 +22,10 @@
   ],
   "results": [
     {
-      "item": "bartending:grain_alcohol"
+      "item": "bartending:grain_alcohol",
+      "nbt": {
+        "Damage": 0
+      }
     }
   ]
 }

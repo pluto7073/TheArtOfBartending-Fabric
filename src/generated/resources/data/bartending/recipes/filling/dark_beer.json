@@ -22,7 +22,10 @@
   ],
   "results": [
     {
-      "item": "bartending:dark_beer"
+      "item": "bartending:dark_beer",
+      "nbt": {
+        "Damage": 0
+      }
     }
   ]
 }

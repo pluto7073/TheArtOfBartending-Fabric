@@ -22,7 +22,10 @@
   ],
   "results": [
     {
-      "item": "bartending:glow_berry_wine"
+      "item": "bartending:glow_berry_wine",
+      "nbt": {
+        "Damage": 0
+      }
     }
   ]
 }

@@ -61,6 +61,8 @@
   - Grain alcohol is now initially fermented for 1-2 days, and distilled 6 (5 - 7) times
   - Grain alcohol can now be watered down into vodka using 2 water bottles and rebottling
   - Absinthe is now made with a base of Grain Alcohol, then by adding the normal ingredients to the bottle and by distilling ~6 times
+  - Rum is now fermented for ~2-5 minutes, then distilled twice, then aged for at least one year in any oak barrel
+  - Added support for PaleGardenBackport's Pale Oak to be used as a barrel and count in recipes that require oak barrels
   - The items with create specific recipes can now be crafted using their non-create recipes even if create is installed (create recipes are just more efficient)
   - See [the wiki](https://www.github.com/pluto7073/PlutosDrinksAPI/wiki) or use [REI](https://modrinth.com/mod/rei) for full recipes
 - Changed how barrel fermentation works:

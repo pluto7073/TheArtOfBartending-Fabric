@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-18T12:22:38.432351169	The Art of Bartending/Model Definitions
+// 1.20.1	2026-04-19T00:23:09.80312798	The Art of Bartending/Model Definitions
 87bf569bbdfa8cc17c6e804282babc235627035f assets/bartending/models/item/glass_of_red_wine.json
 8fa6178c42606c8ed536845c16f2573fd66e2e62 assets/bartending/blockstates/crimson_fermenting_barrel.json
 adb0b9d3498a52570c9ff7718476b32ab5d4bd32 assets/bartending/models/item/glass_of_absinthe.json
@@ -43,8 +43,8 @@ d3616fa89183756bd4c104ac0468128dee096e9c assets/bartending/models/item/shot_of_s
 87bf569bbdfa8cc17c6e804282babc235627035f assets/bartending/models/item/glass_of_mead.json
 020b77856c78b4f829e3923b86b8e742e5830bbf assets/bartending/models/item/acacia_fermenting_barrel.json
 87bf569bbdfa8cc17c6e804282babc235627035f assets/bartending/models/item/glass_of_champagne.json
-d3616fa89183756bd4c104ac0468128dee096e9c assets/bartending/models/item/shot_of_gin.json
 d72e828409b4058835acbb4ce146c3c2150f4256 assets/bartending/models/item/dry_vermouth.json
+d3616fa89183756bd4c104ac0468128dee096e9c assets/bartending/models/item/shot_of_gin.json
 020b77856c78b4f829e3923b86b8e742e5830bbf assets/bartending/models/item/crimson_fermenting_barrel.json
 4beceeea1adfd15a4b99358dbe9b533c0d258375 assets/bartending/models/item/vodka.json
 8fa6178c42606c8ed536845c16f2573fd66e2e62 assets/bartending/blockstates/jungle_fermenting_barrel.json

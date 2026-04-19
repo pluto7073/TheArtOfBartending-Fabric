@@ -53,6 +53,8 @@ public class BartendingTagProviders {
                     .sorted(DrinkUtil.alphabetizer(FermentingBarrelBlock::getDescriptionId))
                     .forEach(axe::add);
             getOrCreateTagBuilder(BartendingTags.C_FARMLAND).add(Blocks.FARMLAND);
+            getOrCreateTagBuilder(BartendingTags.C_OAK_LOGS).add(Blocks.OAK_LOG, Blocks.DARK_OAK_LOG)
+                    .addOptional(new ResourceLocation("palegardenbackport:pale_oak_log"));
         }
 
     }
