@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_bottle": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "bartending:empty_glass_bottles"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bartending:smelting/glass_from_bottles"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_bottle",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bartending:smelting/glass_from_bottles"
+    ]
+  },
+  "sends_telemetry_event": false
+}

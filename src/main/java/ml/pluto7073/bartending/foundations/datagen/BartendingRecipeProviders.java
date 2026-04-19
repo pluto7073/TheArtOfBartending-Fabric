@@ -34,6 +34,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import snownee.fruits.CoreFruitTypes;
 import snownee.fruits.CoreModule;
@@ -172,6 +173,10 @@ public class BartendingRecipeProviders extends FabricRecipeProvider {
         simpleShapeless(BartendingItems.GREEN_GRAPE, Optional.empty(), BartendingItems.GREEN_GRAPE_SEEDS, RecipeCategory.FOOD, "grape_seeds", 1, exporter);
         simpleShapeless(BartendingItems.VINE_FRAME, Optional.of(BartendingItems.RED_GRAPE_SEEDS), BartendingItems.RED_GRAPE_PLANT, RecipeCategory.FOOD, "grape_plant", 1, exporter);
         simpleShapeless(BartendingItems.VINE_FRAME, Optional.of(BartendingItems.GREEN_GRAPE_SEEDS), BartendingItems.GREEN_GRAPE_PLANT, RecipeCategory.FOOD, "grape_plant", 1, exporter);
+
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(BartendingTags.EMPTY_GLASS_BOTTLES), RecipeCategory.MISC, Items.GLASS, 0.0625f, 200, RecipeSerializer.SMELTING_RECIPE)
+                .unlockedBy("has_bottle", has(BartendingTags.EMPTY_GLASS_BOTTLES))
+                        .save(exporter, asId("smelting/glass_from_bottles"));
 
         shaped(RecipeCategory.FOOD, BartendingItems.SKINNED_GRAPE, 4, builder ->
                 builder.pattern("gg")

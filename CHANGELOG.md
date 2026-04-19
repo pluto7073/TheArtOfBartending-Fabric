@@ -8,6 +8,7 @@
 
 ## Changes
 - Default year length for fermentation is 3 minecraft days (72000 ticks)
+- All empty glass bottles can be smelted to receive 1 glass block, defined in `#bartending:empty_glass_bottles`
 - Renamed some steps:
   - Boiling is now called Fermentation, Initial Fermentation, or Primary Fermentation
   - Fermentation (Barrel) is now called Barrel Aging or Barrel Fermentation
