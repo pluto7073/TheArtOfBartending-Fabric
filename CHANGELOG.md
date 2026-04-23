@@ -25,7 +25,7 @@
     - Beer: now 1-3 minecraft days
     - Wheat Beer: now 1-2 minecraft days
     - Dark Beer: now 2-4 minecraft days
-    - Mead & Apple Mead: now 4-6 minecraft days
+    - Mead & Apple Mead: now 15 minutes
     - Normal Wines: now around 1 minecraft day
     - Nether Wines: now 1-3 minecraft days
     - Gin: now 1-2 days
