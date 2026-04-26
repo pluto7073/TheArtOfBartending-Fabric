@@ -1,4 +1,14 @@
 
+## Changes
+- Grapes can now be found:
+  - As a gift from a Farmer Villager with Hero of the Village applied
+  - In Farmer house chests in Plains and Savanna Villages
+
+## Fixes
+- Grapes are unobtainable
+
+---
+
 ### We're Finally at 1.0!
 
 ## Additions

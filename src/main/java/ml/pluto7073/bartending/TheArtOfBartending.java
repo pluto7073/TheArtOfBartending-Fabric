@@ -8,6 +8,7 @@ import ml.pluto7073.bartending.content.fluid.BartendingFluids;
 import ml.pluto7073.bartending.content.gui.BartendingMenuTypes;
 import ml.pluto7073.bartending.content.item.BartendingItems;
 import ml.pluto7073.bartending.content.sound.BartendingSounds;
+import ml.pluto7073.bartending.foundations.BartendingEvents;
 import ml.pluto7073.bartending.foundations.BartendingStats;
 import ml.pluto7073.bartending.foundations.alcohol.AlcoholHandler;
 import ml.pluto7073.bartending.foundations.alcohol.BartendingEntityData;
@@ -51,6 +52,7 @@ public class TheArtOfBartending implements ModInitializer {
         BartendingBlockEntities.init();
         BartendingMenuTypes.init();
         BartendingItems.init();
+        BartendingEvents.init();
         BartendingEnchantments.init();
         BartendingMobEffects.init();
         BartendingCreativeTabs.init();
