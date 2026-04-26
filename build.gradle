@@ -126,23 +126,23 @@ dependencies {
 	// Optional Integration Testing Toggles (these can be safely commented out... except when stated)
 //	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
 //
-//	modRuntimeOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version_six}" // CREATE 6.x Required for Datagen
+	modRuntimeOnly "com.simibubi.create:create-fabric-${minecraft_version}:${create_version_six}" // CREATE 6.x Required for Datagen
 //
 //	modRuntimeOnly "vectorwing:FarmersDelight:${minecraft_version}-${farmersdelight_version}+refabricated"
 //
-//	modRuntimeOnly "maven.modrinth:kiwi:$kiwi_version" // Required for Lychee
-//
-//	modRuntimeOnly "maven.modrinth:lychee:$lychee_version" // Required for FFF
-//
-//	modRuntimeOnly "maven.modrinth:fruitful-fun:$fruitful_fun_version"
+	modRuntimeOnly "maven.modrinth:kiwi:$kiwi_version" // Required for Lychee
+
+	modRuntimeOnly "maven.modrinth:lychee:$lychee_version" // Required for FFF
+
+	modRuntimeOnly "maven.modrinth:fruitful-fun:$fruitful_fun_version"
 //
 //	modRuntimeOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
 //
 //	modRuntimeOnly "me.shedaniel.cloth:cloth-config-fabric:${project.cloth_version}" // Required for ModMenu
 //
-//	modRuntimeOnly "maven.modrinth:plutos-coffee-mod:$minecraft_version+$plutoscoffee_version" // Datagen (+ Github)
-//
-//	modRuntimeOnly "maven.modrinth:teatime:$minecraft_version+$teatime_version" // Datagen (+ Github)
+	modRuntimeOnly "maven.modrinth:plutos-coffee-mod:$minecraft_version+$plutoscoffee_version" // Datagen (+ Github)
+
+	modRuntimeOnly "maven.modrinth:teatime:$minecraft_version+$teatime_version" // Datagen (+ Github)
 
 }
 
@@ -157,8 +157,6 @@ tasks.register("buildOrPublish") {
 		println("Prepared to build")
 	}
 }
-
-tasks.publish.dependsOn(tasks.runDatagen)
 
 processResources {
 	Map<String, Object> properties = [
