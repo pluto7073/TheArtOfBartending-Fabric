@@ -3,9 +3,13 @@
 - Grapes can now be found:
   - As a gift from a Farmer Villager with Hero of the Village applied
   - In Farmer house chests in Plains and Savanna Villages
+- Vine Frames can now be crafted with 7 sticks
+  
+  <img src="https://raw.githubusercontent.com/pluto7073/TheArtOfBartending-Fabric/refs/heads/1.20/images/recipes/vine_frame.png" alt="vine frame recipe" width="200" />
 
 ## Fixes
 - Grapes are unobtainable
+- Vine Frame is unobtainable
 
 ---
 
