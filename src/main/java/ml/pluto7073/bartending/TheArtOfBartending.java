@@ -22,6 +22,7 @@ import ml.pluto7073.pdapi.util.PseudoDataFixerRegistry;
 import ml.pluto7073.plutonium.PlutoniumConfig;
 import ml.pluto7073.plutonium.config.ServerConfigType;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
@@ -57,7 +58,7 @@ public class TheArtOfBartending implements ModInitializer {
         BartendingMobEffects.init();
         BartendingCreativeTabs.init();
         BartendingCommands.init();
-        LOGGER.info("Oh no its alcohol time...");
+        LOGGER.info("Oh no its alcohol time... (Version {})", FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow().getMetadata().getVersion());
     }
 
     public static ResourceLocation asId(String name) {

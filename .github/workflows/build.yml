@@ -9,6 +9,18 @@ on:
         description: Publish To Modrinth and Curseforge
         required: true
         default: "false"
+      check_obtainable:
+        description: Check all items are obtainable
+        required: true
+        default: "false"
+      check_no_extensions:
+        description: Check if runs without compat extensions
+        required: true
+        default: "false"
+      check_functionality:
+        description: Check if all functionality works
+        required: true
+        default: "false"
 
 jobs:
   build:
@@ -53,5 +65,5 @@ jobs:
           path: build/libs/
 
       - name: modrinth and curseforge
-        if: ${{ github.event.inputs.publish }}
+        if: ${{ github.event.inputs.publish && github.event.inputs.check_obtainable && github.event.inputs.check_no_extensions && github.event.inputs.check_functionality }}
         run: ./gradlew publishMod
