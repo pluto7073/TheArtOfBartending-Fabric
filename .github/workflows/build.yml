@@ -55,6 +55,10 @@ jobs:
       - name: validate gradle wrapper
         uses: gradle/wrapper-validation-action@v2
 
+      - name: run datagen
+        if: ${{ github.event.inputs.publish }}
+        run: ./gradlew runDatagen
+
       - name: build or publish
         run: ./gradlew buildOrPublish
 
