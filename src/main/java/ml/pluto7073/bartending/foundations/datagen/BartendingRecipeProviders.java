@@ -183,6 +183,12 @@ public class BartendingRecipeProviders extends FabricRecipeProvider {
                         .pattern("gg")
                         .define('g', Ingredient.of(BartendingItems.RED_GRAPE, BartendingItems.GREEN_GRAPE))
                         .unlockedBy("has_grape", has(BartendingTags.UNSKINNED_GRAPES)), exporter);
+        shaped(RecipeCategory.DECORATIONS, BartendingItems.VINE_FRAME, 1, builder ->
+                builder.pattern("///")
+                        .pattern(" / ")
+                        .pattern("///")
+                        .define('/', Ingredient.of(Items.STICK))
+                        .unlockedBy("has_stick", has(Items.STICK)), exporter);
 
         Consumer<FinishedRecipe> createExporter =
                 withConditions(exporter, DefaultResourceConditions.allModsLoaded("create"));

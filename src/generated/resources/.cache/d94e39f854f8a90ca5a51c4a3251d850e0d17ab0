@@ -1,4 +1,4 @@
-// 1.20.1	2026-04-19T14:24:50.853515223	The Art of Bartending/Model Definitions
+// 1.20.1	2026-04-26T12:59:05.105640141	The Art of Bartending/Model Definitions
 87bf569bbdfa8cc17c6e804282babc235627035f assets/bartending/models/item/glass_of_red_wine.json
 8fa6178c42606c8ed536845c16f2573fd66e2e62 assets/bartending/blockstates/crimson_fermenting_barrel.json
 adb0b9d3498a52570c9ff7718476b32ab5d4bd32 assets/bartending/models/item/glass_of_absinthe.json
@@ -34,8 +34,8 @@ d72e828409b4058835acbb4ce146c3c2150f4256 assets/bartending/models/item/absinthe.
 d3616fa89183756bd4c104ac0468128dee096e9c assets/bartending/models/item/shot_of_whiskey.json
 bcf9de852c5e1d5a457d75863bf774adeb1b4e04 assets/bartending/models/item/red_grape_seeds.json
 4beceeea1adfd15a4b99358dbe9b533c0d258375 assets/bartending/models/item/rum.json
-8ab5103fa293a90327f5ec6bb77af1beb0c8a28f assets/bartending/models/item/bottle_of_wheat_beer.json
 020b77856c78b4f829e3923b86b8e742e5830bbf assets/bartending/models/item/spruce_fermenting_barrel.json
+8ab5103fa293a90327f5ec6bb77af1beb0c8a28f assets/bartending/models/item/bottle_of_wheat_beer.json
 22a5b9b60750be74b7c1a0f6bc46d09fa3507420 assets/bartending/models/item/glass_of_dark_beer.json
 8ab5103fa293a90327f5ec6bb77af1beb0c8a28f assets/bartending/models/item/bottle_of_dark_beer.json
 d3616fa89183756bd4c104ac0468128dee096e9c assets/bartending/models/item/shot_of_sweet_vermouth.json
@@ -69,8 +69,8 @@ d3616fa89183756bd4c104ac0468128dee096e9c assets/bartending/models/item/shot_of_g
 4beceeea1adfd15a4b99358dbe9b533c0d258375 assets/bartending/models/item/orange_liqueur.json
 8fa6178c42606c8ed536845c16f2573fd66e2e62 assets/bartending/blockstates/dark_oak_fermenting_barrel.json
 87bf569bbdfa8cc17c6e804282babc235627035f assets/bartending/models/item/glass_of_white_wine.json
-020b77856c78b4f829e3923b86b8e742e5830bbf assets/bartending/models/item/oak_fermenting_barrel.json
 8fa6178c42606c8ed536845c16f2573fd66e2e62 assets/bartending/blockstates/mangrove_fermenting_barrel.json
+020b77856c78b4f829e3923b86b8e742e5830bbf assets/bartending/models/item/oak_fermenting_barrel.json
 d3616fa89183756bd4c104ac0468128dee096e9c assets/bartending/models/item/shot_of_absinthe.json
 8fa6178c42606c8ed536845c16f2573fd66e2e62 assets/bartending/blockstates/acacia_fermenting_barrel.json
 4beceeea1adfd15a4b99358dbe9b533c0d258375 assets/bartending/models/item/gin.json
