@@ -17,7 +17,7 @@ import ml.pluto7073.bartending.foundations.config.BartendingCommonConfig;
 import ml.pluto7073.bartending.foundations.item.BartendingCreativeTabs;
 import ml.pluto7073.bartending.foundations.recipe.BartendingRecipes;
 import ml.pluto7073.bartending.foundations.specialty.GlassDrinkBaseSerializer;
-import ml.pluto7073.pdapi.config.PDCommonConfig;
+import ml.pluto7073.pdapi.util.PDCommonConfig;
 import ml.pluto7073.pdapi.util.PseudoDataFixerRegistry;
 import ml.pluto7073.plutonium.PlutoniumConfig;
 import ml.pluto7073.plutonium.config.ServerConfigType;

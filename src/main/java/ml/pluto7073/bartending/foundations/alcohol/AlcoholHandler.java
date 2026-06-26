@@ -16,7 +16,6 @@ import ml.pluto7073.pdapi.util.DrinkUtil;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.Registry;
 import net.minecraft.network.chat.Component;
@@ -88,7 +87,7 @@ public class AlcoholHandler extends HalfLifeChemicalHandler {
     public void appendTooltip(List<Component> tooltip, float amount, ItemStack stack, AlcDisplayType display) {
         if (amount <= 0) return;
         if (FabricLoader.getInstance().getEnvironmentType() != EnvType.CLIENT) return;
-        if (DrinkUtil.getAdditionsFromStack(stack, Minecraft.getInstance().level).length > 0 || stack.is(PDItems.SPECIALTY_DRINK)) {
+        if (stack.is(PDItems.SPECIALTY_DRINK)) {
             tooltip.add(Component.translatable("tooltip.bartending.alcohol_content", amount + "g").withStyle(ChatFormatting.GOLD));
             return;
         }

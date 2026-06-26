@@ -15,7 +15,7 @@ import ml.pluto7073.bartending.content.item.ConcoctionItem;
 import ml.pluto7073.bartending.foundations.util.BrewingUtil;
 import ml.pluto7073.bartending.client.config.BartendingClientConfig;
 import ml.pluto7073.bartending.foundations.util.ColorUtil;
-import ml.pluto7073.pdapi.config.PDClientConfig;
+import ml.pluto7073.pdapi.client.PDClientConfig;
 import ml.pluto7073.pdapi.util.DrinkUtil;
 import ml.pluto7073.pdapi.addition.DrinkAddition;
 import net.fabricmc.api.ClientModInitializer;

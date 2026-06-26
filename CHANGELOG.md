@@ -1,5 +1,13 @@
 
 ## Changes
+- Updated to PDAPI 0.4.4
+
+## Fixes
+- Fixed a bug causing a crash on dedicated server startup
+
+---
+
+## Changes
 - Grapes can now be found:
   - As a gift from a Farmer Villager with Hero of the Village applied
   - In Farmer house chests in Plains and Savanna Villages
